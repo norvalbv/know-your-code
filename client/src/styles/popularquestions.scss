@@ -1,0 +1,47 @@
+@import "../styles/global.scss";
+
+.pop {
+  display: grid;
+  grid-template-areas:
+    "a a a"
+    "b c c"
+    "b c c";
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.navbar {
+  grid-area: a;
+}
+
+.topics {
+  grid-area: b;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .topic {
+    border: 1px solid $p-clr-1;
+    background: none;
+    width: 20rem;
+    height: 4rem;
+    border-radius: 5px;
+    color: inherit;
+
+    &:hover {
+        cursor: pointer;
+        background: $hover-clr-1;
+        box-shadow: 2px 2px 2px $hover-clr-1;
+    }
+  }
+}
+
+.trending-questions {
+  grid-area: c;
+
+  .trending-question {
+    cursor: pointer;
+    margin: 1rem 0;
+    text-transform: capitalize;
+  }
+}

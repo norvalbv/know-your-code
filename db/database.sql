@@ -9,4 +9,4 @@ CREATE TABLE htmlquestions (
 INSERT INTO
     htmlquestions (id, description, answer)
 VALUES
-    (1, 'test', 'test');
+    (2, 'test2', 'test');
