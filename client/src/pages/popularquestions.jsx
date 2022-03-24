@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavBar } from "../components/navbar/navbar";
-import { SearchQuestions } from "../components/searchquestions";
+// import { SearchQuestions } from "../components/searchquestions";
 import "../styles/popularquestions.scss";
 import { useDebounce } from "use-debounce";
 
@@ -16,7 +16,7 @@ export const PopularQuestions = () => {
   const popularquestions = async () => {
     try {
       const data = await fetch(
-        `http://localhost:5000/${selectedTopic.toLocaleLowerCase()}/allquestions`
+        `/${selectedTopic.toLocaleLowerCase()}/allquestions`
       );
       const response = await data.json();
       setQuestions(response);
@@ -32,7 +32,7 @@ export const PopularQuestions = () => {
 
   const initialFetch = async () => {
     try {
-      const data = await fetch(`http://localhost:5000/topics`);
+      const data = await fetch(`/topics`);
       const response = await data.json();
       setTopics(response);
     } catch (error) {
@@ -61,7 +61,7 @@ export const PopularQuestions = () => {
     e.preventDefault();
     try {
       const data = await fetch(
-        `http://localhost:5000/trending/${selectedTopic}/search/${search}`
+        `/trending/${selectedTopic}/search/${search}`
       );
       const response = await data.json();
       console.log(response);

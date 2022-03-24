@@ -1,18 +1,22 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const html = require("./routes/html");
 const js = require("./routes/javascript");
 const css = require("./routes/css");
 const trending = require("./routes/trendingquestions");
 const misc = require("./routes/misc");
 require("dotenv").config();
-
 const pool = require("./db/pool");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors());
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
 
 app.get("/trending/:topic/search/:question", misc.filterQuestions);
 
