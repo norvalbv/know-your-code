@@ -4,36 +4,51 @@ import "../styles/popularquestions.scss";
 
 export const PopularQuestions = () => {
   const [questions, setQuestions] = useState([]);
-  const [clicked, setClicked] = useState(false);
-  const [tempdata, setTempdata] = useState(null);
-  const [currentTopic, setCurrentTopic] = useState("trending");
+
+  const [selectedTopic, setSelectedTopic] = useState("trending");
+
+  const [selectedQuestion, setSelectedQuestion] = useState(false);
+
+  const [topics, setTopics] = useState([]);
 
   const popularquestions = async () => {
     try {
       const data = await fetch(
-        `http://localhost:5000/${currentTopic}/allquestions`
+        `http://localhost:5000/${selectedTopic.toLocaleLowerCase()}/allquestions`
       );
       const response = await data.json();
-      console.log(response);
       setQuestions(response);
+      setSelectedQuestion(false);
     } catch (error) {
       console.error(error);
-      setTempdata([{ 1: "2" }, { 1: "2" }, { 1: "2" }, { 1: "2" }, { 1: "2" }]);
+    }
+  };
+
+  // (async () => {
+
+  // })();
+
+  const initialFetch = async () => {
+    try {
+      const data = await fetch(`http://localhost:5000/topics`);
+      const response = await data.json();
+      console.log(response);
+      setTopics(response);
+    } catch (error) {
+      console.error(error);
     }
   };
 
   useEffect(() => {
+    initialFetch();
+  }, []);
+
+  useEffect(() => {
     popularquestions();
-  }, [currentTopic]);
-
-  const handleTopicClick = () => {
-    setCurrentTopic("html");
-  };
-
-  const tempList = ["HTML / CSS", "JavaScript", "React", "Redux", "2", "3"];
+  }, [selectedTopic]);
 
   if (!questions) {
-    return <></>
+    return <></>;
   }
 
   return (
@@ -42,27 +57,29 @@ export const PopularQuestions = () => {
         <NavBar />
       </div>
       <div className="topics">
-        {tempList.map((item) => (
+        {topics.map((item, i) => (
           <button
-            key={Math.random()}
+            key={i}
             className="topic"
-            onClick={handleTopicClick}
+            onClick={() => setSelectedTopic(item.topic)}
           >
-            {item}
+            {item.topic}
           </button>
         ))}
       </div>
       <div className="trending-questions">
         <h2>Trending Questions</h2>
-        {questions.map((item) => (
-          <React.Fragment key={Math.random()}>
+        {questions.map((item, i) => (
+          <React.Fragment key={i}>
             <h3
               className="trending-question"
-              onClick={() => setClicked(!clicked)}
+              onClick={() => {
+                setSelectedQuestion(questions[i]);
+              }}
             >
-              {item.description}
+              {item.question}
             </h3>
-            {clicked && <p>{item.answer}</p>}
+            {questions.indexOf(selectedQuestion) === i && <p>{item.answer}</p>}
           </React.Fragment>
         ))}
       </div>

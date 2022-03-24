@@ -1,6 +1,6 @@
 const pool = require("../db/pool");
 
-const getAllQuestions = async (req, res) => {
+const getHTMLQuestions = async (req, res) => {
   try {
     const getAllQuestion = await pool.query(`SELECT * FROM htmlquestions`);
     res.send(getAllQuestion.rows);
@@ -10,5 +10,5 @@ const getAllQuestions = async (req, res) => {
 };
 
 module.exports = {
-  getAllQuestions,
+  getHTMLQuestions,
 };
