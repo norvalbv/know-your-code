@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavBar } from "../components/navbar/navbar";
+import { SearchQuestions } from "../components/searchquestions";
 import "../styles/popularquestions.scss";
+import { useDebounce } from "use-debounce";
 
 export const PopularQuestions = () => {
   const [questions, setQuestions] = useState([]);
@@ -24,15 +26,14 @@ export const PopularQuestions = () => {
     }
   };
 
-  // (async () => {
-
-  // })();
+  useEffect(() => {
+    popularquestions();
+  }, [selectedTopic]);
 
   const initialFetch = async () => {
     try {
       const data = await fetch(`http://localhost:5000/topics`);
       const response = await data.json();
-      console.log(response);
       setTopics(response);
     } catch (error) {
       console.error(error);
@@ -43,13 +44,40 @@ export const PopularQuestions = () => {
     initialFetch();
   }, []);
 
-  useEffect(() => {
-    popularquestions();
-  }, [selectedTopic]);
+  const [search, setSearch] = useState("");
+  // const [debounceValue] = useDebounce(search, 500);
 
-  if (!questions) {
-    return <></>;
-  }
+  // let [noData, setNoData] = useState(false);
+
+  const editInput = (e) => {
+    setSearch(e.target.value);
+    searchFilter(e)
+  };
+
+  const searchFilter = async (e) => {
+    if (!search) {
+      return popularquestions();
+    }
+    e.preventDefault();
+    try {
+      const data = await fetch(
+        `http://localhost:5000/trending/${selectedTopic}/search/${search}`
+      );
+      const response = await data.json();
+      console.log(response);
+      setQuestions(response);
+
+      // if (!response) {
+      //   setNoData(!noData);
+      // }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // if (!questions) {
+  //   return <></>;
+  // }
 
   return (
     <div className="pop">
@@ -57,6 +85,7 @@ export const PopularQuestions = () => {
         <NavBar />
       </div>
       <div className="topics">
+        <h2>Popular Topics</h2>
         {topics.map((item, i) => (
           <button
             key={i}
@@ -68,20 +97,33 @@ export const PopularQuestions = () => {
         ))}
       </div>
       <div className="trending-questions">
-        <h2>Trending Questions</h2>
-        {questions.map((item, i) => (
-          <React.Fragment key={i}>
-            <h3
-              className="trending-question"
-              onClick={() => {
-                setSelectedQuestion(questions[i]);
-              }}
-            >
-              {item.question}
-            </h3>
-            {questions.indexOf(selectedQuestion) === i && <p>{item.answer}</p>}
-          </React.Fragment>
-        ))}
+        <form onSubmit={searchFilter}>
+          <input
+            type="text"
+            placeholder="Search Questions"
+            value={search}
+            onChange={editInput}
+            className="search-questions"
+          />
+        </form>
+        <div className="questions">
+          <h2>Trending Questions</h2>
+          {questions.map((item, i) => (
+            <React.Fragment key={i}>
+              <h3
+                className="trending-question"
+                onClick={() => {
+                  setSelectedQuestion(questions[i]);
+                }}
+              >
+                {item.question}
+              </h3>
+              {questions.indexOf(selectedQuestion) === i && (
+                <p>{item.answer}</p>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     </div>
   );

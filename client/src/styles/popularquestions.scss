@@ -3,9 +3,9 @@
 .pop {
   display: grid;
   grid-template-areas:
-    "a a a"
-    "b c c"
-    "b c c";
+    "a a a a a"
+    "b c c c c"
+    "b c c c c";
   gap: 2rem;
   padding: 1rem;
 }
@@ -29,9 +29,9 @@
     color: inherit;
 
     &:hover {
-        cursor: pointer;
-        background: $hover-clr-1;
-        box-shadow: 2px 2px 2px $hover-clr-1;
+      cursor: pointer;
+      background: $hover-clr-1;
+      box-shadow: 2px 2px 2px $hover-clr-1;
     }
   }
 }
@@ -43,5 +43,24 @@
     cursor: pointer;
     margin: 1rem 0;
     text-transform: capitalize;
+  }
+}
+
+.questions {
+  margin-top: 5rem;
+}
+
+.search-questions {
+  float: right;
+  background: none;
+  border: none;
+  border-bottom: 1px solid white;
+  text-align: center;
+  width: 15rem;
+  padding-bottom: 1rem;
+
+  &:focus {
+    outline: none;
+    color: inherit;
   }
 }
