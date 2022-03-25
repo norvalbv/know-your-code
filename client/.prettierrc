@@ -9,5 +9,6 @@
 	"trailingComma": "none",
 	"bracketSpacing": true,
 	"jsxBracketSameLine": true,
-	"semi": true
+	"semi": true,
+	"endOfLine": "auto"
 }

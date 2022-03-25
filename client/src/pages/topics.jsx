@@ -1,5 +1,5 @@
-import { NavBar } from "../components/navbar/navbar"
-import { SortQuestions } from "../components/navbar/sortquestions"
+import { NavBar } from '../components/navbar/navbar';
+import { SortQuestions } from '../components/navbar/sortquestions';
 
 export const Topics = () => {
   return (
@@ -9,5 +9,5 @@ export const Topics = () => {
         <NavBar />
       </div>
     </div>
-  )
-}
+  );
+};

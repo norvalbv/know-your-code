@@ -1,23 +1,21 @@
-import "../../styles/navbar/navbar.scss";
-import { useState, useContext } from "react";
+import '../../styles/navbar/navbar.scss';
+import { useState, useContext } from 'react';
+import { QuestionType } from '../../app/App';
 
 export const SortQuestions = () => {
-
-  const questionType = useContext();
+  const questiontype = useContext(QuestionType);
 
   return (
     <>
       <ul className="sort-questions">
         <li
-        //   onClick={() => setActiveQuestionType("questions")}
-          id={questionType === "questions" && "questions"}
-        >
+          // onClick={() => setActiveQuestionType('questions')}
+          id={questiontype === 'questions' && 'questions'}>
           Questions
         </li>
         <li
-        //   onClick={() => setActiveQuestionType("syntax")}
-          id={questionType === "syntax" && "syntax"}
-        >
+          // onClick={() => setActiveQuestionType('syntax')}
+          id={questiontype === 'syntax' && 'syntax'}>
           Syntax
         </li>
       </ul>

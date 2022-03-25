@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Landing } from "../pages/landing";
+import React, { useState } from 'react';
+import { Landing } from '../pages/landing';
 import {
   BrowserRouter as Router,
   Routes,
@@ -12,10 +12,16 @@ import { PopularQuestions } from '../pages/popularquestions';
 export const QuestionType = React.createContext();
 
 function App() {
-  const [activeQuestionType, setActiveQuestionType] = useState("questions");
+  const [activeQuestionType, setActiveQuestionType] = useState('questions');
+
+  // const toggleType = () => {
+  //   setActiveQuestionType(() => {
+  //     activeQuestionType === 'questions' ? 'syntax' : 'questions';
+  //   });
+  // };
   return (
     <div className="app">
-      <QuestionType.Provider value={"questions"}>
+      <QuestionType.Provider value={activeQuestionType}>
         <Router>
           <Routes>
             {/* <Route exact path="/" element={<Navigate to="/trendingquestions" replace />}></Route> */}
