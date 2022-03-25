@@ -1,0 +1,45 @@
+@import "../global.scss";
+
+#navbar ul {
+  display: flex;
+  gap: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+
+  li {
+    list-style-type: none;
+  }
+}
+
+.sort-questions {
+  display: flex;
+  gap: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+
+  li {
+    list-style-type: none;
+    color: gray;
+
+    // &:active {
+    //     color: white;
+    // }
+
+    &:first-child {
+      border-right: 1px solid #fff;
+      padding-right: 1rem;
+    }
+
+    &:hover {
+        color: $p-clr-1;
+    }
+  }
+}
+
+#questions {
+    color: white;
+}
+
+#syntax {
+    color: white;
+}

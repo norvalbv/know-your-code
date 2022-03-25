@@ -16,7 +16,7 @@ export const PopularQuestions = () => {
   const popularquestions = async () => {
     try {
       const data = await fetch(
-        `/${selectedTopic.toLocaleLowerCase()}/allquestions`
+        `/${selectedTopic.toLowerCase()}/allquestions`
       );
       const response = await data.json();
       setQuestions(response);
@@ -80,6 +80,7 @@ export const PopularQuestions = () => {
   return (
     <div className="pop">
       <div className="navbar">
+        <SortQuestions />
         <NavBar />
       </div>
       <div className="topics">

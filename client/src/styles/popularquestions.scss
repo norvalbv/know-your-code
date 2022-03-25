@@ -12,6 +12,8 @@
 
 .navbar {
   grid-area: a;
+  display: flex;
+  justify-content: space-between;
 }
 
 .topics {
