@@ -1,5 +1,13 @@
+import { NavBar } from "../components/navbar/navbar"
+import { SortQuestions } from "../components/navbar/sortquestions"
+
 export const Topics = () => {
   return (
-    <div>Topics</div>
+    <div>
+      <div className="navbar">
+        <SortQuestions />
+        <NavBar />
+      </div>
+    </div>
   )
 }

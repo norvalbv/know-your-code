@@ -3,6 +3,7 @@ import { NavBar } from "../components/navbar/navbar";
 // import { SearchQuestions } from "../components/searchquestions";
 import "../styles/popularquestions.scss";
 import { useDebounce } from "use-debounce";
+import { SortQuestions } from "../components/navbar/sortquestions";
 
 export const PopularQuestions = () => {
   const [questions, setQuestions] = useState([]);
@@ -16,7 +17,7 @@ export const PopularQuestions = () => {
   const popularquestions = async () => {
     try {
       const data = await fetch(
-        `/${selectedTopic.toLocaleLowerCase()}/allquestions`
+        `/${selectedTopic.toLowerCase()}/allquestions`
       );
       const response = await data.json();
       setQuestions(response);
@@ -51,7 +52,7 @@ export const PopularQuestions = () => {
 
   const editInput = (e) => {
     setSearch(e.target.value);
-    searchFilter(e)
+    searchFilter(e);
   };
 
   const searchFilter = async (e) => {
@@ -60,9 +61,7 @@ export const PopularQuestions = () => {
     }
     e.preventDefault();
     try {
-      const data = await fetch(
-        `/trending/${selectedTopic}/search/${search}`
-      );
+      const data = await fetch(`/trending/${selectedTopic}/search/${search}`);
       const response = await data.json();
       console.log(response);
       setQuestions(response);
@@ -82,6 +81,7 @@ export const PopularQuestions = () => {
   return (
     <div className="pop">
       <div className="navbar">
+        <SortQuestions />
         <NavBar />
       </div>
       <div className="topics">
