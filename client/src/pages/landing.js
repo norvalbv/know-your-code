@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const Landing = () => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   return (
     <>
       <input

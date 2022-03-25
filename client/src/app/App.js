@@ -4,10 +4,10 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
-} from "react-router-dom";
-import "../styles/global.scss";
-import { PopularQuestions } from "../pages/popularquestions";
+  Navigate
+} from 'react-router-dom';
+import '../styles/global.scss';
+import { PopularQuestions } from '../pages/popularquestions';
 
 export const QuestionType = React.createContext();
 
