@@ -1,5 +1,5 @@
-import Landing from '../pages/Landing';
-import PopularQuestions from '../pages/PopularQuestions';
+import Landing from '../pages/landing';
+import PopularQuestions from '../pages/popularquestions';
 
 import {
   BrowserRouter as Router,

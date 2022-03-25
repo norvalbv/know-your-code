@@ -2,10 +2,10 @@
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-.app {
+.app-container {
   background-color: #1f1f1f;
   width: 100vw;
   min-height: 100vh;

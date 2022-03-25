@@ -1,24 +1,30 @@
 import '../../styles/navbar/navbar.scss';
 import { useState, useContext } from 'react';
-import { QuestionType } from '../../app/App';
-
+import { SelectedQuestionType } from '../../context/selectedquestion';
 export const SortQuestions = () => {
-  const questiontype = useContext(QuestionType);
+  const selectedquestiontype = useContext(SelectedQuestionType);
+
+  setTimeout(() => {
+    console.log(selectedquestiontype.type);
+  }, 5000);
 
   return (
     <>
       <ul className="sort-questions">
         <li
-          // onClick={() => setActiveQuestionType('questions')}
-          id={questiontype === 'questions' && 'questions'}>
+          onClick={selectedquestiontype.toggleQuestionType}
+          id={selectedquestiontype.type === 'questions' ? 'questions' : null}>
           Questions
         </li>
         <li
-          // onClick={() => setActiveQuestionType('syntax')}
-          id={questiontype === 'syntax' && 'syntax'}>
+          onClick={selectedquestiontype.toggleQuestionType}
+          id={selectedquestiontype.type === 'syntax' ? 'syntax' : null}>
           Syntax
         </li>
       </ul>
+      {/* <button onClick={selectedquestiontype.toggleQuestionType}>
+        la0sdi ashidahsid hasg hiasd
+      </button> */}
     </>
   );
 };

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // import { SearchQuestions } from "../components/searchquestions";
-import { NavBar } from '../components/navbar/navbar';
+import NavBar from '../components/navbar/navbar';
 import '../styles/popularquestions.scss';
 import { useDebounce } from 'use-debounce';
 import { QuestionType } from '../app/App';
@@ -48,7 +48,7 @@ const PopularQuestions = () => {
 
   const handleSearchQuestion = (e) => {
     setSearch(e.target.value);
-    searchFilter(e);
+    // searchFilter(e);
   };
 
   const handleSearchSubmit = async (e) => {
@@ -70,18 +70,22 @@ const PopularQuestions = () => {
     }
   };
 
-  // if (!questions) {
-  //   return <></>;
-  // }
+  if (!questions) {
+    return <></>;
+  }
 
   return (
     <section className="popular-topics__container">
+      <div className="navbar">
+        <SortQuestions />
+        <NavBar />
+      </div>
       <div className="popular-topics__topics">
         <h2>Popular Topics</h2>
         {topics.map((item, i) => (
           <button
             key={i}
-            className="popular-topics__topic"
+            className="__topic"
             onClick={() => setSelectedTopic(item.topic)}>
             {item.topic}
           </button>
