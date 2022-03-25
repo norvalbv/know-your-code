@@ -1,6 +1,4 @@
-import '../../styles/navbar/navbar.scss';
-
-export const NavBar = () => {
+const NavBar = () => {
   return (
     <div id="navbar">
       <ul>
@@ -11,3 +9,5 @@ export const NavBar = () => {
     </div>
   );
 };
+
+export default NavBar;

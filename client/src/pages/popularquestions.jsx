@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
+// import { SearchQuestions } from "../components/searchquestions";
 import { NavBar } from '../components/navbar/navbar';
 import '../styles/popularquestions.scss';
 import { useDebounce } from 'use-debounce';
 import { QuestionType } from '../app/App';
 import { SortQuestions } from '../components/navbar/sortquestions';
 
-export const PopularQuestions = () => {
+const PopularQuestions = () => {
   const [questions, setQuestions] = useState([]);
-
   const [selectedTopic, setSelectedTopic] = useState('trending');
-
   const [selectedQuestion, setSelectedQuestion] = useState(false);
-
   const [topics, setTopics] = useState([]);
+  const [search, setSearch] = useState('');
 
-  const popularquestions = async () => {
+  const getPopularQuestions = async () => {
     try {
       const data = await fetch(`/${selectedTopic.toLowerCase()}/allquestions`);
       const response = await data.json();
@@ -25,11 +24,7 @@ export const PopularQuestions = () => {
     }
   };
 
-  useEffect(() => {
-    popularquestions();
-  }, [selectedTopic]);
-
-  const initialFetch = async () => {
+  const getTopics = async () => {
     try {
       const data = await fetch(`/topics`);
       const response = await data.json();
@@ -40,22 +35,25 @@ export const PopularQuestions = () => {
   };
 
   useEffect(() => {
-    initialFetch();
+    getTopics();
   }, []);
 
-  const [search, setSearch] = useState('');
+  useEffect(() => {
+    getPopularQuestions();
+  }, [selectedTopic]);
+
   // const [debounceValue] = useDebounce(search, 500);
 
   // let [noData, setNoData] = useState(false);
 
-  const editInput = (e) => {
+  const handleSearchQuestion = (e) => {
     setSearch(e.target.value);
     searchFilter(e);
   };
 
-  const searchFilter = async (e) => {
+  const handleSearchSubmit = async (e) => {
     if (!search) {
-      return popularquestions();
+      return getPopularQuestions();
     }
     e.preventDefault();
     try {
@@ -77,36 +75,32 @@ export const PopularQuestions = () => {
   // }
 
   return (
-    <div className="pop">
-      <div className="navbar">
-        <SortQuestions />
-        <NavBar />
-      </div>
-      <div className="topics">
+    <section className="popular-topics__container">
+      <div className="popular-topics__topics">
         <h2>Popular Topics</h2>
         {topics.map((item, i) => (
           <button
             key={i}
-            className="topic"
+            className="popular-topics__topic"
             onClick={() => setSelectedTopic(item.topic)}>
             {item.topic}
           </button>
         ))}
       </div>
-      <div className="trending-questions">
-        <form onSubmit={searchFilter}>
+      <div className="trending-questions__container">
+        <form onSubmit={handleSearchSubmit}>
           <input
             type="text"
             placeholder="Search Questions"
             value={search}
-            onChange={editInput}
-            className="search-questions"
+            onChange={handleSearchQuestion}
+            className="trending-questions__search"
           />
         </form>
         <div className="questions">
           <h2>Trending Questions</h2>
           {questions.map((item, i) => (
-            <React.Fragment key={i}>
+            <div key={i}>
               <h3
                 className="trending-question"
                 onClick={() => {
@@ -117,10 +111,12 @@ export const PopularQuestions = () => {
               {questions.indexOf(selectedQuestion) === i && (
                 <p>{item.answer}</p>
               )}
-            </React.Fragment>
+            </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
+
+export default PopularQuestions;

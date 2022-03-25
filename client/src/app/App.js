@@ -1,37 +1,14 @@
-import React, { useState } from 'react';
-import { Landing } from '../pages/landing';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate
-} from 'react-router-dom';
 import '../styles/global.scss';
-import { PopularQuestions } from '../pages/popularquestions';
+import PublicRoutes from './router';
+import NavBar from '../components/NavBar/NavBar';
 
-export const QuestionType = React.createContext();
-
-function App() {
-  const [activeQuestionType, setActiveQuestionType] = useState('questions');
-
-  // const toggleType = () => {
-  //   setActiveQuestionType(() => {
-  //     activeQuestionType === 'questions' ? 'syntax' : 'questions';
-  //   });
-  // };
+const App = () => {
   return (
-    <div className="app">
-      <QuestionType.Provider value={activeQuestionType}>
-        <Router>
-          <Routes>
-            {/* <Route exact path="/" element={<Navigate to="/trendingquestions" replace />}></Route> */}
-            <Route path="/landing" element={<Landing />}></Route>
-            <Route exact path="/" element={<PopularQuestions />}></Route>
-          </Routes>
-        </Router>
-      </QuestionType.Provider>
+    <div className="app-container">
+      <NavBar />
+      <PublicRoutes />
     </div>
   );
-}
+};
 
 export default App;
