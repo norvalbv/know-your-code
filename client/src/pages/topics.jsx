@@ -1,5 +1,3 @@
 export const Topics = () => {
-  return (
-    <div>Topics</div>
-  )
-}
+  return <div>Topics</div>;
+};

@@ -1,5 +1,3 @@
 export const SortQuestions = () => {
-  return (
-    <div>SortQuestions</div>
-  )
-}
+  return <div>SortQuestions</div>;
+};

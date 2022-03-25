@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const SearchQuestions = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   return (
     <>
       <input

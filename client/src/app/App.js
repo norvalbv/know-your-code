@@ -1,12 +1,12 @@
-import { Landing } from "../pages/landing";
+import { Landing } from '../pages/landing';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
-} from "react-router-dom";
-import "../styles/global.scss";
-import { PopularQuestions } from "../pages/popularquestions";
+  Navigate
+} from 'react-router-dom';
+import '../styles/global.scss';
+import { PopularQuestions } from '../pages/popularquestions';
 
 function App() {
   return (

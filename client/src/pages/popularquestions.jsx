@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { NavBar } from "../components/navbar/navbar";
+import React, { useEffect, useState } from 'react';
+import { NavBar } from '../components/navbar/navbar';
 // import { SearchQuestions } from "../components/searchquestions";
-import "../styles/popularquestions.scss";
-import { useDebounce } from "use-debounce";
+import '../styles/popularquestions.scss';
+import { useDebounce } from 'use-debounce';
 
 export const PopularQuestions = () => {
   const [questions, setQuestions] = useState([]);
 
-  const [selectedTopic, setSelectedTopic] = useState("trending");
+  const [selectedTopic, setSelectedTopic] = useState('trending');
 
   const [selectedQuestion, setSelectedQuestion] = useState(false);
 
@@ -44,14 +44,14 @@ export const PopularQuestions = () => {
     initialFetch();
   }, []);
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   // const [debounceValue] = useDebounce(search, 500);
 
   // let [noData, setNoData] = useState(false);
 
   const editInput = (e) => {
     setSearch(e.target.value);
-    searchFilter(e)
+    searchFilter(e);
   };
 
   const searchFilter = async (e) => {
@@ -60,9 +60,7 @@ export const PopularQuestions = () => {
     }
     e.preventDefault();
     try {
-      const data = await fetch(
-        `/trending/${selectedTopic}/search/${search}`
-      );
+      const data = await fetch(`/trending/${selectedTopic}/search/${search}`);
       const response = await data.json();
       console.log(response);
       setQuestions(response);
