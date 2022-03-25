@@ -12,6 +12,18 @@ const filterQuestions = async (req, res) => {
   }
 };
 
+const filterTopics = async (req, res) => {
+  try {
+    const getAllQuestion = await pool.query(
+      `SELECT * FROM topics WHERE topic LIKE '%${req.params.search}%';`
+    );
+    res.send(getAllQuestion.rows);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 module.exports = {
   filterQuestions,
+  filterTopics,
 };

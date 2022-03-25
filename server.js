@@ -22,6 +22,8 @@ if (process.env.NODE_ENV === "production") {
 
 app.get("/:topic/search/:questiontype/:question", misc.filterQuestions);
 
+app.get("/topics/:search", misc.filterTopics);
+
 // HTML
 
 app.get("/html/all/questions", html.getHTMLAllQuestions);

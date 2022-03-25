@@ -17,12 +17,10 @@ const PopularQuestions = () => {
 
   const getPopularQuestions = async () => {
     try {
-      console.log(`/${selectedTopic.toLowerCase()}/all/${questiontype.type}`);
       const data = await fetch(
         `/${selectedTopic.toLowerCase()}/all/${questiontype.type}`
       );
 
-      console.log(data);
       const response = await data.json();
       setQuestions(response);
       setSelectedQuestion(false);
@@ -53,9 +51,9 @@ const PopularQuestions = () => {
 
   // let [noData, setNoData] = useState(false);
 
-  const handleSearchQuestion = (e) => {
+  const handleSearchChange = (e) => {
     setSearch(e.target.value);
-    // searchFilter(e);
+    // handleSearchQuestion(e);
   };
 
   const handleSearchSubmit = async (e) => {
@@ -68,7 +66,6 @@ const PopularQuestions = () => {
         `/${selectedTopic}/search/${questiontype.type}/${search}`
       );
       const response = await data.json();
-      console.log(response);
       setQuestions(response);
 
       // if (!response) {
@@ -106,7 +103,7 @@ const PopularQuestions = () => {
             type="text"
             placeholder="Search Questions"
             value={search}
-            onChange={handleSearchQuestion}
+            onChange={handleSearchChange}
             className="trending-questions__search"
           />
         </form>

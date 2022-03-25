@@ -7,6 +7,7 @@ import {
   Route,
   Navigate
 } from 'react-router-dom';
+import { Topics } from '../pages/topics';
 
 const PublicRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const PublicRoutes = () => {
         {/* <Route exact path="/" element={<Navigate to="/trendingquestions" replace />}></Route> */}
         <Route path="/landing" element={<Landing />}></Route>
         <Route exact path="/" element={<PopularQuestions />}></Route>
+        <Route path="/topics" element={<Topics />}></Route>
       </Routes>
     </Router>
   );
