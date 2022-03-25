@@ -1,10 +1,10 @@
 const NavBar = () => {
   return (
-    <div>
+    <div id="navbar">
       <ul>
-        <li>NAVBAR</li>
-        <li>NAVBAR</li>
-        <li>NAVBAR</li>
+        <li>Home</li>
+        <li>Catalog</li>
+        <li>Trending Questions</li>
       </ul>
     </div>
   );

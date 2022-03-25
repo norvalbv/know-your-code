@@ -2,11 +2,93 @@ CREATE DATABASE knowyourcode;
 
 CREATE TABLE htmlquestions (
     id SERIAL PRIMARY KEY,
-    description varchar(256) NOT NULL,
-    answer varchar(512) NOT NULL
+    question varchar(256) NOT NULL,
+    answer varchar(1024) NOT NULL
 );
 
 INSERT INTO
-    htmlquestions (id, description, answer)
+    htmlquestions (question, answer)
 VALUES
-    (2, 'test2', 'test');
+    ('html question', 'html answer');
+INSERT INTO
+    htmlquestions (question, answer)
+VALUES
+    ('html question 2', 'html answer 2');
+INSERT INTO
+    htmlquestions (question, answer)
+VALUES
+    ('html question 3', 'html answer 3');
+
+
+
+CREATE TABLE cssquestions (
+    id SERIAL PRIMARY KEY,
+    question varchar(256) NOT NULL,
+    answer varchar(1024) NOT NULL
+);
+
+INSERT INTO
+    cssquestions (question, answer)
+VALUES
+    ('css question', 'css answer');
+
+INSERT INTO
+    cssquestions (question, answer)
+VALUES
+    ('css question 2', 'css answer 2');
+INSERT INTO
+    cssquestions (question, answer)
+VALUES
+    ('css question 3', 'css answer 3');
+
+
+CREATE TABLE javascriptquestions (
+    id SERIAL PRIMARY KEY,
+    question varchar(256) NOT NULL,
+    answer varchar(1024) NOT NULL
+);
+
+INSERT INTO
+    javascriptquestions (question, answer)
+VALUES
+    ('javascript question', 'javascript answer');
+
+INSERT INTO
+    javascriptquestions (question, answer)
+VALUES
+    ('javascript question 2', 'javascript answer 2');
+INSERT INTO
+    javascriptquestions (question, answer)
+VALUES
+    ('javascript question 3', 'javascript answer 3');
+
+CREATE TABLE trendingquestions (
+    id SERIAL PRIMARY KEY,
+    question varchar(256) NOT NULL,
+    answer varchar(1024) NOT NULL
+);
+
+INSERT INTO
+    trendingquestions (question, answer)
+VALUES
+    ('trending question', 'trending answer');
+
+INSERT INTO
+    trendingquestions (question, answer)
+VALUES
+    ('trending question 2', 'trending answer 2');
+
+INSERT INTO
+    trendingquestions (question, answer)
+VALUES
+    ('trending question 3', 'trending answer 3');
+
+CREATE TABLE topics (
+    id SERIAL PRIMARY KEY,
+    topic varchar(128) NOT NULL
+);
+
+INSERT INTO
+    topics (topic)
+VALUES
+    ('HTML', 'CSS', 'JavaSript');

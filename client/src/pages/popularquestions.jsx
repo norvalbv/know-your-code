@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 // import { SearchQuestions } from "../components/searchquestions";
+import { NavBar } from '../components/navbar/navbar';
 import '../styles/popularquestions.scss';
 import { useDebounce } from 'use-debounce';
+import { QuestionType } from '../app/App';
+import { SortQuestions } from '../components/navbar/sortquestions';
 
 const PopularQuestions = () => {
   const [questions, setQuestions] = useState([]);
@@ -12,9 +15,7 @@ const PopularQuestions = () => {
 
   const getPopularQuestions = async () => {
     try {
-      const data = await fetch(
-        `/${selectedTopic.toLocaleLowerCase()}/allquestions`
-      );
+      const data = await fetch(`/${selectedTopic.toLowerCase()}/allquestions`);
       const response = await data.json();
       setQuestions(response);
       setSelectedQuestion(false);
