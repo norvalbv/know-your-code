@@ -88,8 +88,7 @@ export const PopularQuestions = () => {
           <button
             key={i}
             className="topic"
-            onClick={() => setSelectedTopic(item.topic)}
-          >
+            onClick={() => setSelectedTopic(item.topic)}>
             {item.topic}
           </button>
         ))}
@@ -112,8 +111,7 @@ export const PopularQuestions = () => {
                 className="trending-question"
                 onClick={() => {
                   setSelectedQuestion(questions[i]);
-                }}
-              >
+                }}>
                 {item.question}
               </h3>
               {questions.indexOf(selectedQuestion) === i && (
