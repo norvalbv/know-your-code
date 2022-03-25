@@ -5,7 +5,7 @@ import { SelectedQuestionType } from '../context/selectedquestion';
 
 const App = () => {
   const toggleQuestionType = () => {
-    console.log(questionType.type);
+    // console.log(questionType.type);
     questionType.type === 'questions'
       ? setQuestionType({ type: 'syntax' })
       : setQuestionType({ type: 'questions' });

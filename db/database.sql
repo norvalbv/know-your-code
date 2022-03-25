@@ -10,16 +10,16 @@ INSERT INTO
     htmlquestions (question, answer)
 VALUES
     ('html question', 'html answer');
+
 INSERT INTO
     htmlquestions (question, answer)
 VALUES
     ('html question 2', 'html answer 2');
+
 INSERT INTO
     htmlquestions (question, answer)
 VALUES
     ('html question 3', 'html answer 3');
-
-
 
 CREATE TABLE cssquestions (
     id SERIAL PRIMARY KEY,
@@ -36,11 +36,11 @@ INSERT INTO
     cssquestions (question, answer)
 VALUES
     ('css question 2', 'css answer 2');
+
 INSERT INTO
     cssquestions (question, answer)
 VALUES
     ('css question 3', 'css answer 3');
-
 
 CREATE TABLE javascriptquestions (
     id SERIAL PRIMARY KEY,
@@ -57,6 +57,7 @@ INSERT INTO
     javascriptquestions (question, answer)
 VALUES
     ('javascript question 2', 'javascript answer 2');
+
 INSERT INTO
     javascriptquestions (question, answer)
 VALUES
@@ -92,3 +93,40 @@ INSERT INTO
     topics (topic)
 VALUES
     ('HTML', 'CSS', 'JavaSript');
+
+CREATE TABLE html_all_syntax (
+    id SERIAL PRIMARY KEY,
+    question varchar(256) NOT NULL,
+    answer varchar(1024) NOT NULL,
+    image varchar(256)
+);
+
+INSERT INTO
+    html_all_syntax (question, answer)
+VALUES
+    ('html syn qus', 'html syntax ans');
+
+
+CREATE TABLE css_all_syntax (
+    id SERIAL PRIMARY KEY,
+    question varchar(256) NOT NULL,
+    answer varchar(1024) NOT NULL,
+    image varchar(256)
+);
+
+INSERT INTO
+    css_all_syntax (question, answer)
+VALUES
+    ('css syn qus', 'css syntax ans');
+
+CREATE TABLE javascript_all_syntax (
+    id SERIAL PRIMARY KEY,
+    question varchar(256) NOT NULL,
+    answer varchar(1024) NOT NULL,
+    image varchar(256)
+);
+
+INSERT INTO
+    javascript_all_syntax (question, answer)
+VALUES
+    ('js syn qus', 'js syntax ans');

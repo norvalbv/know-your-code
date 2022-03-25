@@ -1,8 +1,20 @@
 const pool = require("../db/pool");
 
-const getTrendingQuestions = async (req, res) => {
+const getTrendingAllQuestions = async (req, res) => {
   try {
-    const getAllQuestion = await pool.query(`SELECT * FROM trendingquestions`);
+    const getAllQuestion = await pool.query(
+      `SELECT * FROM trending_all_questions`
+    );
+    res.send(getAllQuestion.rows);
+  } catch (error) {
+    console.error(error);
+  }
+};
+const getTrendingAllSyntax = async (req, res) => {
+  try {
+    const getAllQuestion = await pool.query(
+      `SELECT * FROM trending_all_syntax`
+    );
     res.send(getAllQuestion.rows);
   } catch (error) {
     console.error(error);
@@ -10,5 +22,6 @@ const getTrendingQuestions = async (req, res) => {
 };
 
 module.exports = {
-    getTrendingQuestions,
+  getTrendingAllQuestions,
+  getTrendingAllSyntax,
 };

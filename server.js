@@ -18,15 +18,31 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 }
 
-app.get("/trending/:topic/search/:question", misc.filterQuestions);
+// SEARCH QUERY
 
-app.get("/html/allquestions", html.getHTMLQuestions);
+app.get("/:topic/search/:questiontype/:question", misc.filterQuestions);
 
-app.get("/javascript/allquestions", js.getJSQuestions);
+// HTML
 
-app.get("/css/allquestions", css.getCSSQuestions);
+app.get("/html/all/questions", html.getHTMLAllQuestions);
+app.get("/html/all/syntax", html.getHTMLAllQuestions);
 
-app.get("/trending/allquestions", trending.getTrendingQuestions);
+// JS
+
+app.get("/javascript/all/questions", js.getJavaScriptAllQuestions);
+app.get("/javascript/all/syntax", js.getJavaScriptAllSyntax);
+
+// CSS
+
+app.get("/css/all/questions", css.getCSSAllQuestions);
+app.get("/css/all/syntax", css.getCSSAllSyntax);
+
+// ALL TRENDING
+
+app.get("/trending/all/questions", trending.getTrendingAllQuestions);
+app.get("/trending/all/questions", trending.getTrendingAllSyntax);
+
+// TOPICS
 
 app.get("/topics", async (req, res) => {
   try {
@@ -36,6 +52,8 @@ app.get("/topics", async (req, res) => {
     console.error(error);
   }
 });
+
+// DEFAULT
 
 app.get("*", (req, res) => {
   res.send("test");

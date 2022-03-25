@@ -27,7 +27,7 @@ module.exports = {
       'error',
       { endOfLine: 'auto' },
       { usePrettierrc: true }
-    ], // Use our .prettierrc file as source
+    ],
     'react/react-in-jsx-scope': 'off'
   }
 };

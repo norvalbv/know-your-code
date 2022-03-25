@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import NavBar from '../components/navbar/navbar';
 import '../styles/popularquestions.scss';
 import { useDebounce } from 'use-debounce';
-import { QuestionType } from '../app/App';
+import { SelectedQuestionType } from '../context/selectedquestion';
 import { SortQuestions } from '../components/navbar/sortquestions';
 
 const PopularQuestions = () => {
@@ -13,9 +13,16 @@ const PopularQuestions = () => {
   const [topics, setTopics] = useState([]);
   const [search, setSearch] = useState('');
 
+  const questiontype = useContext(SelectedQuestionType);
+
   const getPopularQuestions = async () => {
     try {
-      const data = await fetch(`/${selectedTopic.toLowerCase()}/allquestions`);
+      console.log(`/${selectedTopic.toLowerCase()}/all/${questiontype.type}`);
+      const data = await fetch(
+        `/${selectedTopic.toLowerCase()}/all/${questiontype.type}`
+      );
+
+      console.log(data);
       const response = await data.json();
       setQuestions(response);
       setSelectedQuestion(false);
@@ -57,7 +64,9 @@ const PopularQuestions = () => {
     }
     e.preventDefault();
     try {
-      const data = await fetch(`/trending/${selectedTopic}/search/${search}`);
+      const data = await fetch(
+        `/${selectedTopic}/search/${questiontype.type}/${search}`
+      );
       const response = await data.json();
       console.log(response);
       setQuestions(response);
