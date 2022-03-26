@@ -1,10 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const html = require("./routes/html");
-const js = require("./routes/javascript");
-const css = require("./routes/css");
-const trending = require("./routes/trendingquestions");
+const questions = require("./routes/questions");
 const misc = require("./routes/misc");
 require("dotenv").config();
 const pool = require("./db/pool");
@@ -24,25 +21,9 @@ app.get("/:topic/search/:questiontype/:question", misc.filterQuestions);
 
 app.get("/topics/:search", misc.filterTopics);
 
-// HTML
+// Questions
 
-app.get("/html/all/questions", html.getHTMLAllQuestions);
-app.get("/html/all/syntax", html.getHTMLAllQuestions);
-
-// JS
-
-app.get("/javascript/all/questions", js.getJavaScriptAllQuestions);
-app.get("/javascript/all/syntax", js.getJavaScriptAllSyntax);
-
-// CSS
-
-app.get("/css/all/questions", css.getCSSAllQuestions);
-app.get("/css/all/syntax", css.getCSSAllSyntax);
-
-// ALL TRENDING
-
-app.get("/trending/all/questions", trending.getTrendingAllQuestions);
-app.get("/trending/all/questions", trending.getTrendingAllSyntax);
+app.get("/:topic/all/:questiontype", questions.getQuestions);
 
 // TOPICS
 

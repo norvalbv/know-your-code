@@ -49,7 +49,7 @@ const PopularQuestions = () => {
 
   // const [debounceValue] = useDebounce(search, 500);
 
-  // let [noData, setNoData] = useState(false);
+  const [noData, setNoData] = useState(false);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -68,9 +68,10 @@ const PopularQuestions = () => {
       const response = await data.json();
       setQuestions(response);
 
-      // if (!response) {
-      //   setNoData(!noData);
-      // }
+      if (response.length === 0) {
+        return setNoData(true);
+      }
+      setNoData(false);
     } catch (error) {
       console.error(error);
     }
@@ -109,20 +110,24 @@ const PopularQuestions = () => {
         </form>
         <div className="questions">
           <h2>Trending Questions</h2>
-          {questions.map((item, i) => (
-            <div key={i}>
-              <h3
-                className="trending-question"
-                onClick={() => {
-                  setSelectedQuestion(questions[i]);
-                }}>
-                {item.question}
-              </h3>
-              {questions.indexOf(selectedQuestion) === i && (
-                <p>{item.answer}</p>
-              )}
-            </div>
-          ))}
+          {noData ? (
+            <p>No questions found</p>
+          ) : (
+            questions.map((item, i) => (
+              <div key={i}>
+                <h3
+                  className="trending-question"
+                  onClick={() => {
+                    setSelectedQuestion(questions[i]);
+                  }}>
+                  {item.question}
+                </h3>
+                {questions.indexOf(selectedQuestion) === i && (
+                  <p>{item.answer}</p>
+                )}
+              </div>
+            ))
+          )}
         </div>
       </div>
     </section>
