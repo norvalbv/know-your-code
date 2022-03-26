@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 /**
  *
@@ -28,6 +29,9 @@ const Landing = () => {
         onChange={handleChange}
       />
       <button className="lading-input__button">Search</button>
+      <Link to="/questions">
+        <button>Temp button - GOES TO /questions</button>
+      </Link>
     </div>
   );
 };

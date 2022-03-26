@@ -28,6 +28,8 @@ app.get("/:topic/all/:questiontype", questions.getQuestions);
 // TOPICS
 
 app.get("/topics", async (req, res) => {
+  const demo = req.query;
+
   try {
     const temp = await pool.query("SELECT * FROM topics;");
     res.send(temp.rows);
@@ -39,7 +41,7 @@ app.get("/topics", async (req, res) => {
 // DEFAULT
 
 app.get("*", (req, res) => {
-  res.send("test");
+  res.sendFile(path.join(__dirname, "/client/src/pages/404.jsx"));
 });
 
 app.listen(PORT, function () {
