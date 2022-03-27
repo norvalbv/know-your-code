@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import { Topics } from '../pages/topics';
 import { NotFound } from '../pages/404';
+import { ChosenTopic } from '../pages/chosentopic';
 
 const PublicRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const PublicRoutes = () => {
         <Route path="/questions" element={<PopularQuestions />}></Route>
         <Route path="/topics" element={<Topics />}></Route>
         <Route path="/notfound" element={<NotFound />}></Route>
+        <Route path="/topic" element={<ChosenTopic />}></Route>
       </Routes>
     </Router>
   );

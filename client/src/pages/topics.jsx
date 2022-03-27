@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from '../components/navbar/navbar';
 import { SortQuestions } from '../components/navbar/sortquestions';
 
@@ -73,7 +74,7 @@ export const Topics = () => {
               className="__topic"
               // onClick={() => setSelectedTopic(item.topic)}
             >
-              {item.topic}
+              <Link to={item}>{item.topic}</Link>
             </button>
           ))
         )}

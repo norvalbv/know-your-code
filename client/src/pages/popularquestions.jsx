@@ -53,6 +53,7 @@ const PopularQuestions = () => {
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
+    console.log(e.target.value);
     // handleSearchQuestion(e);
   };
 
