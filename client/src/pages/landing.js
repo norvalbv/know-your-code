@@ -1,21 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-/**
- *
- * Detailed explanation of the code snippet:
- *
- * @returns {React.Component}
- */
 const Landing = () => {
   const [search, setSearch] = useState('');
-
-  /**
-   *
-   * Changes the search value in the state
-   *
-   * @param {*} searchValue - the value of the search input as a html event
-   */
   const handleChange = (searchValue) => {
     setSearch(searchValue.target.value);
   };

@@ -4,7 +4,6 @@ export const getQuestions = createAsyncThunk(
   'loadQuestions',
   async (selectedTopic, { getState }) => {
     const questionType = getState();
-    // console.log(questionType.questionType);
     try {
       const data = await fetch(
         `/${selectedTopic.toLowerCase()}/all/${questionType.questionType}`

@@ -1,19 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
 }
 
 // colors
 
 $p-bg-dg: #1f1f1f;
 
+$p-txt-lg: #a7a7a7;
 $p-txt-ow: #e9e9e9;
 
 $p-clr-1: #550355;
 
 $hover-clr-1: hsla(281, 100%, 52%, 0.1);
 
+// $h: hsla(281, 100%, 50%, 0.37)
 .app-container {
   background-color: $p-bg-dg;
   width: 100vw;

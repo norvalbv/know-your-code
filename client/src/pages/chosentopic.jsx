@@ -14,7 +14,7 @@ export const ChosenTopic = () => {
         <NavBar />
       </div>
       <div className="title-search">
-        <h2>{topic} Questions</h2>
+        {/* <h2>{topic} Questions</h2> */}
         <SearchQuestions />
       </div>
       <div className="qanda">

@@ -4,19 +4,17 @@ import { getQuestions } from '../features/questions';
 
 // eslint-disable-next-line react/prop-types
 export const ViewQuestions = ({ selectedTopic }) => {
-  console.log(selectedTopic);
   const [selectedQuestion, setSelectedQuestion] = useState('');
-
   const dispatch = useDispatch();
+  const topicType = useSelector((state) => state.questionType);
 
   useEffect(() => {
     dispatch(getQuestions(selectedTopic));
-  }, [selectedTopic]);
+  }, [selectedTopic, topicType]);
 
   const questions = useSelector((state) => state.questions);
   let arr = [];
   questions.topics.forEach((topic) => arr.push(topic));
-  console.log(arr);
 
   return (
     <>
@@ -29,10 +27,16 @@ export const ViewQuestions = ({ selectedTopic }) => {
             className="trending-question"
             onClick={() => {
               setSelectedQuestion(arr[i]);
+            }}
+            style={{
+              textDecoration:
+                arr.indexOf(selectedQuestion) === i ? 'underline' : 'inherit'
             }}>
             {item.question}
           </h3>
-          {arr.indexOf(selectedQuestion) === i && <p>{item.answer}</p>}
+          {arr.indexOf(selectedQuestion) === i && (
+            <p className="answers">{item.answer}</p>
+          )}
         </div>
       ))}
       {/* )} */}

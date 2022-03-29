@@ -32,7 +32,6 @@
 
     &:hover {
       cursor: pointer;
-      background: $hover-clr-1;
       box-shadow: 2px 2px 2px $hover-clr-1;
     }
   }
@@ -49,7 +48,14 @@
 }
 
 .questions {
-  margin-top: 5rem;
+  margin-top: 3rem;
+}
+
+.answers {
+  text-transform: uppercase;
+  color: $p-txt-lg;
+  font-size: 14px;
+  letter-spacing: 2px;
 }
 
 .trending-questions__search {
