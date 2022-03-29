@@ -1,20 +1,22 @@
 import '../../styles/navbar/navbar.scss';
-import { useContext } from 'react';
-import { SelectedQuestionType } from '../../context/selectedquestion';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleType } from '../../features/questionType';
+
 export const SortQuestions = () => {
-  const selectedquestiontype = useContext(SelectedQuestionType);
+  const dispatch = useDispatch();
+  const questionType = useSelector((state) => state.questionType);
 
   return (
     <>
       <ul className="sort-questions">
         <li
-          onClick={selectedquestiontype.toggleQuestionType}
-          id={selectedquestiontype.type === 'questions' ? 'questions' : null}>
+          onClick={() => dispatch(toggleType())}
+          id={questionType === 'questions' ? 'questions' : null}>
           Questions
         </li>
         <li
-          onClick={selectedquestiontype.toggleQuestionType}
-          id={selectedquestiontype.type === 'syntax' ? 'syntax' : null}>
+          onClick={() => dispatch(toggleType())}
+          id={questionType === 'syntax' ? 'syntax' : null}>
           Syntax
         </li>
       </ul>
