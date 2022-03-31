@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/navbar/navbar';
 import { SortQuestions } from '../components/navbar/sortquestions';
 import { SearchQuestions } from '../components/searchquestions';
-import { getTopics } from '../features/topic';
+//import { getTopics } from '../features/topicSlice';
 
 export const Topics = () => {
   const [selectedTopic, setSelectedTopic] = useState('');
@@ -12,7 +12,7 @@ export const Topics = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTopics());
+    //dispatch(getTopics());
   }, []);
 
   const topics = useSelector((state) => state.topics);

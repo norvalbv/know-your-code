@@ -5,22 +5,19 @@ import { SortQuestions } from '../components/navbar/sortquestions';
 import { SearchQuestions } from '../components/searchquestions';
 import { ViewQuestions } from '../components/viewquestions';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTopics } from '../features/topic';
+//import { getTopics } from '../features/topicSlice';
+import { useGetAlltopicsQuery } from '../services/questionsApi';
 
 const PopularQuestions = () => {
   const [selectedTopic, setSelectedTopic] = useState('Trending');
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getTopics());
-  }, []);
+  const { data, isLoading, error } = useGetAlltopicsQuery(); // can be used to render error page or a loading animation
 
-  const topics = useSelector((state) => state.topics);
+  const questionType = useSelector((state) => state.questionType.category);
 
-  const questionType = useSelector((state) => state.questionType);
-
-  const newArr = topics.topics.map((topic) => topic.topic);
+  //const newArr = data.map((topic) => topic.topic);
 
   return (
     <section className="popular-topics__container">
@@ -28,35 +25,41 @@ const PopularQuestions = () => {
         <SortQuestions />
         <NavBar />
       </div>
-      <div className="popular-topics__topics">
-        <h2>Popular Topics</h2>
-        {topics.topics.map((item, i) => (
-          <button
-            key={i}
-            className="__topic"
-            onClick={() => setSelectedTopic(item.topic)}
-            style={{
-              backgroundColor:
-                newArr.indexOf(selectedTopic) === i
-                  ? 'hsla(281, 100%, 50%, 0.2)'
-                  : 'inherit'
-            }}>
-            {item.topic}
-          </button>
-        ))}
-      </div>
-      <div className="trending-questions__container">
-        <SearchQuestions />
-        <div className="questions">
-          <h2>
-            {selectedTopic} {}
-            {questionType === 'syntax'
-              ? 'Syntax Questions'
-              : 'Interview Questions'}
-          </h2>
-          <ViewQuestions selectedTopic={selectedTopic} />
-        </div>
-      </div>
+      {data && (
+        <>
+          <div className="popular-topics__topics">
+            <h2>Popular Topics</h2>
+            {data.map((item, i) => (
+              <button
+                key={i}
+                className="__topic"
+                onClick={() => setSelectedTopic(item.topic)}
+                style={{
+                  backgroundColor:
+                    data.indexOf(selectedTopic) === i
+                      ? 'hsla(281, 100%, 50%, 0.2)'
+                      : 'inherit'
+                }}>
+                {item.topic}
+              </button>
+            ))}
+          </div>
+
+          <div className="trending-questions__container">
+            <SearchQuestions />
+            <div className="questions">
+              <h2>
+                {selectedTopic} {}
+                {questionType === 'syntax'
+                  ? 'Syntax Questions'
+                  : 'Interview Questions'}{' '}
+                {console.log(data)}
+              </h2>
+              <ViewQuestions selectedTopic={selectedTopic} />
+            </div>
+          </div>
+        </>
+      )}
     </section>
   );
 };
