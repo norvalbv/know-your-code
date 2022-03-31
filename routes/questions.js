@@ -4,7 +4,7 @@ const getQuestions = async (req, res) => {
   console.log(req.query);
   try {
     const getAllQuestion = await pool.query(
-      `SELECT * FROM ${req.params.topic}_all_${req.params.questiontype}`
+      `SELECT * FROM ${req.params.topic}${req.params.questiontype}`
     );
     res.send(getAllQuestion.rows);
   } catch (error) {
