@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 //import { getQuestions } from '../features/questionsSlice';
 
 // eslint-disable-next-line react/prop-types
-export const SearchQuestions = ({ selectedTopic }) => {
+export const SearchQuestions = () => {
   // const [debounceValue] = useDebounce(search, 500);
-
+  const selectedTopic = useSelector((state) => state.selectedTopic.topic);
   const [search, setSearch] = useState('');
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -23,7 +23,7 @@ export const SearchQuestions = ({ selectedTopic }) => {
     //if (!search) {
     //  return dispatch(getQuestions(selectedTopic));
     // }
-    // e.preventDefault();
+    e.preventDefault();
     // try {
     //  const data = await fetch(
     //   `/${selectedTopic}/search/${questiontype}/${search}`

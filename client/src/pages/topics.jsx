@@ -1,21 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/navbar/navbar';
 import { SortQuestions } from '../components/navbar/sortquestions';
 import { SearchQuestions } from '../components/searchquestions';
-//import { getTopics } from '../features/topicSlice';
+//import { useGetAlltopicsQuery } from '../services/questionsApi';
 
 export const Topics = () => {
-  const [selectedTopic, setSelectedTopic] = useState('');
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    //dispatch(getTopics());
-  }, []);
-
-  const topics = useSelector((state) => state.topics);
+  const topics = useSelector((state) => state.topics.topics);
+  // can be used to render error page or a loading animation
 
   return (
     <>
@@ -24,19 +16,21 @@ export const Topics = () => {
         <NavBar />
       </div>
       <SearchQuestions />
-      <section>
+      <section className="popular-topics__topics">
         {/* {noData ? (
           <h2>No such topic in our catalogue :(</h2>
         ) : ( */}
-        {topics.topics.map((item, i) => (
-          <button
-            key={i}
-            className="__topic"
-            // onClick={() => setSelectedTopic(item.topic)}
-          >
-            <Link to={item}>{item.topic}</Link>
-          </button>
-        ))}
+
+        {topics &&
+          topics.map((item, i) => (
+            <button
+              key={i}
+              className="__topic"
+              // onClick={() => setSelectedTopic(item.topic)}
+            >
+              <Link to={item}>{item.topic}</Link>
+            </button>
+          ))}
         {/* } */}
       </section>
     </>

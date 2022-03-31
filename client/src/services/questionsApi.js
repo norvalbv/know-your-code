@@ -8,8 +8,7 @@ export const questionsApi = createApi({
       query: () => `topics`
     }),
     loadQuestions: builder.query({
-      query: (selectedTopic, questionType) =>
-        `/${selectedTopic.toLowerCase()}/all/${questionType.category}`
+      query: (string) => `${string}`
     })
   })
 });

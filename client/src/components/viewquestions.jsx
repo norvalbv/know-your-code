@@ -1,45 +1,40 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-//import { getQuestions } from '../features/questionsSlice';
-
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLoadQuestionsQuery } from '../services/questionsApi';
 // eslint-disable-next-line react/prop-types
-export const ViewQuestions = ({ selectedTopic }) => {
-  const [selectedQuestion, setSelectedQuestion] = useState('');
-  const dispatch = useDispatch();
-  const topicType = useSelector((state) => state.questionType.category);
+export const ViewQuestions = () => {
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const selectedTopic = useSelector((state) => state.selectedTopic.topic);
 
-  // useEffect(() => {
-  // dispatch(getQuestions(selectedTopic));
-  // }, [selectedTopic, topicType]);
-
-  const questions = useSelector((state) => state.questions);
-  let arr = [];
-  questions.topics.forEach((topic) => arr.push(topic));
+  const questionType = useSelector((state) => state.questionType.category);
+  // eslint-disable-next-line react/prop-types
+  const string = `${selectedTopic.toLowerCase()}/all/${questionType}`;
+  const { data, isLoading, error } = useLoadQuestionsQuery(string);
 
   return (
     <>
       {/* {noData ? (
         <p>No questions found</p>
       ) : ( */}
-      {arr.map((item, i) => (
-        <div key={i}>
-          <h3
-            className="trending-question"
-            onClick={() => {
-              setSelectedQuestion(arr[i]);
-            }}
-            style={{
-              textDecoration:
-                arr.indexOf(selectedQuestion) === i ? 'underline' : 'inherit'
-            }}>
-            {item.question}
-          </h3>
-          {arr.indexOf(selectedQuestion) === i && (
-            <p className="answers">{item.answer}</p>
-          )}
-        </div>
-      ))}
-      {/* )} */}
+      {error && <h3>Oops an error has occured!</h3>}
+      {isLoading && <h4>Loading...</h4>}
+      {data &&
+        data.map((item, i) => (
+          <div key={i}>
+            <h3
+              className="trending-question"
+              onClick={() => {
+                setSelectedQuestion(data[i]);
+              }}
+              _id={item.id}>
+              {item.question}
+            </h3>
+            {data.indexOf(selectedQuestion) === i && (
+              <p className="answers">{item.answer}</p>
+            )}
+          </div>
+        ))}
+      {console.log(data)}
     </>
   );
 };
