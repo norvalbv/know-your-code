@@ -1,50 +1,53 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-//import { questionsApi } from '../services/questionsApi';
-// { useDebounce } from 'use-debounce';
-//import { getQuestions } from '../features/questionsSlice';
+import { updateQuestions } from '../features/questionsSlice';
+import { useLoadQuestionsQuery } from '../services/questionsApi';
 
-// eslint-disable-next-line react/prop-types
-export const SearchQuestions = () => {
-  // const [debounceValue] = useDebounce(search, 500);
+export const SearchQuestions = ({ topic, questiontype, questions }) => {
   const selectedTopic = useSelector((state) => state.selectedTopic.topic);
+  const questionType = useSelector((state) => state.questionType.category);
+  const string = `${selectedTopic.toLowerCase()}/all/${questionType}`;
+
+  const { data } = useLoadQuestionsQuery(string);
   const [search, setSearch] = useState('');
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-    console.log(e.target.value);
-  };
 
-  //const dispatch = useDispatch();
-
-  // const questiontype = useSelector((state) => state.questionType);
-  //const{data, isFetching, error}= questionsApi.endpoints.
+  const dispatch = useDispatch();
 
   const handleSearchSubmit = async (e) => {
-    //if (!search) {
-    //  return dispatch(getQuestions(selectedTopic));
+    // if (!search) {
+    //   return useLoadQuestionsQuery(string);
     // }
-    e.preventDefault();
-    // try {
-    //  const data = await fetch(
+    // e.preventDefault();
+
+    const filterItems = data
+      .map((item) => item.question)
+      .filter(
+        (question) =>
+          question.toLowerCase().indexOf(search.toLowerCase()) !== -1
+      );
+
+    console.log(filterItems);
+    dispatch(updateQuestions(filterItems));
+
+    // old code
+
+    // const data = await fetch(
     //   `/${selectedTopic}/search/${questiontype}/${search}`
     // );
-    //const response = await data.json();
+    // const response = await data.json();
     // dispatch(getQuestions());
-    //   if (response.length === 0) {
-    //     return setNoData(true);
-    //   }
-    //   setNoData(false);
-    // } catch (error) {
-    // console.error(error);
-    //}
   };
+
+  useEffect(() => {
+    handleSearchSubmit();
+  }, [search]); // updated state every search
   return (
     <form onSubmit={handleSearchSubmit}>
       <input
         type="text"
         placeholder="Search Questions"
         value={search}
-        onChange={handleSearchChange}
+        onChange={(e) => setSearch(e.target.value)}
         className="trending-questions__search"
       />
     </form>

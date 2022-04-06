@@ -50,8 +50,8 @@ const PopularQuestions = () => {
               <h2>
                 {selectedTopic}
                 {questionType === 'syntax'
-                  ? 'Syntax Questions'
-                  : 'Interview Questions'}
+                  ? ' Syntax Questions'
+                  : ' Interview Questions'}
               </h2>
               <ViewQuestions />
             </div>
