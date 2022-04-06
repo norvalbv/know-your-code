@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLoadQuestionsQuery } from '../services/questionsApi';
-// eslint-disable-next-line react/prop-types
 export const ViewQuestions = () => {
-  const [selectedQuestion, setSelectedQuestion] = useState(null);
   const selectedTopic = useSelector((state) => state.selectedTopic.topic);
-
   const questionType = useSelector((state) => state.questionType.category);
-  // eslint-disable-next-line react/prop-types
+
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+
   const string = `${selectedTopic.toLowerCase()}/all/${questionType}`;
   const { data, isLoading, error } = useLoadQuestionsQuery(string);
 
+  useEffect(() => {
+    setSelectedQuestion(null);
+  }, [selectedTopic]);
   return (
     <>
       {/* {noData ? (
@@ -34,7 +36,6 @@ export const ViewQuestions = () => {
             )}
           </div>
         ))}
-      {console.log(data)}
     </>
   );
 };

@@ -7,7 +7,6 @@ import { SearchQuestions } from '../components/searchquestions';
 
 export const Topics = () => {
   const topics = useSelector((state) => state.topics.topics);
-  // can be used to render error page or a loading animation
 
   return (
     <>

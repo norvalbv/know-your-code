@@ -1,4 +1,3 @@
-//import { useState } from 'react';
 import NavBar from '../components/navbar/navbar';
 import '../styles/popularquestions.scss';
 import { SortQuestions } from '../components/navbar/sortquestions';
@@ -11,13 +10,12 @@ import { updateTopics } from '../features/topicSlice';
 
 const PopularQuestions = () => {
   const selectedTopic = useSelector((state) => state.selectedTopic.topic);
-  const { data, isLoading, error } = useGetAlltopicsQuery(); // can be used to render error page or a loading animation
-
   const questionType = useSelector((state) => state.questionType.category);
+
+  const { data } = useGetAlltopicsQuery(); // error and loading state not needed as a spinner can solely be used the questions component
+
   const dispatch = useDispatch();
   dispatch(updateTopics(data));
-
-  let newArr;
 
   return (
     <section className="popular-topics__container">
@@ -25,11 +23,8 @@ const PopularQuestions = () => {
         <SortQuestions />
         <NavBar />
       </div>
-      {error && <h3>Oops an error has occured!</h3>}
-      {isLoading && <h4>Loading...</h4>}
-      {data && ( // render if data, create loading and error components
+      {data && (
         <>
-          {(newArr = data.map((topic) => topic.topic))}
           <div className="popular-topics__topics">
             <h2>Popular Topics</h2>
             {data.map((item, i) => (
@@ -39,7 +34,8 @@ const PopularQuestions = () => {
                 onClick={() => dispatch(updateSelected(data[i].topic))}
                 style={{
                   backgroundColor:
-                    newArr.indexOf(selectedTopic) === i
+                    data.map((topic) => topic.topic).indexOf(selectedTopic) ===
+                    i
                       ? 'hsla(281, 100%, 50%, 0.2)'
                       : 'inherit'
                 }}>
@@ -52,13 +48,12 @@ const PopularQuestions = () => {
             <SearchQuestions selectedTopic={selectedTopic} />
             <div className="questions">
               <h2>
-                {selectedTopic} {}
+                {selectedTopic}
                 {questionType === 'syntax'
                   ? 'Syntax Questions'
-                  : 'Interview Questions'}{' '}
-                {/* {console.log(data)} */}
+                  : 'Interview Questions'}
               </h2>
-              <ViewQuestions selectedTopic={selectedTopic} />
+              <ViewQuestions />
             </div>
           </div>
         </>

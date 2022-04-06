@@ -11,12 +11,12 @@ export const SortQuestions = () => {
       <ul className="sort-questions">
         <li
           onClick={() => dispatch(updateQType('questions'))}
-          id={questionType === 'questions' ? 'questions' : null}>
+          id={questionType.category === 'questions' ? 'questions' : null}>
           Questions
         </li>
         <li
           onClick={() => dispatch(updateQType('syntax'))}
-          id={questionType === 'syntax' ? 'syntax' : null}>
+          id={questionType.category === 'syntax' ? 'syntax' : null}>
           Syntax
         </li>
       </ul>
