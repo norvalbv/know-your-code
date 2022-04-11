@@ -17,9 +17,9 @@ if (process.env.NODE_ENV === "production") {
 
 // SEARCH QUERY
 
-app.get("/:topic/search/:questiontype/:question", misc.filterQuestions);
+app.get("/:topic/search/:questiontype/:question", misc.getTopicQuestions);
 
-app.get("/topics/:search", misc.filterTopics);
+app.get("/topics/:search", misc.searchTopics);
 
 // Questions
 
@@ -31,7 +31,7 @@ app.get("/topics", async (req, res) => {
   const demo = req.query;
 
   try {
-    const temp = await pool.query("SELECT * FROM topics;");
+    const temp = await pool.query("SELECT * FROM topic;");
     res.send(temp.rows);
   } catch (error) {
     console.error(error);
