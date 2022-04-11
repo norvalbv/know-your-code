@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const questions = require("./routes/questions");
-const misc = require("./routes/misc");
 require("dotenv").config();
 const pool = require("./db/pool");
 
@@ -15,28 +14,9 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 }
 
-// SEARCH QUERY
-
-app.get("/:topic/search/:questiontype/:question", misc.filterQuestions);
-
-app.get("/topics/:search", misc.filterTopics);
-
-// Questions
-
 app.get("/questions/:topicId/:isSyntax", questions.getQuestions);
 
-// TOPICS
-
-app.get("/topics", async (req, res) => {
-  const demo = req.query;
-
-  try {
-    const temp = await pool.query("SELECT * FROM topics;");
-    res.send(temp.rows);
-  } catch (error) {
-    console.error(error);
-  }
-});
+app.get("/topics", questions.getTopics);
 
 // DEFAULT
 

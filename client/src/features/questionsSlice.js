@@ -22,9 +22,15 @@ export const questionsSlice = createSlice({
   initialState: {
     questions: [],
     error: false,
-    status: 'idle'
+    status: 'idle',
+    noData: false
   },
-  reducers: {},
+  reducers: {
+    updateQuestions(state, action) {
+      console.log(action.payload);
+      state.questions = action.payload;
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchQuestions.pending, (state, action) => {
@@ -32,7 +38,7 @@ export const questionsSlice = createSlice({
       })
       .addCase(fetchQuestions.fulfilled, (state, action) => {
         state.status = 'success';
-        state.posts = state.questions.concat(action.payload);
+        state.questions = action.payload;
       })
       .addCase(fetchQuestions.rejected, (state, action) => {
         state.status = 'failed';
@@ -41,6 +47,6 @@ export const questionsSlice = createSlice({
   }
 });
 
-// export const { fetchQuestions } = questionsSlice.actions;
+export const { updateQuestions } = questionsSlice.actions;
 
 export default questionsSlice.reducer;

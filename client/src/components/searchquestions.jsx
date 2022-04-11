@@ -1,52 +1,40 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { updateQuestions } from '../features/questionsSlice';
-// import { useLoadQuestionsQuery } from '../services/questionsApi';
+import { fetchQuestions, updateQuestions } from '../features/questionsSlice';
 
 export const SearchQuestions = () => {
   const selectedTopic = useSelector((state) => state.selectedTopic.topic);
-  const questionType = useSelector((state) => state.questionType.category);
-  const string = `${selectedTopic.toLowerCase()}/all/${questionType}`;
-
-  // const { data } = useLoadQuestionsQuery(string);
   const [search, setSearch] = useState('');
 
   const dispatch = useDispatch();
 
-  const data = '';
+  const questions = useSelector((state) => state.questions.questions);
 
-  const handleSearchSubmit = async (e) => {
-    // if (!search) {
-    //   return useLoadQuestionsQuery(string);
-    // }
-    // e.preventDefault();
+  const handleSearchSubmit = async () => {
+    if (!search) {
+      return dispatch(fetchQuestions(selectedTopic));
+    }
 
-    const filterItems = data
+    const filterItems = questions
       .map((item) => item.question)
       .filter(
         (question) =>
           question.toLowerCase().indexOf(search.toLowerCase()) !== -1
       );
+    // let nodata;
 
-    console.log(filterItems);
-    // dispatch(updateQuestions(filterItems));
-
-    // old code
-
-    // const data = await fetch(
-    //   `/${selectedTopic}/search/${questiontype}/${search}`
-    // );
-    // const response = await data.json();
-    // dispatch(getQuestions());
+    // if (filterItems.length === 0) {
+    //   nodata = false;
+    //   return dispatch(updateQuestions(filterItems));
+    // }
+    // nodata = true;
+    dispatch(updateQuestions(filterItems));
   };
 
   useEffect(() => {
-    // dispatch(updateQuestions());
-  }, []);
-
-  useEffect(() => {
     handleSearchSubmit();
-  }, [search]); // updated state every search
+  }, [search]);
+
   return (
     <form onSubmit={handleSearchSubmit}>
       <input

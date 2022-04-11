@@ -12,7 +12,7 @@ const PopularQuestions = () => {
   const selectedTopic = useSelector((state) => state.selectedTopic.topic);
   const questionType = useSelector((state) => state.questionType.category);
 
-  const { data } = useGetAlltopicsQuery(); // error and loading state not needed as a spinner can solely be used the questions component
+  const { data } = useGetAlltopicsQuery();
 
   const dispatch = useDispatch();
   dispatch(updateTopics(data));
@@ -31,15 +31,14 @@ const PopularQuestions = () => {
               <button
                 key={i}
                 className="__topic"
-                onClick={() => dispatch(updateSelected(data[i].topic))}
+                onClick={() => dispatch(updateSelected(data[i].name))}
                 style={{
                   backgroundColor:
-                    data.map((topic) => topic.topic).indexOf(selectedTopic) ===
-                    i
+                    data.map((topic) => topic.name).indexOf(selectedTopic) === i
                       ? 'hsla(281, 100%, 50%, 0.2)'
                       : 'inherit'
                 }}>
-                {item.topic}
+                {item.name.toUpperCase()}
               </button>
             ))}
           </div>
@@ -48,7 +47,7 @@ const PopularQuestions = () => {
             <SearchQuestions selectedTopic={selectedTopic} />
             <div className="questions">
               <h2>
-                {selectedTopic}
+                {selectedTopic.toUpperCase()}
                 {questionType === 'syntax'
                   ? ' Syntax Questions'
                   : ' Interview Questions'}
