@@ -1,154 +1,28 @@
-CREATE DATABASE knowyourcode;
+CREATE TABLE questions (
+  id SERIAL PRIMARY KEY,
+  topic_id INTEGER REFERENCES topics(id),
+  question varchar(128) NOT NULL,
+  answer varchar(1024) NOT NULL,
+  difficulty varchar(32),
+  source varchar(128),
+  is_syntax boolean NOT NULL,
+  is_trending boolean
+ );
+ 
+INSERT INTO questions (topic_id, question, answer, is_syntax)
+VALUES (1, 'HTML QUESTION TEST', 'HTML ANSWER TEST', false);
 
-CREATE TABLE htmlquestions (
-    id SERIAL PRIMARY KEY,
-    question varchar(256) NOT NULL,
-    answer varchar(1024) NOT NULL
-);
+INSERT INTO questions (topic_id, question, answer, is_syntax)
+VALUES (2, 'CSS QUESTION TEST', 'CSS ANSWER TEST', false);
 
-INSERT INTO
-    htmlquestions (question, answer)
-VALUES
-    ('html question', 'html answer');
+INSERT INTO questions (topic_id, question, answer, is_syntax)
+VALUES (3, 'JS QUESTION TEST', 'JS ANSWER TEST', false);
 
-INSERT INTO
-    htmlquestions (question, answer)
-VALUES
-    ('html question 2', 'html answer 2');
+INSERT INTO questions (topic_id, question, answer, is_syntax)
+VALUES (4, 'REACT QUESTION TEST', 'REACT ANSWER TEST', false);
 
-INSERT INTO
-    htmlquestions (question, answer)
-VALUES
-    ('html question 3', 'html answer 3');
+INSERT INTO questions (topic_id, question, answer, is_syntax)
+VALUES (5, 'REDUX QUESTION TEST', 'REDUX ANSWER TEST', false);
 
-CREATE TABLE cssquestions (
-    id SERIAL PRIMARY KEY,
-    question varchar(256) NOT NULL,
-    answer varchar(1024) NOT NULL
-);
-
-INSERT INTO
-    cssquestions (question, answer)
-VALUES
-    ('css question', 'css answer');
-
-INSERT INTO
-    cssquestions (question, answer)
-VALUES
-    ('css question 2', 'css answer 2');
-
-INSERT INTO
-    cssquestions (question, answer)
-VALUES
-    ('css question 3', 'css answer 3');
-
-CREATE TABLE javascriptquestions (
-    id SERIAL PRIMARY KEY,
-    question varchar(256) NOT NULL,
-    answer varchar(1024) NOT NULL
-);
-
-INSERT INTO
-    javascriptquestions (question, answer)
-VALUES
-    ('javascript question', 'javascript answer');
-
-INSERT INTO
-    javascriptquestions (question, answer)
-VALUES
-    ('javascript question 2', 'javascript answer 2');
-
-INSERT INTO
-    javascriptquestions (question, answer)
-VALUES
-    ('javascript question 3', 'javascript answer 3');
-
-CREATE TABLE trendingquestions (
-    id SERIAL PRIMARY KEY,
-    question varchar(256) NOT NULL,
-    answer varchar(1024) NOT NULL
-);
-
-INSERT INTO
-    trendingquestions (question, answer)
-VALUES
-    ('trending question', 'trending answer');
-
-INSERT INTO
-    trendingquestions (question, answer)
-VALUES
-    ('trending question 2', 'trending answer 2');
-
-INSERT INTO
-    trendingquestions (question, answer)
-VALUES
-    ('trending question 3', 'trending answer 3');
-
-CREATE TABLE trendingsyntax (
-    id SERIAL PRIMARY KEY,
-    question varchar(256) NOT NULL,
-    answer varchar(1024) NOT NULL
-);
-
-INSERT INTO
-    trendingsyntax (question, answer)
-VALUES
-    ('trending syntax question', 'trending syntax answer');
-
-INSERT INTO
-    trendingsyntax (question, answer)
-VALUES
-    ('trending syntax question 2', 'trending syntax answer 2');
-
-INSERT INTO
-    trendingsyntax (question, answer)
-VALUES
-    ('trending syntax question 3', 'trending syntax answer 3');
-
-
-CREATE TABLE topics (
-    id SERIAL PRIMARY KEY,
-    topic varchar(128) NOT NULL
-);
-
-INSERT INTO
-    topics (topic)
-VALUES
-    ('HTML', 'CSS', 'JavaSript');
-
-CREATE TABLE htmlsyntax (
-    id SERIAL PRIMARY KEY,
-    question varchar(256) NOT NULL,
-    answer varchar(1024) NOT NULL,
-    image varchar(256)
-);
-
-INSERT INTO
-    htmlsyntax (question, answer)
-VALUES
-    ('html syn qus', 'html syntax ans');
-
-
-CREATE TABLE csssyntax (
-    id SERIAL PRIMARY KEY,
-    question varchar(256) NOT NULL,
-    answer varchar(1024) NOT NULL,
-    image varchar(256)
-);
-
-INSERT INTO
-    css_all_syntax (question, answer)
-VALUES
-    ('css syn qus', 'css syntax ans');
-
-CREATE TABLE javascript_all_syntax (
-    id SERIAL PRIMARY KEY,
-    question varchar(256) NOT NULL,
-    answer varchar(1024) NOT NULL,
-    image varchar(256)
-);
-
-INSERT INTO
-    javascript_all_syntax (question, answer)
-VALUES
-    ('js syn qus', 'js syntax ans');
+INSERT INTO questions (topic_id, question, answer, is_syntax)
+VALUES (6, 'SASS QUESTION TEST', 'SASS ANSWER TEST', false);

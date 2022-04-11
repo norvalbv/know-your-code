@@ -4,7 +4,10 @@ const getQuestions = async (req, res) => {
   console.log(req.query);
   try {
     const getAllQuestion = await pool.query(
-      `SELECT * FROM ${req.params.topic}_all_${req.params.questiontype}`
+      `SELECT * FROM questions
+      WHERE topic_id = ${req.params.topicId}
+      AND is_syntax = ${req.params.isSyntax}
+      ORDER BY question`
     );
     res.send(getAllQuestion.rows);
   } catch (error) {

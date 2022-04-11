@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateQuestions } from '../features/questionsSlice';
-import { useLoadQuestionsQuery } from '../services/questionsApi';
+// import { updateQuestions } from '../features/questionsSlice';
+// import { useLoadQuestionsQuery } from '../services/questionsApi';
 
-export const SearchQuestions = ({ topic, questiontype, questions }) => {
+export const SearchQuestions = () => {
   const selectedTopic = useSelector((state) => state.selectedTopic.topic);
   const questionType = useSelector((state) => state.questionType.category);
   const string = `${selectedTopic.toLowerCase()}/all/${questionType}`;
 
-  const { data } = useLoadQuestionsQuery(string);
+  // const { data } = useLoadQuestionsQuery(string);
   const [search, setSearch] = useState('');
 
   const dispatch = useDispatch();
+
+  const data = '';
 
   const handleSearchSubmit = async (e) => {
     // if (!search) {
@@ -27,7 +29,7 @@ export const SearchQuestions = ({ topic, questiontype, questions }) => {
       );
 
     console.log(filterItems);
-    dispatch(updateQuestions(filterItems));
+    // dispatch(updateQuestions(filterItems));
 
     // old code
 
@@ -37,6 +39,10 @@ export const SearchQuestions = ({ topic, questiontype, questions }) => {
     // const response = await data.json();
     // dispatch(getQuestions());
   };
+
+  useEffect(() => {
+    // dispatch(updateQuestions());
+  }, []);
 
   useEffect(() => {
     handleSearchSubmit();

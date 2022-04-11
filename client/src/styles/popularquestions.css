@@ -1,8 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
 }
 
 .app-container {
@@ -59,7 +62,6 @@
 
 .popular-topics__topics .__topic:hover {
   cursor: pointer;
-  background: rgba(177, 10, 255, 0.1);
   -webkit-box-shadow: 2px 2px 2px rgba(177, 10, 255, 0.1);
           box-shadow: 2px 2px 2px rgba(177, 10, 255, 0.1);
 }
@@ -79,7 +81,14 @@
 }
 
 .questions {
-  margin-top: 5rem;
+  margin-top: 3rem;
+}
+
+.answers {
+  text-transform: uppercase;
+  color: #a7a7a7;
+  font-size: 14px;
+  letter-spacing: 2px;
 }
 
 .trending-questions__search {

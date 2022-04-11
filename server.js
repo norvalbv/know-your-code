@@ -23,7 +23,7 @@ app.get("/topics/:search", misc.filterTopics);
 
 // Questions
 
-app.get("/:topic/all/:questiontype", questions.getQuestions);
+app.get("/questions/:topicId/:isSyntax", questions.getQuestions);
 
 // TOPICS
 

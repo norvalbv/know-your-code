@@ -6,11 +6,11 @@ export const questionsApi = createApi({
   endpoints: (builder) => ({
     getAlltopics: builder.query({
       query: () => `topics`
-    }),
-    loadQuestions: builder.query({
-      query: (string) => `${string}`
     })
+    // loadQuestions: builder.query({
+    //   query: (string) => `${string}`
+    // })
   })
 });
 
-export const { useLoadQuestionsQuery, useGetAlltopicsQuery } = questionsApi;
+export const { useGetAlltopicsQuery } = questionsApi;
