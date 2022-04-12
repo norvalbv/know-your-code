@@ -1,15 +1,15 @@
-CREATE DATABASE knowyourcode2;
+-- CREATE DATABASE knowyourcode2;
 
 --
 -- SCHEMAS -----------------------------------------------------------------
 --
 
-CREATE TABLE topic (
+CREATE TABLE topics (
     id SERIAL PRIMARY KEY,
-    name varchar(16) NOT NULL
+    name varchar(16) NOT NULL UNIQUE
 );
 
-CREATE TABLE question (
+CREATE TABLE questions (
     id SERIAL PRIMARY KEY,
     topic_id varchar(16) REFERENCES topic(name) NOT NULL,
     question varchar(128) NOT NULL,
@@ -296,5 +296,5 @@ VALUES
 The nth-of-type() pseudo-class is similar to the nth-child but it helps in matching the selector based on a number that represents the position of the element within the elements that are the siblings of its same type. The number can also be given as a function or give keywords like odd or even.', 
     'senior', 
     'https://www.interviewbit.com/css-interview-questions/', 
-    false
+    false,
     false);

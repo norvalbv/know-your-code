@@ -1,39 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchQuestions, updateQuestions } from '../features/questionsSlice';
+import { updateQuestionsToDisplay } from '../features/questionsToDisplaySlice';
 
 export const SearchQuestions = () => {
-  const selectedTopic = useSelector((state) => state.selectedTopic.topic);
   const [search, setSearch] = useState('');
 
   const dispatch = useDispatch();
 
   const questions = useSelector((state) => state.questions.questions);
 
-  const handleSearchSubmit = async () => {
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
     if (!search) {
-      return dispatch(fetchQuestions(selectedTopic));
+      return dispatch(updateQuestionsToDisplay(questions));
     }
 
-    const filterItems = questions
-      .map((item) => item.question)
-      .filter(
-        (question) =>
-          question.toLowerCase().indexOf(search.toLowerCase()) !== -1
-      );
-    // let nodata;
+    const filterItems = questions.filter((item) =>
+      item.question.toLowerCase().includes(search.toLowerCase())
+    );
 
-    // if (filterItems.length === 0) {
-    //   nodata = false;
-    //   return dispatch(updateQuestions(filterItems));
-    // }
-    // nodata = true;
-    dispatch(updateQuestions(filterItems));
+    console.log(filterItems);
+
+    dispatch(updateQuestionsToDisplay(filterItems));
   };
-
-  useEffect(() => {
-    handleSearchSubmit();
-  }, [search]);
 
   return (
     <form onSubmit={handleSearchSubmit}>
