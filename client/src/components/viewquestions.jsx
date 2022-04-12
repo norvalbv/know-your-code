@@ -11,7 +11,7 @@ export const ViewQuestions = () => {
 
   useEffect(() => {
     // if (status === 'idle') {
-    dispatch(fetchQuestions({ topicId: selectedTopic }));
+    dispatch(fetchQuestions(selectedTopic));
     // }
   }, [selectedTopic]);
 
