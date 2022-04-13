@@ -7,8 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateSelected } from '../features/selectedTopicSlice';
 import { fetchTopics } from '../features/topicSlice';
 import { fetchQuestions } from '../features/questionsSlice';
-
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const PopularQuestions = () => {
   const selectedTopic = useSelector((state) => state.selectedTopic.topic);
@@ -31,10 +31,16 @@ const PopularQuestions = () => {
         <>
           <div className="popular-topics__topics">
             <h2>Popular Topics</h2>
-            {topic.map((item, i) => {
-              return (
+            {selectedTopic !== 'trending' && (
+              <button
+                className="__topic"
+                onClick={() => dispatch(updateSelected('trending'))}>
+                All Trending Questions
+              </button>
+            )}
+            {topic.map((item, i) => (
+              <React.Fragment key={i}>
                 <button
-                  key={i}
                   className="__topic"
                   onClick={() => {
                     if (
@@ -57,8 +63,26 @@ const PopularQuestions = () => {
                   }}>
                   {item.name.toUpperCase()}
                 </button>
-              );
-            })}
+                {topic.map((topic) => topic.name).indexOf(selectedTopic) ===
+                  i && (
+                  <Link to={['/topic/', item.name].join('')}>
+                    <button
+                      className="__topic view-all"
+                      style={{
+                        backgroundColor:
+                          topic
+                            .map((topic) => topic.name)
+                            .indexOf(selectedTopic) === i
+                            ? 'darkred'
+                            : 'inherit'
+                      }}>
+                      View All {item.name.toUpperCase()}{' '}
+                      {questionType === 'syntax' && 'Syntax'} Questions
+                    </button>
+                  </Link>
+                )}
+              </React.Fragment>
+            ))}
           </div>
 
           <div className="trending-questions__container">
