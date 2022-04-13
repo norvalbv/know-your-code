@@ -52,9 +52,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-*Know Your Code* is an ‘advanced cheat sheet’ which outlines common general/interview questions and basic syntax. It is essentially an updated version of W3schools (https://www.w3schools.com/) with a better UI, more languages, frameworks and technologies (which will be implemented in due course). 
+*Know Your Code* is an ‘advanced cheat sheet’ which outline common general/interview questions and basic syntax. It is essentially an updated version of [W3schools](https://www.w3schools.com/) with a better UI, more languages, frameworks and technologies (which will be implemented in due course). 
 
-Here's the benefits for Know Your Code compared to other 'cheatsheets':
+Here's the benefits for Know Your Code compared to other 'cheat sheets':
 * The project is open sourced.
 * The project outlines interview/general questions about technologies and syntax-styled questions.
 
