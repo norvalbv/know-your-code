@@ -39,16 +39,11 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -59,7 +54,7 @@
 
 *Know Your Code* is an ‘advanced cheat sheet’ which outlines common general/interview questions and basic syntax. It is essentially an updated version of W3schools (https://www.w3schools.com/) with a better UI, more languages, frameworks and technologies (which will be implemented in due course). 
 
-Here's the benefits for Know Your Code:
+Here's the benefits for Know Your Code compared to other 'cheatsheets':
 * The project is open sourced.
 * The project outlines interview/general questions about technologies and syntax-styled questions.
 
