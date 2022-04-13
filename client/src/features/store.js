@@ -3,8 +3,7 @@ import questionTypeReducer from './questionTypeSlice';
 import topicReducer from './topicSlice';
 import questionsReducer from './questionsSlice';
 import selectedTopicReducer from './selectedTopicSlice';
-import { questionsApi } from '../services/questionsApi';
-import { setupListeners } from '@reduxjs/toolkit/query';
+import questionsToDisplayReducer from './questionsToDisplaySlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,10 +11,6 @@ export const store = configureStore({
     topics: topicReducer,
     questions: questionsReducer,
     selectedTopic: selectedTopicReducer,
-    [questionsApi.reducerPath]: questionsApi.reducer
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(questionsApi.middleware)
+    questionsToDisplay: questionsToDisplayReducer
+  }
 });
-
-setupListeners(store.dispatch);

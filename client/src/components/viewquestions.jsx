@@ -1,46 +1,48 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchQuestions } from '../features/questionsSlice';
+import { updateQuestionsToDisplay } from '../features/questionsToDisplaySlice';
+import Loading from './loading';
+
 export const ViewQuestions = () => {
   const selectedTopic = useSelector((state) => state.selectedTopic.topic);
+  const questionType = useSelector((state) => state.questionType.category);
 
   const questions = useSelector((state) => state.questions.questions);
-  const status = useSelector((state) => state.questions.status);
+  const questionsToDisplay = useSelector(
+    (state) => state.questionsToDisplay.questions
+  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (status === 'idle') {
-    dispatch(fetchQuestions(selectedTopic));
-    // }
-  }, [selectedTopic]);
+    const notSyntax = questions.filter((item) => !item.is_Syntax);
+    const isSyntax = questions.filter((item) => item.is_Syntax);
 
-  console.log(questions);
+    questionType.toLowerCase() === 'syntax'
+      ? dispatch(updateQuestionsToDisplay(isSyntax))
+      : dispatch(updateQuestionsToDisplay(notSyntax));
+  }, [selectedTopic, dispatch, questions, questionType]);
 
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
-  useEffect(() => {
-    setSelectedQuestion(null);
-  }, [selectedTopic]);
   return (
     <>
       {/* {noData ? (
         <p>No questions found</p>
       ) : ( */}
-      {questions.status === 'error' && <h3>Oops an error has occured!</h3>}
-      {questions.status === 'loading' && <h4>Loading...</h4>}
-      {questions &&
-        questions.map((item, i) => (
+      {questions.status === 'loading' && <Loading />}
+      {questionsToDisplay &&
+        questionsToDisplay.map((item, i) => (
           <div key={i}>
             <h3
               className="trending-question"
               onClick={() => {
-                setSelectedQuestion(questions[i]);
+                setSelectedQuestion(questionsToDisplay[i]);
               }}
               _id={item.id}>
               {item.question}
             </h3>
-            {questions.indexOf(selectedQuestion) === i && (
+            {questionsToDisplay.indexOf(selectedQuestion) === i && (
               <p className="answers">{item.answer}</p>
             )}
           </div>

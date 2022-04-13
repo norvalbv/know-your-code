@@ -1,34 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchQuestions, updateQuestions } from '../features/questionsSlice';
+import { updateQuestionsToDisplay } from '../features/questionsToDisplaySlice';
 
 export const SearchQuestions = () => {
-  const selectedTopic = useSelector((state) => state.selectedTopic.topic);
   const [search, setSearch] = useState('');
 
   const dispatch = useDispatch();
 
   const questions = useSelector((state) => state.questions.questions);
 
-  const handleSearchSubmit = async () => {
-    if (!search) {
-      return dispatch(fetchQuestions(selectedTopic));
+  const handleSearchSubmit = (e) => {
+    if (e) {
+      e.preventDefault();
     }
-
-    const filterItems = questions
-      .map((item) => item.question)
-      .filter(
-        (question) =>
-          question.toLowerCase().indexOf(search.toLowerCase()) !== -1
-      );
-    // let nodata;
-
-    // if (filterItems.length === 0) {
-    //   nodata = false;
-    //   return dispatch(updateQuestions(filterItems));
-    // }
-    // nodata = true;
-    dispatch(updateQuestions(filterItems));
+    if (!search) {
+      return dispatch(updateQuestionsToDisplay(questions));
+    }
+    const filterItems = questions.filter((item) =>
+      item.question.toLowerCase().includes(search.toLowerCase())
+    );
+    dispatch(updateQuestionsToDisplay(filterItems));
   };
 
   useEffect(() => {
