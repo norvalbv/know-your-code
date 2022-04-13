@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <div id="top"></div>
 
 [![Contributors][contributors-shield]][contributors-url]
@@ -182,4 +180,3 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 [issues-shield]: https://img.shields.io/github/issues/norvalbv/know-your-code.svg?style=for-the-badge
 [issues-url]: https://github.com/norvalbv/know-your-code/issues
 <!-- [product-screenshot]: images/screenshot.png -->
->>>>>>> a7b7c8be09fa4ab83970b06213c4caac3d23eb3d
