@@ -31,7 +31,7 @@ const PopularQuestions = () => {
         <>
           <div className="popular-topics__topics">
             <h2>Popular Topics</h2>
-            {selectedTopic !== 'trending' && (
+            {selectedTopic.toLowerCase() !== 'trending' && (
               <button
                 className="__topic"
                 onClick={() => dispatch(updateSelected('trending'))}>
