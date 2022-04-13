@@ -19,7 +19,7 @@ const PopularQuestions = () => {
   useEffect(() => {
     dispatch(fetchTopics());
     dispatch(fetchQuestions(selectedTopic));
-  }, [dispatch, selectedTopic]);
+  }, [dispatch, selectedTopic, questionType]);
 
   return (
     <section className="popular-topics__container">
@@ -36,8 +36,16 @@ const PopularQuestions = () => {
                 <button
                   key={i}
                   className="__topic"
-                  onClick={async () => {
-                    dispatch(updateSelected(topic[i].name));
+                  onClick={() => {
+                    if (
+                      topic
+                        .map((topic) => topic.name)
+                        .indexOf(selectedTopic) === i
+                    ) {
+                      dispatch(updateSelected('trending'));
+                    } else {
+                      dispatch(updateSelected(topic[i].name));
+                    }
                   }}
                   style={{
                     backgroundColor:

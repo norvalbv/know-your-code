@@ -9,7 +9,6 @@ export const questionsToDisplaySlice = createSlice({
   },
   reducers: {
     updateQuestionsToDisplay(state, action) {
-      //console.log(action.payload);
       state.questions = action.payload;
     }
   }

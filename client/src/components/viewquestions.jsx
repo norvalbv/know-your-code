@@ -15,28 +15,18 @@ export const ViewQuestions = () => {
   );
 
   const [params] = useSearchParams();
-  console.log(params.get('search'));
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // const notSyntax = questions.filter((item) => !item.is_Syntax);
-    // const isSyntax = questions.filter((item) => item.is_Syntax);
-
     if (params.get('search')) {
       const filterItems = questions.filter((item) =>
         item.question.toLowerCase().includes(params.get('search').toLowerCase())
       );
       dispatch(updateQuestionsToDisplay(filterItems));
     } else {
-      const notSyntax = questions.filter((item) => !item.is_Syntax);
-      const isSyntax = questions.filter((item) => item.is_Syntax);
-      questionType.toLowerCase() === 'syntax'
-        ? dispatch(updateQuestionsToDisplay(isSyntax))
-        : dispatch(updateQuestionsToDisplay(notSyntax));
-      // dispatch(updateQuestionsToDisplay());
+      dispatch(updateQuestionsToDisplay(questions));
     }
-  }, [selectedTopic, dispatch, questions, questionType]);
+  }, [selectedTopic, questions, questionType]);
 
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
