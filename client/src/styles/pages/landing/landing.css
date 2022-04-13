@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
+}
+
+.app-container {
+  background-color: #1f1f1f;
+  width: 100vw;
+  min-height: 100vh;
+  color: #e9e9e9;
+}
+
+#landing-page {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+#landing-page .landing-page__input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid;
+  width: 20rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+#landing-page .landing-page__input:focus {
+  outline: none;
+}
+
+#landing-page .landing-page__button-search {
+  background-color: pink;
+  border: none;
+  width: 5rem;
+  cursor: pointer;
+}
+
+.landing-page__browse-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.landing-page__browse-container .landing-page__button-trending {
+  background-color: pink;
+  border: none;
+  width: 5rem;
+  cursor: pointer;
+}
+/*# sourceMappingURL=landing.css.map */

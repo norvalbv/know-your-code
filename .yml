@@ -1,0 +1,89 @@
+openapi: 3.0.0
+info:
+  title: Know Your Code API
+  version: 0.3.3
+  description: Data fetch API
+paths:
+  /topics:
+    summary: Get all topics
+    description: Retrieve all listed topics in DB.
+    get:
+      summary: Get topic data
+      description: Retrieve topic data from database
+      operationId: get_topics
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json:
+              examples:
+                topics:
+                  value: |-
+                    [
+                      {
+                      "id": 1,
+                        "name": "html"
+                        
+                      },
+                      {
+                      "id": 2,    
+                       "name": "css"
+                        
+                      }
+                    ]
+      tags:
+        - Topics
+  /questions/{topicId}/{isSyntax}:
+    summary: Get all questions for the chosen topic
+    description: >-
+      Get all questions from the Topic ID and whether they're syntax related
+      questions or not.
+    get:
+      summary: Gets all questions from chosen topic
+      description: Gets all questions from selected topic and category
+      operationId: get_questions
+      parameters:
+        - name: topicId
+          in: path
+          description: The ID of the topics.
+          required: true
+          schema:
+            type: string
+        - name: isSyntax
+          in: path
+          description: Whether or not the category is syntax related.
+          required: true
+          schema:
+            type: boolean
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json:
+              examples:
+                questions:
+                  value: |-
+                    [
+                        {
+                            "id": 7,
+                            "topic_id": "html",
+                            "question": "How do you change the direction of HTML text?",
+                            "answer": "You can set text direction in HTML in one of two ways:\n\nWith the HTML dir attribute\nWith the CSS direction property",
+                            "difficulty": "junior",
+                            "source": "https://www.fullstack.cafe/interview-questions/html5",
+                            "is_syntax": false,
+                            "is_trending": false
+                        },
+                        {
+                            "id": 4,
+                            "topic_id": "html",
+                            "question": "What is character encoding?",
+                            "answer": "To display an HTML page correctly, a web browser must know which character set (character encoding) to use.",
+                            "difficulty": "junior",
+                            "source": "https://www.fullstack.cafe/interview-questions/html5",
+                            "is_syntax": false,
+                            "is_trending": false
+                        }
+                    ]
+      tags:
+        - Questions

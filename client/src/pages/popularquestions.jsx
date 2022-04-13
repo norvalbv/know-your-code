@@ -1,5 +1,5 @@
 import NavBar from '../components/navbar/navbar';
-import '../styles/popularquestions.scss';
+import '../styles/pages/popularquestions/popularquestions.scss';
 import { SortQuestions } from '../components/navbar/sortquestions';
 import { SearchQuestions } from '../components/searchquestions';
 import { ViewQuestions } from '../components/viewquestions';

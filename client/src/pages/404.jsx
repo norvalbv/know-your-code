@@ -2,7 +2,7 @@ import NavBar from '../components/navbar/navbar';
 import { Link } from 'react-router-dom';
 import { SortQuestions } from '../components/navbar/sortquestions';
 
-export const NotFound = () => {
+const NotFound = () => {
   return (
     <>
       <div className="nav">
@@ -11,10 +11,12 @@ export const NotFound = () => {
       </div>
       <section>
         <p>Page not found</p>
-        <Link to="/questions">
+        <Link to="/trending">
           <button>Home Page</button>
         </Link>
       </section>
     </>
   );
 };
+
+export default NotFound;

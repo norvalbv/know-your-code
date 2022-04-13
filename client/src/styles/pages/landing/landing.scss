@@ -1,0 +1,47 @@
+@import '../../global.scss';
+
+#landing-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+
+  text-align: center;
+
+  .landing-page__input {
+    background: none;
+    border: none;
+    border-bottom: 1px solid;
+    width: 20rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.25rem;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .landing-page__button-search {
+    background-color: pink;
+    border: none;
+    width: 5rem;
+    cursor: pointer;
+  }
+}
+
+.landing-page__browse-container {
+  display: flex;
+  align-items: center;
+
+  .landing-page__button-trending {
+    background-color: pink;
+    border: none;
+    width: 5rem;
+    cursor: pointer;
+  }
+}
