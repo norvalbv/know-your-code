@@ -28,7 +28,7 @@ const PopularQuestions = () => {
         <NavBar />
       </div>
       {topic && (
-        <>
+        <div className="popular-topics__main-container">
           <div className="popular-topics__topics">
             <h2>Popular Topics</h2>
             {selectedTopic.toLowerCase() !== 'trending' && (
@@ -92,19 +92,17 @@ const PopularQuestions = () => {
             ))}
           </div>
 
-          <div className="trending-questions__container">
-            <SearchQuestions selectedTopic={selectedTopic} />
-            <div className="questions">
-              <h2>
-                {selectedTopic.toUpperCase()}
-                {questionType === 'syntax'
-                  ? ' Syntax Questions'
-                  : ' Interview Questions'}
-              </h2>
-              <ViewQuestions />
-            </div>
+          <div className="questions">
+            <h2 className="questions-title">
+              {selectedTopic.toUpperCase()}
+              {questionType === 'syntax'
+                ? ' SYNTAX QUESTIONS'
+                : ' INTERVIEW QUESTIONS'}
+            </h2>
+            <ViewQuestions />
           </div>
-        </>
+          <SearchQuestions selectedTopic={selectedTopic} />
+        </div>
       )}
     </section>
   );

@@ -38,16 +38,16 @@ export const ViewQuestions = () => {
       {questionsToDisplay &&
         questionsToDisplay.map((item, i) => (
           <div key={i} className="view-questions__container">
-            <h3
-              className="trending-question"
+            <p
+              className="view-questions__question"
               onClick={() => {
                 setSelectedQuestion(questionsToDisplay[i]);
               }}
               _id={item.id}>
               {item.question}
-            </h3>
+            </p>
             {questionsToDisplay.indexOf(selectedQuestion) === i && (
-              <p className="answers">{item.answer}</p>
+              <p className="view-questions__answer">{item.answer}</p>
             )}
           </div>
         ))}
