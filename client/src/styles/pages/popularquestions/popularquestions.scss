@@ -20,10 +20,10 @@
   grid-area: b;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  // gap: 1rem;
 
   .__topic {
-    border: 1px solid $p-clr-1;
+    border: 1px solid $p-clr-2;
     background: none;
     width: 20rem;
     height: 4rem;
@@ -32,13 +32,15 @@
 
     &:hover {
       cursor: pointer;
-      box-shadow: 2px 2px 2px $hover-clr-1;
+      box-shadow: 2px 2px 2px $p-clr-2;
+      background: $p-clr-2 !important;
     }
   }
 }
 
 .trending-questions__container {
   grid-area: c;
+  background: #000;
 
   .trending-question {
     cursor: pointer;
@@ -49,20 +51,23 @@
 
 .questions {
   margin-top: 3rem;
+  background: pink;
 }
 
 .answers {
   text-transform: uppercase;
-  color: $p-txt-lg;
+  color: $p-txt-neutral;
   font-size: 14px;
   letter-spacing: 2px;
 }
 
 .trending-questions__search {
-  float: right;
+  // float: right;
+  display: flex;
+  flex-flow: row-reverse nowrap;
   background: none;
   border: none;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid $p-txt-light;
   text-align: center;
   width: 15rem;
   padding-bottom: 1rem;
@@ -71,9 +76,14 @@
     outline: none;
     color: inherit;
   }
+
+  .view-questions__container {
+    color: green;
+    background: #000;
+  }
 }
 
 .view-all {
   height: 2rem !important;
-  color: white !important;
+  color: $p-txt-light !important;
 }

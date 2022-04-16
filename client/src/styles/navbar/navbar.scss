@@ -1,4 +1,4 @@
-@import "../global.scss";
+@import '../global.scss';
 
 #navbar ul {
   display: flex;
@@ -19,11 +19,7 @@
 
   li {
     list-style-type: none;
-    color: gray;
-
-    // &:active {
-    //     color: white;
-    // }
+    color: $p-txt-neutral;
 
     &:first-child {
       border-right: 1px solid #fff;
@@ -31,15 +27,24 @@
     }
 
     &:hover {
-        color: $p-clr-1;
+      color: $p-clr-2 !important;
     }
   }
 }
 
+.navbar__list-item {
+  list-style-type: none;
+  color: $p-txt-neutral;
+
+  &:hover {
+    color: $p-clr-2 !important;
+  }
+}
+
 #questions {
-    color: white;
+  color: white;
 }
 
 #syntax {
-    color: white;
+  color: white;
 }

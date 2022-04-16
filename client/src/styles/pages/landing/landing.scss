@@ -6,31 +6,70 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2.5rem;
+  margin: 0 auto;
+  padding: 0 15%;
+  background-image: radial-gradient(at 200% 0%, $p-clr-2 0, transparent 50%),
+    radial-gradient(at 150% 150%, $p-clr-1 0, transparent 50%),
+    radial-gradient(at 0% 200%, $p-clr-2 0, transparent 50%);
 
-  text-align: center;
+  .landing-page__header {
+    font-size: 2.5rem;
+    align-self: flex-start;
+  }
+}
+
+.landing-page__text {
+  font-size: 1.25rem;
+  color: $p-txt-neutral;
+
+  .landing-page__span {
+    color: $p-clr-1;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+
+.landing-page__input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .landing-page__input {
-    background: none;
+    background: #fff;
     border: none;
     border-bottom: 1px solid;
-    width: 20rem;
+    width: 25rem;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 1.25rem;
     cursor: pointer;
+    height: 2.53rem;
 
     &:focus {
       outline: none;
     }
   }
 
+  .landing-page__selection {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 2.5rem;
+    border: none;
+  }
+
   .landing-page__button-search {
-    background-color: pink;
+    background-color: $button;
     border: none;
     width: 5rem;
     cursor: pointer;
+    height: 2.52rem;
+    border-top-right-radius: 5px;
+    border-end-end-radius: 5px;
+
+    &:hover {
+      background-color: $hover-clr-1;
+    }
   }
 }
 
@@ -39,9 +78,37 @@
   align-items: center;
 
   .landing-page__button-trending {
-    background-color: pink;
+    background-color: $button;
     border: none;
-    width: 5rem;
     cursor: pointer;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+
+    &:hover {
+      background: $hover-clr-1;
+    }
   }
+}
+
+@media only screen and (max-width: $media-large-screen) {
+}
+@media only screen and (max-width: $media-medium-screen) {
+  .landing-page__input-container {
+    .landing-page__input {
+      width: 15rem;
+    }
+  }
+}
+@media only screen and (max-width: $media-small-screen) {
+  .landing-page__input-container {
+    .landing-page__input {
+      width: 12.5rem;
+    }
+    .landing-page__selection {
+      width: 7.5rem;
+    }
+  }
+}
+@media only screen and (max-width: $media-tiny-screen) {
 }

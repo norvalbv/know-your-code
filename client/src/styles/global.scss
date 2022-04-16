@@ -10,19 +10,29 @@
 
 // colors
 
-$p-bg-dg: #1f1f1f;
+$p-bg-dg: #020d12;
 
-$p-txt-lg: #a7a7a7;
-$p-txt-ow: #e9e9e9;
+$p-txt-dark: gray;
+$p-txt-neutral: #a7a7a7;
+$p-txt-light: #e9e9e9;
 
 $p-clr-1: #550355;
+$p-clr-2: #255443;
 
-$hover-clr-1: hsla(281, 100%, 52%, 0.1);
+$button: hsl(120, 100%, 29%);
 
-// $h: hsla(281, 100%, 50%, 0.37)
+$hover-clr-1: hsla(120, 100%, 29%, 0.5);
+
+$media-large-screen: 1400px;
+$media-medium-screen: 850px;
+$media-small-screen: 550px;
+$media-tiny-screen: 400px;
+
 .app-container {
-  background-color: $p-bg-dg;
   width: 100vw;
   min-height: 100vh;
-  color: $p-txt-ow;
+  color: $p-txt-light;
+  background-color: $p-bg-dg;
+  background-image: radial-gradient(at 50% 50%, #191919 0, transparent 100%),
+    radial-gradient(at 150% 150%, $p-clr-2 0, transparent 50%);
 }

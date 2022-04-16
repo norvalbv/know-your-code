@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/pages/landing/landing.scss';
 import { useNavigate } from 'react-router-dom';
+import { init } from 'ityped';
 
 const Landing = () => {
   const [search, setSearch] = useState('');
@@ -21,16 +22,33 @@ const Landing = () => {
     }
   };
 
+  const textRef = useRef();
+
+  useEffect(() => {
+    init(textRef.current, {
+      typeSpeed: 175,
+      backSpeed: 125,
+      backDelay: 1750,
+      showCursor: true,
+      strings: ['language', 'framework', 'technology']
+    });
+  }, []);
+
   return (
     <div id="landing-page">
-      <h1>Know Your Code</h1>
-      <p>
-        Discover trending interview questions and answers or view the basic
-        syntax appropriate to make your developer life functionable.
+      <h1 className="landing-page__header">Know Your Code</h1>
+      <p className="landing-page__text">
+        Discover your favourite{' '}
+        <span ref={textRef} className="landing-page__span"></span>
+        <br />
+        interview questions and answers or view the basic syntax to make your
+        developer life functionable.
       </p>
-      <div>
+      <div className="landing-page__input-container">
         <form onSubmit={navigateTo}>
-          <select onChange={(e) => setTopic(e.target.value)}>
+          <select
+            onChange={(e) => setTopic(e.target.value)}
+            className="landing-page__selection">
             <option defaultChecked hidden>
               Select A Topic
             </option>
@@ -48,7 +66,7 @@ const Landing = () => {
         </form>
       </div>
       <div className="landing-page__browse-container">
-        <p>Or browse all trending topics</p>
+        <p className="landing-page__text">Or browse all trending topics</p>
         <Link to="/trending">
           <button className="landing-page__button-trending">
             Browse Trending

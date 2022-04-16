@@ -9,10 +9,11 @@
 }
 
 .app-container {
-  background-color: #1f1f1f;
   width: 100vw;
   min-height: 100vh;
   color: #e9e9e9;
+  background-color: #020d12;
+  background-image: radial-gradient(at 50% 50%, #191919 0, transparent 100%), radial-gradient(at 150% 150%, #255443 0, transparent 50%);
 }
 
 #navbar ul {
@@ -39,7 +40,7 @@
 
 .sort-questions li {
   list-style-type: none;
-  color: gray;
+  color: #a7a7a7;
 }
 
 .sort-questions li:first-child {
@@ -48,7 +49,16 @@
 }
 
 .sort-questions li:hover {
-  color: #550355;
+  color: #255443 !important;
+}
+
+.navbar__list-item {
+  list-style-type: none;
+  color: #a7a7a7;
+}
+
+.navbar__list-item:hover {
+  color: #255443 !important;
 }
 
 #questions {

@@ -9,10 +9,11 @@
 }
 
 .app-container {
-  background-color: #1f1f1f;
   width: 100vw;
   min-height: 100vh;
   color: #e9e9e9;
+  background-color: #020d12;
+  background-image: radial-gradient(at 50% 50%, #191919 0, transparent 100%), radial-gradient(at 150% 150%, #255443 0, transparent 50%);
 }
 
 #landing-page {
@@ -30,31 +31,76 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 1.5rem;
-  text-align: center;
+  gap: 2.5rem;
+  margin: 0 auto;
+  padding: 0 15%;
+  background-image: radial-gradient(at 200% 0%, #255443 0, transparent 50%), radial-gradient(at 150% 150%, #550355 0, transparent 50%), radial-gradient(at 0% 200%, #255443 0, transparent 50%);
 }
 
-#landing-page .landing-page__input {
-  background: none;
+#landing-page .landing-page__header {
+  font-size: 2.5rem;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.landing-page__text {
+  font-size: 1.25rem;
+  color: #a7a7a7;
+}
+
+.landing-page__text .landing-page__span {
+  color: #550355;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.landing-page__input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.landing-page__input-container .landing-page__input {
+  background: #fff;
   border: none;
   border-bottom: 1px solid;
-  width: 20rem;
+  width: 25rem;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 1.25rem;
   cursor: pointer;
+  height: 2.53rem;
 }
 
-#landing-page .landing-page__input:focus {
+.landing-page__input-container .landing-page__input:focus {
   outline: none;
 }
 
-#landing-page .landing-page__button-search {
-  background-color: pink;
+.landing-page__input-container .landing-page__selection {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  height: 2.5rem;
+  border: none;
+}
+
+.landing-page__input-container .landing-page__button-search {
+  background-color: #009400;
   border: none;
   width: 5rem;
   cursor: pointer;
+  height: 2.52rem;
+  border-top-right-radius: 5px;
+  border-end-end-radius: 5px;
+}
+
+.landing-page__input-container .landing-page__button-search:hover {
+  background-color: rgba(0, 148, 0, 0.5);
 }
 
 .landing-page__browse-container {
@@ -67,9 +113,30 @@
 }
 
 .landing-page__browse-container .landing-page__button-trending {
-  background-color: pink;
+  background-color: #009400;
   border: none;
-  width: 5rem;
   cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+}
+
+.landing-page__browse-container .landing-page__button-trending:hover {
+  background: rgba(0, 148, 0, 0.5);
+}
+
+@media only screen and (max-width: 850px) {
+  .landing-page__input-container .landing-page__input {
+    width: 15rem;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .landing-page__input-container .landing-page__input {
+    width: 12.5rem;
+  }
+  .landing-page__input-container .landing-page__selection {
+    width: 7.5rem;
+  }
 }
 /*# sourceMappingURL=landing.css.map */

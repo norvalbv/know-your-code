@@ -5,7 +5,6 @@ import Loading from './loading';
 import { useSearchParams } from 'react-router-dom';
 
 export const ViewQuestions = () => {
-  const selectedTopic = useSelector((state) => state.selectedTopic.topic);
   const questionType = useSelector((state) => state.questionType.category);
 
   const questions = useSelector((state) => state.questions.questions);
@@ -26,7 +25,7 @@ export const ViewQuestions = () => {
     } else {
       dispatch(updateQuestionsToDisplay(questions));
     }
-  }, [selectedTopic, questions, questionType]);
+  }, [questions, questionType]);
 
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
@@ -38,7 +37,7 @@ export const ViewQuestions = () => {
       {questions.status === 'loading' && <Loading />}
       {questionsToDisplay &&
         questionsToDisplay.map((item, i) => (
-          <div key={i}>
+          <div key={i} className="view-questions__container">
             <h3
               className="trending-question"
               onClick={() => {

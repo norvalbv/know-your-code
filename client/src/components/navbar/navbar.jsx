@@ -9,13 +9,12 @@ const NavBar = () => {
       <ul>
         {location.pathname !== '/trending' && (
           <Link to="/trending">
-            <li>Home</li>
+            <li className="navbar__list-item">Home</li>
           </Link>
         )}
         <Link to="/topics">
-          <li>Topics</li>
+          <li className="navbar__list-item">View All Topics</li>
         </Link>
-        <li>Trending Questions</li>
       </ul>
     </div>
   );

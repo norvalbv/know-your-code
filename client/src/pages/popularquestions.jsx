@@ -34,7 +34,8 @@ const PopularQuestions = () => {
             {selectedTopic.toLowerCase() !== 'trending' && (
               <button
                 className="__topic"
-                onClick={() => dispatch(updateSelected('trending'))}>
+                onClick={() => dispatch(updateSelected('trending'))}
+                style={{ marginBottom: '0.5rem' }}>
                 All Trending Questions
               </button>
             )}
@@ -58,8 +59,14 @@ const PopularQuestions = () => {
                       topic
                         .map((topic) => topic.name)
                         .indexOf(selectedTopic) === i
-                        ? 'hsla(281, 100%, 50%, 0.2)'
-                        : 'inherit'
+                        ? 'hsla(120, 100%, 29%, 0.8)'
+                        : 'inherit',
+                    margin:
+                      topic
+                        .map((topic) => topic.name)
+                        .indexOf(selectedTopic) === i
+                        ? '0rem 0'
+                        : '0.5rem 0'
                   }}>
                   {item.name.toUpperCase()}
                 </button>
@@ -73,7 +80,7 @@ const PopularQuestions = () => {
                           topic
                             .map((topic) => topic.name)
                             .indexOf(selectedTopic) === i
-                            ? 'darkred'
+                            ? 'hsla(120, 100%, 29%, 0.8)'
                             : 'inherit'
                       }}>
                       View All {item.name.toUpperCase()}{' '}
