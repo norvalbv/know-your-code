@@ -30,6 +30,7 @@ $media-tiny-screen: 400px;
 
 .app-container {
   min-height: 100vh;
+  padding: 1rem;
   color: $p-txt-light;
   background-color: $p-bg-dg;
   background-image: radial-gradient(at 50% 50%, #191919 0, transparent 100%),

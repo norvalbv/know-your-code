@@ -2,7 +2,6 @@
 
 .popular-topics__container {
   max-width: 100vw;
-  padding: 1rem;
 }
 
 .navbar {
@@ -48,8 +47,8 @@
 
 .view-questions__container {
   border-bottom: 1px solid $p-clr-1;
-  margin: .5rem 0;
-  padding: .5rem 0;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
 
   .view-questions__question {
     cursor: pointer;

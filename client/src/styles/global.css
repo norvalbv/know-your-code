@@ -10,6 +10,7 @@
 
 .app-container {
   min-height: 100vh;
+  padding: 1rem;
   color: #e9e9e9;
   background-color: #020d12;
   background-image: radial-gradient(at 50% 50%, #191919 0, transparent 100%), radial-gradient(at 150% 150%, #255443 0, transparent 50%);

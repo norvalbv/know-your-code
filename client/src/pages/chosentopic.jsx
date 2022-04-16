@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchQuestions } from '../features/questionsSlice';
+import '../styles/pages/chosentopic/chosentopic.scss';
 
 export const ChosenTopic = () => {
   const location = useLocation();
