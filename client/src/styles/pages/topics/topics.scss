@@ -14,7 +14,11 @@
 
 .topics__topics {
   background: $s-bg-light;
-  background-image: radial-gradient(at -25% -25%, $p-txt-dark 0, transparent 100%),
+  background-image: radial-gradient(
+      at -25% -25%,
+      $p-txt-dark 0,
+      transparent 100%
+    ),
     radial-gradient(at 125% 125%, $p-txt-neutral 0, transparent 50%);
   border-radius: 5px;
   width: 70%;
@@ -23,10 +27,18 @@
 
   .topics__categories {
     display: flex;
+    height: 2.5rem;
 
     .topics__cat {
       width: 100%;
       cursor: pointer;
+      border-left: 1px solid gary;
+      border-width: 0 1px;
+      background: $p-txt-light;
+
+      &:hover {
+        background: $p-txt-dark !important;
+      }
     }
   }
 }
@@ -41,27 +53,39 @@
   .topics__topic {
     padding: 0.75rem 1rem;
     text-transform: capitalize;
+    border: none;
+    border-radius: 5px;
 
     &:hover {
       cursor: pointer;
-      background: $p-clr-2;
+      background: $p-txt-neutral;
       outline: none;
     }
   }
 }
 
-.topics__end-container {
+.topics__development-end-container {
   display: flex;
   text-align: center;
   position: relative;
+  width: 50%;
+  margin: 1.5rem auto;
+  gap: 0.5rem;
 
-  .topics__end {
-    width: 100%;
+  .topics__development-end {
+    flex: 1;
     cursor: pointer;
-  }
+    border-radius: 10px;
+    border: none;
+    box-shadow: 2px 2px 2px $hover-clr-1;
 
-  .topics__more {
-    position: absolute;
-    bottom: 0;
+    &:hover {
+      background-color: $hover-clr-1;
+    }
   }
+}
+
+.topics__more {
+  position: absolute;
+  bottom: 5rem;
 }

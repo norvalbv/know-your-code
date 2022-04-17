@@ -11,20 +11,18 @@ export const Topics = () => {
   const topics = useSelector((state) => state.topics.topics);
   const dispatch = useDispatch();
 
-  const [selected, setSelected] = useState('');
-  const [end, setEnd] = useState(true);
-
-  const handleSelected = (e) => {
-    setSelected(e);
-  };
-
-  const handleEnd = (e) => {
-    setEnd(e);
-  };
+  const [selected, setSelected] = useState('language');
+  const [end, setEnd] = useState('full');
 
   const filter = topics.filter((item) => item.category === selected);
-  const filterEnd = filter.filter((item) => item.is_frontend === end);
-  console.log(filter);
+  const filterEnd = filter.filter(
+    (item) => item.dev_end === end || item.dev_end === 'full'
+  );
+  const list = end === 'full' ? filter : filterEnd;
+
+  useEffect(() => {
+    setEnd('full');
+  }, [selected]);
 
   useEffect(() => {
     dispatch(fetchTopics());
@@ -44,27 +42,36 @@ export const Topics = () => {
         <div className="topics__categories">
           <button
             className="topics__cat"
-            onClick={() => handleSelected('language')}>
+            onClick={() => setSelected('language')}
+            style={{
+              backgroundColor: selected === 'language' ? 'inherit' : '#e9e9e9'
+            }}>
             Programming and languages
           </button>
-          <div className="frameworks topics__cat">
-            <button
-              className="topics__cat"
-              onClick={() => handleSelected('framework')}>
-              Frameworks
-            </button>
-
-            {selected === 'framework' && (
-              <div className="topics__end-container">
-                <button className="topics__end coming-soon"> Full Stack</button>
-                <button className="topics__end" onClick={() => handleEnd(true)}>
-                  Front End
-                </button>
-                <button className="topics__end coming-soon">Back End</button>
-              </div>
-            )}
-          </div>
+          <button
+            className="topics__cat"
+            onClick={() => setSelected('framework')}
+            style={{
+              backgroundColor: selected === 'framework' ? 'inherit' : '#e9e9e9'
+            }}>
+            Frameworks
+          </button>
           <button className="topics__cat coming-soon">More coming soon</button>
+        </div>
+        <div className="topics__development-end-container">
+          <button
+            className="topics__development-end"
+            onClick={() => setEnd('full')}>
+            Full Stack
+          </button>
+          <button
+            className="topics__development-end"
+            onClick={() => setEnd('front')}>
+            Front End
+          </button>
+          <button className="topics__development-end coming-soon">
+            Back End
+          </button>
         </div>
         {/* <SearchQuestions /> */}
         {/*  {noData ? (
@@ -72,12 +79,12 @@ export const Topics = () => {
 // ) : ( */}
         {topics && (
           <div className="topics__topic-container">
-            {filterEnd.map((item, i) => (
+            {list.map((item, i) => (
               <Link to={['/topic/', item.name].join('')} key={i}>
                 <button className="topics__topic">{item.name}</button>
               </Link>
             ))}
-            {filterEnd.length > 0 && (
+            {list.length > 0 && (
               <p className="topics__more">More coming soon</p>
             )}
           </div>
