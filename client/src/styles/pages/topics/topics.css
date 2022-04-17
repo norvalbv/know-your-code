@@ -84,6 +84,10 @@
   background: gray !important;
 }
 
+.selected {
+  background: rgba(0, 148, 0, 0.5);
+}
+
 .topics__topic-container {
   display: -webkit-box;
   display: -ms-flexbox;

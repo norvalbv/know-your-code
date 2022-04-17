@@ -15,4 +15,56 @@
   background-color: #020d12;
   background-image: radial-gradient(at 50% 50%, #191919 0, transparent 100%), radial-gradient(at 150% 150%, #255443 0, transparent 50%);
 }
+
+.coming-soon {
+  cursor: not-allowed !important;
+  position: relative;
+}
+
+.coming-soon:hover::after {
+  position: absolute;
+  z-index: 10;
+  top: 2rem;
+  left: 0rem;
+  height: 2rem;
+  width: 7.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(129, 129, 129, 0.2);
+  border-radius: 5px;
+  color: #fff;
+  font-size: 0.75rem;
+  content: 'coming-soon';
+}
+
+._404__section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 5rem;
+}
+
+._404__section span {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+._404__section ._404__button {
+  padding: 0.5rem 0.75rem;
+  border-radius: 5px;
+  border: none;
+  margin-top: 1rem;
+  cursor: pointer;
+}
 /*# sourceMappingURL=404.css.map */

@@ -1,19 +1,19 @@
 import NavBar from '../components/navbar/navbar';
 import { Link } from 'react-router-dom';
-import { SortQuestions } from '../components/navbar/sortquestions';
 import '../styles/pages/404/404.scss';
 
 const NotFound = () => {
   return (
     <>
       <div className="nav">
-        <SortQuestions />
         <NavBar />
       </div>
-      <section>
-        <p>Page not found</p>
-        <Link to="/trending">
-          <button>Home Page</button>
+      <section className="_404__section">
+        <p>
+          <span>UH OH!</span> Page not found
+        </p>
+        <Link to="/">
+          <button className="_404__button">Go Back To HomePage</button>
         </Link>
       </section>
     </>

@@ -60,16 +60,27 @@ export const Topics = () => {
         </div>
         <div className="topics__development-end-container">
           <button
-            className="topics__development-end"
+            className={[
+              'topics__development-end',
+              end === 'full' ? 'selected' : null
+            ].join(' ')}
             onClick={() => setEnd('full')}>
             Full Stack
           </button>
           <button
-            className="topics__development-end"
+            className={[
+              'topics__development-end',
+              end === 'front' ? 'selected' : null
+            ].join(' ')}
             onClick={() => setEnd('front')}>
             Front End
           </button>
-          <button className="topics__development-end coming-soon">
+          <button
+            className={[
+              'topics__development-end',
+              'coming-soon',
+              end === 'back' ? 'selected' : null
+            ].join(' ')}>
             Back End
           </button>
         </div>

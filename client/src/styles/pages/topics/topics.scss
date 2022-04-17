@@ -43,6 +43,10 @@
   }
 }
 
+.selected {
+    background: $hover-clr-1;
+}
+
 .topics__topic-container {
   display: flex;
   height: 10rem;

@@ -18,7 +18,7 @@ export const ChosenTopic = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchQuestions(currentLocation ?? topic));
-  }, [dispatch, topic]);
+  }, [topic]);
 
   return (
     <>

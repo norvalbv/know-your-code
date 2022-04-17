@@ -44,7 +44,7 @@ export const ViewQuestions = () => {
                 setSelectedQuestion(questionsToDisplay[i]);
               }}
               _id={item.id}>
-              {item.question}
+              Q{i + 1}: {item.question}
             </p>
             {questionsToDisplay.indexOf(selectedQuestion) === i && (
               <p className="view-questions__answer">{item.answer}</p>

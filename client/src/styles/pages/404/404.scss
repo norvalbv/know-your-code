@@ -1,1 +1,24 @@
-@import "../../global.scss";
+@import '../../global.scss';
+
+._404__section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 1.5rem;
+
+  padding: 5rem;
+  span {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  ._404__button {
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    border: none;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+}
