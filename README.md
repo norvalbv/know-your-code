@@ -18,7 +18,7 @@
 
   <p align="center">
     <br />
-    [View Demo](https://know-your-code.herokuapp.com/)
+    <a href="https://know-your-code.herokuapp.com/" target="_blank">View Demo</a>
     ·
     <a href="https://github.com/norvalbv/know-your-code/issues">Report Bug</a>
   </p>
