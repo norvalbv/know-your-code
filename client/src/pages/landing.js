@@ -42,7 +42,7 @@ const Landing = () => {
         <span ref={textRef} className="landing-page__span"></span>
         <br />
         interview questions and answers or view the basic syntax to make your
-        developer life functionable.
+        developer life better.
       </p>
       <div className="landing-page__input-container">
         <form onSubmit={navigateTo}>
@@ -54,6 +54,9 @@ const Landing = () => {
             </option>
             <option value="html">html</option>
             <option value="css">css</option>
+            <option value="css">javascript</option>
+            <option value="css">react</option>
+            <option value="css">redux</option>
           </select>
           <input
             type="text"
