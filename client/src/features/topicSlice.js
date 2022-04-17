@@ -1,11 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchTopics = createAsyncThunk('topics/fetchAll', async () => {
-  // const state = getState();
-  // console.log(state);
-  //let isSyntax = state.questionType.category === 'syntax' ? true : false;
   try {
-    const response = await fetch(`http://localhost:5000/topics`);
+    const response = await fetch(`/topics`);
     const data = await response.json();
     return data;
   } catch (err) {
@@ -23,7 +20,6 @@ export const questionsSlice = createSlice({
   },
   reducers: {
     updateTopics(state, action) {
-      //console.log(action.payload);
       state.questions = action.payload;
     }
   },

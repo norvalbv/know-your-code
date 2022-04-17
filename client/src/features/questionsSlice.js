@@ -6,9 +6,7 @@ export const fetchQuestions = createAsyncThunk(
     const state = getState();
     let isSyntax = state.questionType.category === 'syntax' ? true : false;
     try {
-      const response = await fetch(
-        `http://localhost:5000/questions/${topicId}/${isSyntax}`
-      );
+      const response = await fetch(`/questions/${topicId}/${isSyntax}`);
       const data = await response.json();
       return data;
     } catch (err) {
