@@ -15,4 +15,32 @@
   background-color: #020d12;
   background-image: radial-gradient(at 50% 50%, #191919 0, transparent 100%), radial-gradient(at 150% 150%, #255443 0, transparent 50%);
 }
+
+.coming-soon {
+  cursor: not-allowed !important;
+  position: relative;
+}
+
+.coming-soon:hover::after {
+  position: absolute;
+  z-index: 10;
+  top: 2rem;
+  left: 0rem;
+  height: 2rem;
+  width: 7.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(129, 129, 129, 0.2);
+  border-radius: 5px;
+  color: #fff;
+  font-size: 0.75rem;
+  content: 'coming-soon';
+}
 /*# sourceMappingURL=global.css.map */

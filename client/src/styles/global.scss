@@ -11,6 +11,7 @@
 // colors
 
 $p-bg-dg: #020d12;
+$s-bg-light: #576d65;
 
 $p-txt-dark: gray;
 $p-txt-neutral: #c6c6c6;
@@ -35,4 +36,26 @@ $media-tiny-screen: 400px;
   background-color: $p-bg-dg;
   background-image: radial-gradient(at 50% 50%, #191919 0, transparent 100%),
     radial-gradient(at 150% 150%, $p-clr-2 0, transparent 50%);
+}
+
+.coming-soon {
+  cursor: not-allowed !important;
+  position: relative;
+
+  &:hover::after {
+    position: absolute;
+    z-index: 10;
+    top: 2rem;
+    left: 0rem;
+    height: 2rem;
+    width: 7.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(129, 129, 129, 0.2);
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.75rem;
+    content: 'coming-soon';
+  }
 }

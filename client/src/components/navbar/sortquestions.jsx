@@ -15,7 +15,8 @@ export const SortQuestions = () => {
           Questions
         </li>
         <li
-          onClick={() => dispatch(updateQType('syntax'))}
+          // onClick={() => dispatch(updateQType('syntax'))}
+          className="coming-soon"
           id={questionType.category === 'syntax' ? 'syntax' : null}>
           Syntax
         </li>

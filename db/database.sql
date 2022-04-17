@@ -33,6 +33,11 @@ INSERT INTO
     topic (name)
 VALUES
     ('css');
+
+INSERT INTO
+    topic (name)
+VALUES
+    ('javascript');
     
 --
 -- HTML QUESTION DATA -----------------------------------------------------
@@ -298,3 +303,5 @@ The nth-of-type() pseudo-class is similar to the nth-child but it helps in match
     'https://www.interviewbit.com/css-interview-questions/', 
     false,
     false);
+
+

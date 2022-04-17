@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const selectedTopic = createSlice({
   name: 'selectedTopic',
   initialState: {
-    topic: 'Trending'
+    topic: 'Trending',
+    category: null
   },
   reducers: {
     updateSelected(state, action) {

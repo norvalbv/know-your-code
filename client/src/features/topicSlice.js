@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchTopics = createAsyncThunk('topics/fetchAll', async () => {
-  //const state = getState();
+  // const state = getState();
+  // console.log(state);
   //let isSyntax = state.questionType.category === 'syntax' ? true : false;
   try {
     const response = await fetch(`http://localhost:5000/topics`);
