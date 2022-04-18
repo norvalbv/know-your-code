@@ -42,4 +42,23 @@
   font-size: 0.75rem;
   content: 'coming-soon';
 }
+
+/* For extremely small screen devices (595px and below) */
+@media only screen and (max-width: 595px) {}
+
+/* Small screen devices (600px and above) */
+@media only screen and (min-width: 600px) {
+  select.landing-page__section {
+    border-radius: 10px;
+  }
+}
+
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {}
+
+/* Big screen devices (889px and above) */
+@media only screen and (min-width: 889px) {}
+
+/* Extra big screen devices (1200px and above) */
+@media only screen and (min-width: 1200px) {}
 /*# sourceMappingURL=global.css.map */
