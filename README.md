@@ -6,7 +6,7 @@
 [![Issues][issues-shield]][issues-url]
 
 
-
+<strong>This app is in BETA</strong>
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -22,7 +22,7 @@
     ·
     <a href="https://github.com/norvalbv/know-your-code/issues">Report Bug</a>
   </p>
-  <p>Version: 0.1</p>
+  <p>Version: 0.5</p>
 </div>
 
 
