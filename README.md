@@ -6,7 +6,7 @@
 [![Issues][issues-shield]][issues-url]
 
 
-
+<strong>This app is in BETA</strong>
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -18,11 +18,11 @@
 
   <p align="center">
     <br />
-    <a href="know-your-code.herokuapp.com">View Demo</a>
+    <a href="https://know-your-code.herokuapp.com/" target="_blank">View Demo</a>
     ·
     <a href="https://github.com/norvalbv/know-your-code/issues">Report Bug</a>
   </p>
-  <p>Version: 0.1</p>
+  <p>Version: 0.5</p>
 </div>
 
 
