@@ -1,18 +1,17 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateQuestionsToDisplay } from '../features/questionsToDisplaySlice';
 import Loading from './loading';
 import { useSearchParams } from 'react-router-dom';
 
-export const ViewQuestions = () => {
-  const questionType = useSelector((state) => state.questionType.category);
-
+// eslint-disable-next-line react/prop-types
+const ViewQuestions = ({ questionType }) => {
   const questions = useSelector((state) => state.questions.questions);
-
   const questionsToDisplay = useSelector(
     (state) => state.questionsToDisplay.questions
   );
 
+  console.log('child render');
   const [params] = useSearchParams();
   const dispatch = useDispatch();
 
@@ -54,3 +53,5 @@ export const ViewQuestions = () => {
     </>
   );
 };
+
+export default React.memo(ViewQuestions);

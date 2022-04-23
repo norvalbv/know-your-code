@@ -6,18 +6,26 @@ CREATE TABLE topics (
     id SERIAL PRIMARY KEY,
     name varchar(16) NOT NULL UNIQUE,
     category varchar(16),
-    dev_end varchar(16)
+    dev_end varchar(16) -- either front end, back end of full stack
 );
 
 CREATE TABLE questions (
     id SERIAL PRIMARY KEY,
     topic_id varchar(16) REFERENCES topics(name) NOT NULL,
+    subcategory_id varchar(64) REFERENCES subcategory(subcategory),
     question varchar(128) NOT NULL,
     answer varchar(1024) NOT NULL,
     difficulty varchar(32),
-    source varchar(256),
+    internal_source varchar(256), -- for internal use only, to understand where we got the questions from (if sourced & needed)
+    external_source varchar(256), -- for users - links to MDN or similar.
     is_syntax boolean NOT NULL,
     is_trending boolean
+);
+
+CREATE TABLE subcategory (
+    id SERIAL PRIMARY KEY,
+    topic_id varchar(16) REFERENCES topics(name) NOT NULL,
+    subcategory varchar(64) UNIQUE
 );
 
 --
@@ -47,6 +55,14 @@ INSERT INTO
     topics (name, category, dev_end)
 VALUES
     ('redux', 'framework', 'front');
+
+--
+-- SUBCATEGORY -----------------------------------------------------
+--
+INSERT INTO
+    subcategory (topic_id, subcategory)
+VALUES
+    ('javascript', 'classes');
 
 --
 -- HTML QUESTION DATA -----------------------------------------------------
@@ -88,7 +104,7 @@ VALUES
         'What is the difference between span and div?',
         'div is a block element
 span is inline element
-For bonus points, you could point out that it’s illegal to place a block element inside an inline element, and that while div can have a p tag, and a p tag can have a span, it is not possible for span to have a div or p tag inside.',
+For bonus points, you could point out that it is illegal to place a block element inside an inline element, and that while div can have a p tag, and a p tag can have a span, it is not possible for span to have a div or p tag inside.',
         'junior',
         'https://www.fullstack.cafe/interview-questions/html5',
         false,
@@ -130,7 +146,7 @@ VALUES
     (
         'html',
         'What is a self closing tag?',
-        'In HTML5 it is not strictly necessary to close certain HTML tags. The tags that aren’t required to have specific closing tags are called “self closing” tags. An example of a self closing tag is something like a line break (<br />) or the meta tag (<meta>)',
+        'In HTML5 it is not strictly necessary to close certain HTML tags. The tags that aren''t required to have specific closing tags are called “self closing” tags. An example of a self closing tag is something like a line break (<br />) or the meta tag (<meta>)',
         'junior',
         'https://www.fullstack.cafe/interview-questions/html5',
         false,
@@ -512,7 +528,7 @@ VALUES
     (
         'css',
         'How is the nth-child() different from nth of type selectors?',
-        'The nth-child() pseudo-class is used for matching elements based on the number that represents the position of an element based on the siblings. The number is used to match an element on the basis of the element’s position amongst its siblings.
+        'The nth-child() pseudo-class is used for matching elements based on the number that represents the position of an element based on the siblings. The number is used to match an element on the basis of the element''s position amongst its siblings.
 
 The nth-of-type() pseudo-class is similar to the nth-child but it helps in matching the selector based on a number that represents the position of the element within the elements that are the siblings of its same type. The number can also be given as a function or give keywords like odd or even.',
         'senior',
