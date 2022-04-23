@@ -29,6 +29,7 @@ const PopularQuestions = () => {
         <SortQuestions />
         <NavBar />
       </div>
+      <SearchQuestions selectedTopic={selectedTopic} />
       {topic && (
         <div className="popular-topics__main-container">
           <div className="popular-topics__topics">
@@ -103,7 +104,6 @@ const PopularQuestions = () => {
             </h2>
             <ViewQuestions questionType={questionType} />
           </div>
-          <SearchQuestions selectedTopic={selectedTopic} />
         </div>
       )}
     </section>

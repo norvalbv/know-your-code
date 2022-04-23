@@ -101,7 +101,7 @@
 }
 
 .trending-questions__search {
-  display: flex;
+  float: right;
   background: none;
   border: none;
   border-bottom: 1px solid $p-txt-light;
@@ -118,4 +118,47 @@
 .view-all {
   height: 2rem !important;
   color: $p-txt-light !important;
+}
+
+.popular-topics__main-container {
+  /* display: inline-flex; */
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: $media-large-screen) {
+
+    
+}
+@media only screen and (max-width: $media-medium-screen) {
+  .popular-topics__main-container {
+    display: block; 
+  }
+  .trending-questions__search {
+    margin-left:50%;
+  }
+
+.popular-topics__topics .__topic {
+  border: 1px solid #255443;
+  background: none;
+  width: 14rem;
+  height: 4rem;
+  border-radius: 5px;
+  color: inherit;
+}
+  
+}
+@media only screen and (max-width: $media-small-screen) {
+ 
+
+}
+@media only screen and (max-width: $media-tiny-screen) {
+ 
+  // .popular-topics__main-container {
+  //   display: block; 
+  //   justify-content: space-between;
+  // }
+  .view-questions__container .view-questions__answer {
+    font-size: 10px;     
+  }
+  
 }

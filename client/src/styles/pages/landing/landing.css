@@ -163,7 +163,8 @@
     width: 12.5rem;
   }
   .landing-page__input-container .landing-page__selection {
-    width: 7.5rem;
+    /*width: 7.5rem;*/
+    margin-bottom: 2px;
   }
 }
 /*# sourceMappingURL=landing.css.map */
