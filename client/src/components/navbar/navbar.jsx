@@ -5,21 +5,19 @@ const NavBar = () => {
   const location = useLocation();
 
   return (
-    <div id="navbar">
-      <ul>
-        {location.pathname !== '/trending' && (
-          <Link to="/trending">
-            <li className="navbar__list-item">Home</li>
-          </Link>
-        )}
-        <Link to="">
-          <li className="coming-soon navbar__list-item">Login</li>
+    <ul id="navbar">
+      {location.pathname !== '/trending' && (
+        <Link to="/trending">
+          <li className="navbar__list-item">Home</li>
         </Link>
-        <Link to="/topics">
-          <li className="navbar__list-item">View All Topics</li>
-        </Link>
-      </ul>
-    </div>
+      )}
+      <Link to="">
+        <li className="coming-soon navbar__list-item">Login</li>
+      </Link>
+      <Link to="/topics">
+        <li className="navbar__list-item">View All Topics</li>
+      </Link>
+    </ul>
   );
 };
 

@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Know Your Code API
-  version: 0.3.3
+  version: 0.4.0
   description: Data fetch API
 paths:
   /topics:
@@ -22,13 +22,16 @@ paths:
                     [
                       {
                       "id": 1,
-                        "name": "html"
+                        "name": "html",
+                        "category": "language",
+                        "dev_end": "front"
                         
                       },
                       {
                       "id": 2,    
                        "name": "css"
-                        
+                        "category": "language",
+                        "dev_end": "front"
                       }
                     ]
       tags:
@@ -67,20 +70,24 @@ paths:
                         {
                             "id": 7,
                             "topic_id": "html",
+                            "subcategory_id": null,
                             "question": "How do you change the direction of HTML text?",
                             "answer": "You can set text direction in HTML in one of two ways:\n\nWith the HTML dir attribute\nWith the CSS direction property",
                             "difficulty": "junior",
-                            "source": "https://www.fullstack.cafe/interview-questions/html5",
+                            "internal_source": https://www.fullstack.cafe/interview-questions/html5",
+                            "external_source": null,
                             "is_syntax": false,
                             "is_trending": false
                         },
                         {
                             "id": 4,
                             "topic_id": "html",
+                            "subcategory_id": null,
                             "question": "What is character encoding?",
                             "answer": "To display an HTML page correctly, a web browser must know which character set (character encoding) to use.",
                             "difficulty": "junior",
-                            "source": "https://www.fullstack.cafe/interview-questions/html5",
+                            "internal_source": "https://www.fullstack.cafe/interview-questions/html5",
+                            "external_source": null,
                             "is_syntax": false,
                             "is_trending": false
                         }

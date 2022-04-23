@@ -2,7 +2,7 @@ import NavBar from '../components/navbar/navbar';
 import '../styles/pages/popularquestions/popularquestions.scss';
 import { SortQuestions } from '../components/navbar/sortquestions';
 import { SearchQuestions } from '../components/searchquestions';
-import { ViewQuestions } from '../components/viewquestions';
+import ViewQuestions from '../components/viewquestions';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateSelected } from '../features/selectedTopicSlice';
 import { fetchTopics } from '../features/topicSlice';
@@ -19,7 +19,9 @@ const PopularQuestions = () => {
   useEffect(() => {
     dispatch(fetchTopics());
     dispatch(fetchQuestions(selectedTopic));
-  }, [dispatch, selectedTopic, questionType]);
+  }, [selectedTopic, questionType]);
+
+  console.log('parent render');
 
   return (
     <section className="popular-topics__container">
@@ -99,7 +101,7 @@ const PopularQuestions = () => {
                 ? ' SYNTAX QUESTIONS'
                 : ' INTERVIEW QUESTIONS'}
             </h2>
-            <ViewQuestions />
+            <ViewQuestions questionType={questionType} />
           </div>
           <SearchQuestions selectedTopic={selectedTopic} />
         </div>

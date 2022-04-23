@@ -3,7 +3,7 @@ import PopularQuestions from '../pages/popularquestions';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Topics } from '../pages/topics';
 import NotFound from '../pages/404';
-import { ChosenTopic } from '../pages/chosentopic';
+import ChosenTopic from '../pages/chosentopic';
 
 const PublicRoutes = () => {
   return (

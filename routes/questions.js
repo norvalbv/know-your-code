@@ -1,7 +1,6 @@
 const pool = require("../db/pool");
 
 const getQuestions = async (req, res) => {
-  console.log(req.params);
   try {
     const getAllQuestion = await pool.query(
       `SELECT * FROM questions
