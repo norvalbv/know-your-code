@@ -36,7 +36,6 @@
       "node": true
     },
     "extends": [
-      "react-app",
       "react-app/jest"
     ],
     "parser": "babel-eslint",
