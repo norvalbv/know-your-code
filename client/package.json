@@ -36,6 +36,7 @@
       "node": true
     },
     "extends": [
+      "react-app",
       "react-app/jest"
     ],
     "parser": "babel-eslint",
@@ -65,7 +66,7 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
-    "eslint": "^7.32.0",
+    "eslint": "^8.11.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
