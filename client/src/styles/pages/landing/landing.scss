@@ -1,7 +1,7 @@
 @import '../../global.scss';
 
 #landing-page {
-  height: 100vh;
+  height: 100vh;  // makes backgroud fill break, if you want to keep it set it to 100%
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,12 +92,31 @@
 }
 
 @media only screen and (max-width: $media-large-screen) {
+  #landing-page {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    }
 }
 @media only screen and (max-width: $media-medium-screen) {
   .landing-page__input-container {
     .landing-page__input {
       width: 15rem;
+      
     }
+    margin-left: 0;
+  }
+  #landing-page {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
   }
 }
 @media only screen and (max-width: $media-small-screen) {
@@ -106,9 +125,14 @@
       width: 12.5rem;
     }
     .landing-page__selection {
-      width: 7.5rem;
+      // width: 7.5rem;
+      margin-bottom: 2px;
+      
     }
   }
 }
 @media only screen and (max-width: $media-tiny-screen) {
+  * {
+    font-size: .8rem;
+  }
 }
