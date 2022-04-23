@@ -1,10 +1,13 @@
-import { BarLoader } from 'react-spinners';
-
-const Loading = () => {
+import ClipLoader from 'react-spinners/ClipLoader';
+export const Loading = () => {
   return (
-    <>
-      <BarLoader />
-    </>
+    <ClipLoader
+      color={'#86D7B7'}
+      loading={true}
+      css={''}
+      speedMultiplier={0.5}
+      size={25}
+    />
   );
 };
 

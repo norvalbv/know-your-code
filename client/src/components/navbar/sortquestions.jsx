@@ -1,8 +1,9 @@
 import '../../styles/navbar/navbar.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateQType } from '../../features/questionTypeSlice';
+import React from 'react';
 
-export const SortQuestions = () => {
+const SortQuestions = () => {
   const dispatch = useDispatch();
   const questionType = useSelector((state) => state.questionType);
 
@@ -24,3 +25,5 @@ export const SortQuestions = () => {
     </>
   );
 };
+
+export default React.memo(SortQuestions);

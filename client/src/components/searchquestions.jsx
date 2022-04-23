@@ -1,31 +1,34 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateQuestionsToDisplay } from '../features/questionsToDisplaySlice';
+import { setResult, updateQuestions } from '../features/questionsSlice';
 
-export const SearchQuestions = () => {
+const SearchQuestions = () => {
   const [search, setSearch] = useState('');
 
   const dispatch = useDispatch();
 
-  const questions = useSelector((state) => state.questions.questions);
+  const { questionsFetched } = useSelector((state) => state.questions);
 
   const handleSearchSubmit = (e) => {
     if (e) {
       e.preventDefault();
     }
-    if (!search) {
-      return dispatch(updateQuestionsToDisplay(questions));
-    }
-    const filterItems = questions.filter((item) =>
+    const filterItems = questionsFetched.filter((item) =>
       item.question.toLowerCase().includes(search.toLowerCase())
     );
-    dispatch(updateQuestionsToDisplay(filterItems));
+    if (filterItems.length === 0) {
+      dispatch(setResult(true));
+    } else {
+      dispatch(setResult(false));
+      dispatch(updateQuestions(filterItems));
+    }
   };
 
   useEffect(() => {
     handleSearchSubmit();
   }, [search]);
 
+  console.log('search q');
   return (
     <form onSubmit={handleSearchSubmit}>
       <input
@@ -38,3 +41,5 @@ export const SearchQuestions = () => {
     </form>
   );
 };
+
+export default React.memo(SearchQuestions);

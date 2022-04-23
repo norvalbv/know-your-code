@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/navbar/navbar';
-import { SortQuestions } from '../components/navbar/sortquestions';
-import { SearchQuestions } from '../components/searchquestions';
+import SortQuestions from '../components/navbar/sortquestions';
+import SearchQuestions from '../components/searchquestions';
 import { fetchTopics } from '../features/topicSlice';
 import '../styles/pages/topics/topics.scss';
 

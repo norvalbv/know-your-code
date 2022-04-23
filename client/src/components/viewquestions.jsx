@@ -1,53 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateQuestionsToDisplay } from '../features/questionsToDisplaySlice';
-import Loading from './loading';
 import { useSearchParams } from 'react-router-dom';
-
+import parse from 'html-react-parser';
+import '../styles/viewquestions/viewquestions.scss';
+import { updateQuestions } from '../features/questionsSlice';
+import Loading from './loading';
 // eslint-disable-next-line react/prop-types
 const ViewQuestions = ({ questionType }) => {
-  const questions = useSelector((state) => state.questions.questions);
-  const questionsToDisplay = useSelector(
-    (state) => state.questionsToDisplay.questions
+  const { questions, questionsFetched, noData, status } = useSelector(
+    (state) => state.questions
   );
 
-  console.log('child render');
   const [params] = useSearchParams();
   const dispatch = useDispatch();
 
+  console.log('view Q');
+
   useEffect(() => {
     if (params.get('search')) {
-      const filterItems = questions.filter((item) =>
+      const filterItems = questionsFetched.filter((item) =>
         item.question.toLowerCase().includes(params.get('search').toLowerCase())
       );
-      dispatch(updateQuestionsToDisplay(filterItems));
-    } else {
-      dispatch(updateQuestionsToDisplay(questions));
+      dispatch(updateQuestions(filterItems));
     }
-  }, [questions, questionType]);
+  }, []);
 
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
+  if (status === 'loading') return <Loading />;
+
   return (
     <>
-      {/* {noData ? (
+      {noData ? (
         <p>No questions found</p>
-      ) : ( */}
-      {questions.status === 'loading' && <Loading />}
-      {questionsToDisplay.length === 0 ? (
+      ) : questions.length === 0 ? (
         <p>Coming soon...</p>
       ) : (
-        questionsToDisplay.map((item, i) => (
+        questions.map((item, i) => (
           <div key={i} className="view-questions__container">
             <p
               className="view-questions__question"
               onClick={() => {
-                setSelectedQuestion(questionsToDisplay[i]);
+                if (questions.indexOf(selectedQuestion) !== i) {
+                  setSelectedQuestion(questions[i]);
+                } else {
+                  setSelectedQuestion(null);
+                }
               }}
               _id={item.id}>
               Q{i + 1}: {item.question}
             </p>
-            {questionsToDisplay.indexOf(selectedQuestion) === i && (
+            {questions.indexOf(selectedQuestion) === i && (
               <>
                 <p className="view-questions__answer">{item.answer}</p>
                 {item.example && (
@@ -55,7 +58,9 @@ const ViewQuestions = ({ questionType }) => {
                     <p className="view-questions__example-title">
                       Example usage:
                     </p>
-                    <p className="view-questions__example">{item.example}</p>
+                    <p className="view-questions__example">
+                      {parse(item.example)}
+                    </p>
                   </>
                 )}
                 <div className="view-questions__extra-info">

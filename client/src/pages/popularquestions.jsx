@@ -1,7 +1,7 @@
 import NavBar from '../components/navbar/navbar';
 import '../styles/pages/popularquestions/popularquestions.scss';
-import { SortQuestions } from '../components/navbar/sortquestions';
-import { SearchQuestions } from '../components/searchquestions';
+import SortQuestions from '../components/navbar/sortquestions';
+import SearchQuestions from '../components/searchquestions';
 import ViewQuestions from '../components/viewquestions';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateSelected } from '../features/selectedTopicSlice';
@@ -16,12 +16,16 @@ const PopularQuestions = () => {
   const topic = useSelector((state) => state.topics.topics);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchTopics());
+  }, [questionType]);
+
+  console.log('parent');
+
+  useEffect(() => {
     dispatch(fetchQuestions(selectedTopic));
   }, [selectedTopic, questionType]);
-
-  console.log('parent render');
 
   return (
     <section className="popular-topics__container">
@@ -110,4 +114,4 @@ const PopularQuestions = () => {
   );
 };
 
-export default PopularQuestions;
+export default React.memo(PopularQuestions);

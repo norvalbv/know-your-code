@@ -1,6 +1,6 @@
 import NavBar from '../components/navbar/navbar';
-import { SortQuestions } from '../components/navbar/sortquestions';
-import { SearchQuestions } from '../components/searchquestions';
+import SortQuestions from '../components/navbar/sortquestions';
+import SearchQuestions from '../components/searchquestions';
 import ViewQuestions from '../components/viewquestions';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
