@@ -87,6 +87,11 @@
   }
 }
 
+.view-questions-question-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .view-questions__extra-info-ex-source {
   a {
     color: $button;
@@ -95,6 +100,9 @@
 }
 
 .view-questions__extra-info-level {
+  letter-spacing: 2px;
+  font-size: 14px;
+
   span {
     color: $button;
   }

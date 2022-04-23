@@ -82,7 +82,7 @@ WebM
 Ogg', null, 'senior', 'https://www.javatpoint.com/html-interview-questions', null, 'false', 'false');
 
 --
--- HTML QUESTION DATA -----------------------------------------------------
+-- CSS QUESTION DATA -----------------------------------------------------
 --
 INSERT INTO questions (topic_id,subcategory_id,question,answer,example,difficulty,internal_source,external_source,is_syntax,is_trending)
 VALUES
@@ -122,12 +122,11 @@ The nth-of-type() pseudo-class is similar to the nth-child but it helps in match
 
 INSERT INTO questions (topic_id,subcategory_id,question,answer,example,difficulty,internal_source,external_source,is_syntax,is_trending)
 VALUES   
-    ('javascript', 'fundamentals', 'What is the some method used for?', 'The some method is used to test whether at least one element of an array passes a condition', '[1, 2, 3, 4].some(x => x > 3) // true [1, 2, 3, 4].some(x => x > 3) // false', null, null, null, 'false', 'false'),
+    ('javascript', 'fundamentals', 'What is the some method used for?', 'The some method is used to test whether at least one element of an array passes a condition', '[1, 2, 3, 4].some(x => x > 3) // true [1, 2, 3, 4].some(x => x > 3) // false', 'junior', null, 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some', 'false', 'false'),
     ('javascript', 'fundamentals', 'What is the new keyword used for?', 'The new operator lets developers create an instance of a user-defined object type or of one of the built-in object types that has a constructor function.', null, null, null, null, 'false', 'false'),
     ('javascript', 'fundamentals', 'What is a Primitive type?', 'In JavaScript, a primitive (primitive value, primitive data type) is data that is not an object and has no methods. There are 7 primitive data types: string, number, bigint, boolean, undefined, symbol, and null.', null, null, null, null, 'false', 'false'),
     ('javascript', 'fundamentals', 'What does the set object do?', 'The set object allows the storage of unique values of any type in an array. ', 'const setA = new Set([1, 2, 3, 4])  setA.add(4) // still returns 1,2,3,4', null, null, null, 'false', 'false'),
-    ('javascript', 'fundamentals', 'What do the Array.prototype.map and Array.prototype.reduce methods do and when would you typically use them?', 'foo', null, null, null, null, 'false', 'false'),
-    ('react', 'fundamentals', 'What are the benefits to using React?', 'React allows developers to create large web applications that can change data, without reloading the page. The main purpose of React is to be fast, scalable, and simple. It works only on user interfaces in the application.', null, null, null, null, 'false', 'false');
+    ('javascript', 'fundamentals', 'What do the Array.prototype.map and Array.prototype.reduce methods do and when would you typically use them?', 'foo', null, null, null, null, 'false', 'false');
 
 
 --
@@ -136,6 +135,7 @@ VALUES
 
 INSERT INTO questions (topic_id,subcategory_id,question,answer,example,difficulty,internal_source,external_source,is_syntax,is_trending)
 VALUES 
+    ('react', 'fundamentals', 'What are the benefits to using React?', 'React allows developers to create large web applications that can change data, without reloading the page. The main purpose of React is to be fast, scalable, and simple. It works only on user interfaces in the application.', null, null, null, null, 'false', 'false'),
     ('react', 'fundamentals', 'What is JSX?', 'foo', null, null, null, null, 'false', 'false'),
     ('react', 'fundamentals', 'How does JSX work?', 'foo', null, null, null, null, 'false', 'false'),
     ('react', 'fundamentals', 'What is the component lifeycle?', 'foo', null, null, null, null, 'false', 'false'),

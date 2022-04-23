@@ -154,9 +154,23 @@
   font-size: 13px;
 }
 
+.view-questions-question-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .view-questions__extra-info-ex-source a {
   color: #009400;
   text-transform: uppercase;
+}
+
+.view-questions__extra-info-level {
+  letter-spacing: 2px;
+  font-size: 14px;
 }
 
 .view-questions__extra-info-level span {
