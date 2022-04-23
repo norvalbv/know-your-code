@@ -9,6 +9,12 @@ CREATE TABLE topics (
     dev_end varchar(16) -- either front end, back end of full stack
 );
 
+CREATE TABLE subcategory (
+    id SERIAL PRIMARY KEY,
+    topic_id varchar(16) REFERENCES topics(name) NOT NULL,
+    subcategory varchar(64) UNIQUE
+);
+
 CREATE TABLE questions (
     id SERIAL PRIMARY KEY,
     topic_id varchar(16) REFERENCES topics(name) NOT NULL,
@@ -23,12 +29,6 @@ CREATE TABLE questions (
     -- for users - links to MDN or similar.
     is_syntax boolean NOT NULL,
     is_trending boolean
-);
-
-CREATE TABLE subcategory (
-    id SERIAL PRIMARY KEY,
-    topic_id varchar(16) REFERENCES topics(name) NOT NULL,
-    subcategory varchar(64) UNIQUE
 );
 
 --
