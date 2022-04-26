@@ -1,0 +1,14 @@
+@import '../../global.scss';
+
+.user__auth {
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+
+  .user__auth-login, .user__auth-signup {
+      flex: 1;
+  }
+}

@@ -36,7 +36,12 @@ const Landing = () => {
 
   return (
     <div id="landing-page">
-      <h1 className="landing-page__header">Know Your Code</h1>
+      <h1 className="landing-page__header">
+        Know Your Code{' '}
+        <span style={{ color: 'darkred', textDecoration: 'underline' }}>
+          Beta
+        </span>
+      </h1>
       <p className="landing-page__text">
         Discover your favourite{' '}
         <span ref={textRef} className="landing-page__span"></span>

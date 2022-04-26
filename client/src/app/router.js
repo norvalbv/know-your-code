@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Topics } from '../pages/topics';
 import NotFound from '../pages/404';
 import ChosenTopic from '../pages/chosentopic';
+import Login from '../pages/user/login';
 
 const PublicRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const PublicRoutes = () => {
         <Route path="/topics" element={<Topics />}></Route>
         <Route path="/notfound" element={<NotFound />}></Route>
         <Route path="/topic/:chosentopic" element={<ChosenTopic />}></Route>
+        <Route path="/login" element={<Login />}></Route>
       </Routes>
     </Router>
   );

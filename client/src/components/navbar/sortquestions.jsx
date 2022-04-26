@@ -8,21 +8,19 @@ const SortQuestions = () => {
   const questionType = useSelector((state) => state.questionType);
 
   return (
-    <>
-      <ul className="sort-questions">
-        <li
-          onClick={() => dispatch(updateQType('questions'))}
-          id={questionType.category === 'questions' ? 'questions' : null}>
-          Questions
-        </li>
-        <li
-          // onClick={() => dispatch(updateQType('syntax'))}
-          className="coming-soon"
-          id={questionType.category === 'syntax' ? 'syntax' : null}>
-          Syntax
-        </li>
-      </ul>
-    </>
+    <ul className="sort-questions">
+      <li
+        onClick={() => dispatch(updateQType('questions'))}
+        id={questionType.category === 'questions' ? 'questions' : null}>
+        Questions
+      </li>
+      <li
+        // onClick={() => dispatch(updateQType('syntax'))}
+        className="coming-soon"
+        id={questionType.category === 'syntax' ? 'syntax' : null}>
+        Syntax
+      </li>
+    </ul>
   );
 };
 

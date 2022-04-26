@@ -101,6 +101,7 @@ const PopularQuestions = () => {
 
           <div className="questions">
             <h2 className="questions-title">
+              {selectedTopic !== 'trending' && 'TRENDING '}
               {selectedTopic.toUpperCase()}
               {questionType === 'syntax'
                 ? ' SYNTAX QUESTIONS'

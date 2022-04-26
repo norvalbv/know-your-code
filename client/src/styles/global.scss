@@ -30,11 +30,21 @@ $media-small-screen: 550px;
 $media-tiny-screen: 400px;
 
 .app-container {
+  position: relative;
   min-height: 100vh;
   color: $p-txt-light;
   background-color: $p-bg-dg;
   background-image: radial-gradient(at 50% 50%, #191919 0, transparent 100%),
     radial-gradient(at 150% 150%, $p-clr-2 0, transparent 50%);
+}
+
+.app-bug-button {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  color: inherit;
+  font-size: 12px;
+  z-index: 100;
 }
 
 .coming-soon {
