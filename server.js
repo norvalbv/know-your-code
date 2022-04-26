@@ -4,6 +4,8 @@ const path = require("path");
 const questions = require("./routes/questions");
 require("dotenv").config();
 const pool = require("./db/pool");
+const passport = require("passport");
+const passportStrategy = require("passport-local").Strategy();
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -18,10 +20,8 @@ app.get("/questions/:topicId/:isSyntax", questions.getQuestions);
 
 app.get("/topics", questions.getTopics);
 
-// DEFAULT
-
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/src/pages/404.jsx"));
+  res.sendFile(path.join(__dirname, "client/src/pages/404.jsx"));
 });
 
 app.listen(PORT, function () {
