@@ -10,6 +10,23 @@ const customFields = {
   passwordField: "pw",
 };
 
+passport.serializeUser((err, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+  pool.query(
+    "SELECT id, username FROM users WHERE id = $1",
+    [parseInt(id, 10)],
+    (err, results) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, results.rows[0]);
+    }
+  );
+});
+
 passport.use(
   "local",
   new LocalStrategy(function (username, password, done) {
