@@ -1,5 +1,6 @@
 const passport = require("passport");
 const pool = require("../config/db/pool");
+const bcrypt = require("bcrypt");
 
 const userAuthenticate = (req, res) => {
   try {
@@ -17,12 +18,18 @@ const userAuthenticate = (req, res) => {
 const createUser = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const newUser = await pool.query(
-      `INSERT INTO users (username, password) VALUES (${username}, ${password})`
-    );
-    if (newUser) res.status(201).json("user created");
+    console.log(username, password);
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
+    console.log(salt, hash);
+
+    // const newUser = await pool.query(
+    //   `INSERT INTO users (username, password) VALUES (${username}, ${hash})`
+    // );
+    // if (hash) res.status(201).json("user created");
   } catch (err) {
     console.error(err);
+    res.status(501).json("user not created - error occured");
   }
 };
 

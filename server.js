@@ -13,6 +13,8 @@ const user = require("./utils/user");
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(
   session({
@@ -40,7 +42,7 @@ app.get("/topics", questions.getTopics);
 
 app.post("/login", user.userAuthenticate);
 app.post("/register", user.createUser);
-app.get("/lougout", user.logoutUser);
+app.get("/logout", user.logoutUser);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/src/pages/404.jsx"));
