@@ -1,22 +1,28 @@
 import { useState } from 'react';
 import NavBar from '../../components/navbar/navbar';
 import '../../styles/pages/user/user.scss';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const [name, setName] = useState('');
+  const navigate = useNavigate();
+  // errors
+
+  const [registerStatus, setRegisterStatus] = useState('');
+
+  // login
+
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const login = async (e) => {
-    if (!name || !password) return;
     if (e) e.preventDefault();
 
     try {
-      console.log(name, password);
-      const data = await fetch('/register', {
+      const data = await fetch('/login', {
         method: 'POST',
         body: JSON.stringify({
           password,
-          username: { username: name }
+          username
         }),
         headers: { 'content-type': 'application/json' }
       });
@@ -25,6 +31,41 @@ const Login = () => {
       console.error(err);
     }
   };
+
+  // sign up
+  const [sUUsername, setSUUsername] = useState('');
+  const [sUEmail, setSUEmail] = useState('');
+  const [sUPassword, setSUPassword] = useState('');
+  const [sUConfirmPassword, setSUConfirmPassword] = useState('');
+
+  const signUp = async (e) => {
+    if (e) e.preventDefault();
+
+    try {
+      const data = await fetch('/register', {
+        method: 'POST',
+        body: JSON.stringify({
+          sUPassword,
+          sUConfirmPassword,
+          sUEmail,
+          sUUsername
+        }),
+        headers: { 'content-type': 'application/json' }
+      });
+
+      if (data.status === 201 || data.status === 200) {
+        setTimeout(() => {
+          return navigate('/');
+        }, 1000);
+      } else {
+        const responseError = await data.text();
+        setRegisterStatus(responseError);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <div className="navbar">
@@ -36,9 +77,9 @@ const Login = () => {
           <h3>Sign In</h3>
           <form onSubmit={login}>
             <input
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              placeholder="Username or Email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <input
               placeholder="Password"
@@ -51,14 +92,36 @@ const Login = () => {
         </div>
         <div className="user__auth-signup">
           <h3>Sign Up</h3>
-          <form>
-            <input placeholder="value" />
-            <input placeholder="value" />
-            <input placeholder="value" />
-            <input placeholder="value" />
-            <input placeholder="value" />
-            <input placeholder="value" />
+          <form onSubmit={signUp}>
+            <input
+              placeholder="Username"
+              value={sUUsername}
+              onChange={(e) => setSUUsername(e.target.value)}
+            />
+            <input
+              placeholder="Email"
+              value={sUEmail}
+              onChange={(e) => setSUEmail(e.target.value)}
+            />
+            <input
+              placeholder="Password"
+              value={sUPassword}
+              onChange={(e) => setSUPassword(e.target.value)}
+              type="password"
+            />
+            <input
+              placeholder="Password"
+              value={sUConfirmPassword}
+              onChange={(e) => setSUConfirmPassword(e.target.value)}
+              type="password"
+            />
+            <input type="submit" />
           </form>
+          {registerStatus && (
+            <ul>
+              <li>{registerStatus}</li>
+            </ul>
+          )}
         </div>
       </div>
     </>
