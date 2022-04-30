@@ -3,9 +3,11 @@ import questionTypeReducer from '../features/questionTypeSlice';
 import topicReducer from '../features/topicSlice';
 import questionsReducer from '../features/questionsSlice';
 import selectedTopicReducer from '../features/selectedTopicSlice';
+import chosenQuestionListReducer from '../features/chosenQuestionList';
 
 export const store = configureStore({
   reducer: {
+    chosenQuestionList: chosenQuestionListReducer,
     questionType: questionTypeReducer,
     topics: topicReducer,
     questions: questionsReducer,

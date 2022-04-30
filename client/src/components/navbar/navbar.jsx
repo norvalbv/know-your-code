@@ -11,8 +11,11 @@ const NavBar = () => {
           <li className="navbar__list-item">Home</li>
         </Link>
       )}
-      <Link to="">
+      <Link to="/login">
         <li className="coming-soon navbar__list-item">Login</li>
+      </Link>
+      <Link to="/mylist">
+        <li className="navbar__list-item">My List</li>
       </Link>
       <Link to="/topics">
         <li className="navbar__list-item">View All Topics</li>

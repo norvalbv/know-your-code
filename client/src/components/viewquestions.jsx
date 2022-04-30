@@ -5,6 +5,7 @@ import parse from 'html-react-parser';
 import '../styles/viewquestions/viewquestions.scss';
 import { updateQuestions } from '../features/questionsSlice';
 import Loading from './loading';
+import { addQuestion } from '../features/chosenQuestionList';
 // eslint-disable-next-line react/prop-types
 const ViewQuestions = ({ questionType }) => {
   const { questions, questionsFetched, noData, status } = useSelector(
@@ -26,6 +27,12 @@ const ViewQuestions = ({ questionType }) => {
   }, []);
 
   const [selectedQuestion, setSelectedQuestion] = useState(null);
+
+  const handleClick = (item) => {
+    if (item !== null) {
+      dispatch(addQuestion(item));
+    }
+  };
 
   if (status === 'loading') return <Loading />;
 
@@ -51,7 +58,9 @@ const ViewQuestions = ({ questionType }) => {
                 _id={item.id}>
                 Q{i + 1}: {item.question}
               </p>
-              <button className="list">Add to your list</button>
+              <button className="list" onClick={() => handleClick(item)}>
+                Add to your list
+              </button>
             </div>
             {questions.indexOf(selectedQuestion) === i && (
               <>
