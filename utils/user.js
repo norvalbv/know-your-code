@@ -6,7 +6,7 @@ const userAuthenticate = (req, res) => {
   try {
     passport.authenticate("local", {
       failureRedirect: "/login",
-      successRedirect: "/profile",
+      successRedirect: "/",
     });
   } catch (err) {
     console.error(err);

@@ -38,18 +38,21 @@ const ViewQuestions = ({ questionType }) => {
       ) : (
         questions.map((item, i) => (
           <div key={i} className="view-questions__container">
-            <p
-              className="view-questions__question"
-              onClick={() => {
-                if (questions.indexOf(selectedQuestion) !== i) {
-                  setSelectedQuestion(questions[i]);
-                } else {
-                  setSelectedQuestion(null);
-                }
-              }}
-              _id={item.id}>
-              Q{i + 1}: {item.question}
-            </p>
+            <div className="view-questions__question-container">
+              <p
+                className="view-questions__question"
+                onClick={() => {
+                  if (questions.indexOf(selectedQuestion) !== i) {
+                    setSelectedQuestion(questions[i]);
+                  } else {
+                    setSelectedQuestion(null);
+                  }
+                }}
+                _id={item.id}>
+                Q{i + 1}: {item.question}
+              </p>
+              <button className="list">Add to your list</button>
+            </div>
             {questions.indexOf(selectedQuestion) === i && (
               <>
                 <p className="view-questions__answer">{item.answer}</p>

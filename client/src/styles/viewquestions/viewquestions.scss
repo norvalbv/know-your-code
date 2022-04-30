@@ -5,7 +5,7 @@
   font-size: 13px;
 }
 
-.view-questions-question-container {
+.view-questions__question-container {
   display: flex;
   justify-content: space-between;
 }
@@ -30,11 +30,31 @@
 .view-questions__container {
   border-bottom: 1px solid $p-clr-1;
   margin: 0.5rem 0;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
+
+  .list {
+    opacity: 0;
+  }
+
+  &:hover .list {
+    opacity: 1;
+    cursor: pointer;
+    background: none;
+    color: $p-txt-light;
+    outline: none;
+    border: none;
+    text-decoration: underline;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    width: 5rem;
+  }
 
   .view-questions__question {
     cursor: pointer;
     color: $p-txt-neutral;
+    max-width: 87.5%;
+    padding: 0.5rem 0;
   }
 
   .view-questions__answer {

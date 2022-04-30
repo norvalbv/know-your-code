@@ -53,14 +53,14 @@ const Login = () => {
         headers: { 'content-type': 'application/json' }
       });
 
-      if (data.status === 201 || data.status === 200) {
-        setTimeout(() => {
-          return navigate('/');
-        }, 1000);
-      } else {
-        const responseError = await data.text();
-        setRegisterStatus(responseError);
-      }
+      // if (data.status === 201 || data.status === 200) {
+      //   setTimeout(() => {
+      //     return navigate('/');
+      //   }, 1000);
+      // } else {
+      const responseError = await data.text();
+      setRegisterStatus(responseError);
+      // }
     } catch (err) {
       console.error(err);
     }
