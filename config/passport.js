@@ -3,11 +3,8 @@ const bcrypt = require("bcrypt");
 const pool = require("./db/pool");
 
 function initalize(passport) {
-  console.log("initalized");
-
   passport.use(
     new LocalStrategy((username, password, done) => {
-      console.log("STRATEGY");
       const data = pool.query(
         `SELECT * FROM users WHERE username = $1`,
         [username],
@@ -15,16 +12,14 @@ function initalize(passport) {
           if (err) {
             throw err;
           }
-          const userPassword = results.rows[0].password;
-          console.log(userPassword);
+          const user = results.rows[0];
 
-          bcrypt.compare(password, userPassword, (err, match) => {
+          bcrypt.compare(password, user.password, (err, result) => {
             if (err) return done(err);
 
-            if (!match) return done(null, false);
+            if (!result) return done(null, false);
 
-            if (userPassword != password) return done(null, false);
-            console.log(user);
+            if (password != user.userPassword) return done(null, false);
 
             return done(null, user);
           });
@@ -34,18 +29,14 @@ function initalize(passport) {
   );
 
   passport.serializeUser((user, done) => {
-    console.log("SERalize");
-    console.log(user);
     done(null, user.id);
   });
 
   passport.deserializeUser((id, done) => {
-    console.log("DESERIALIZE");
     pool.query("SELECT * from users WHERE id = $1", [id], (err, results) => {
       if (err) {
         return done(err);
       }
-      // console.log(`ID is ${results.rows[0].id}`);
       done(null, results.rows[0]);
     });
   });

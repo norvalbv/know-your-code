@@ -4,6 +4,7 @@ import topicReducer from '../features/topicSlice';
 import questionsReducer from '../features/questionsSlice';
 import selectedTopicReducer from '../features/selectedTopicSlice';
 import chosenQuestionListReducer from '../features/chosenQuestionList';
+import userReducer from '../features/userslice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     questionType: questionTypeReducer,
     topics: topicReducer,
     questions: questionsReducer,
-    selectedTopic: selectedTopicReducer
+    selectedTopic: selectedTopicReducer,
+    users: userReducer
   }
 });

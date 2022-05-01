@@ -7,8 +7,15 @@ require("dotenv").config();
 const pool = require("./config/db/pool");
 const passport = require("passport");
 const initializePassport = require("./config/passport");
+const cookieParser = require("cookie-parser");
 
 initializePassport(passport);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
+app.use(cookieParser());
 
 // utils
 const questions = require("./utils/questions");
@@ -16,7 +23,13 @@ const user = require("./utils/user");
 
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(
+  cors({
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -26,8 +39,8 @@ app.use(
       pool: pool,
     }),
     secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 days
   })
 );
@@ -35,9 +48,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
-}
+app.use((req, res, next) => {
+  // console.log(req.user);
+  next();
+});
 
 // app UI data
 
@@ -69,7 +83,7 @@ function checkAuthenticated(req, res, next) {
   next();
 }
 
-function checkNotAuthenticated(req, res, next) {
+function checkNotAuthenticated(req, res) {
   if (req.isAuthenticated()) {
     // return next();
     console.log("USER IS NOT AUTHENTICATED");

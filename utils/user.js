@@ -2,17 +2,6 @@ const passport = require("passport");
 const pool = require("../config/db/pool");
 const bcrypt = require("bcrypt");
 
-// const userAuthenticate = (req, res) => {
-//   try {
-//     passport.authenticate("local", {
-//       failureRedirect: "/login",
-//       successRedirect: "/",
-//     });
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
-
 const createUser = async (req, res) => {
   try {
     const {
@@ -79,7 +68,6 @@ const logoutUser = (req, res) => {
 };
 
 module.exports = {
-  // userAuthenticate,
   createUser,
   logoutUser,
 };

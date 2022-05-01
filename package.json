@@ -18,6 +18,7 @@
 	"dependencies": {
 		"bcrypt": "^5.0.1",
 		"connect-pg-simple": "^7.0.0",
+		"cookie-parser": "^1.4.6",
 		"cors": "^2.8.5",
 		"dotenv": "^16.0.0",
 		"express": "^4.17.3",

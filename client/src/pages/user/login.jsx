@@ -2,6 +2,8 @@ import { useState } from 'react';
 import NavBar from '../../components/navbar/navbar';
 import '../../styles/pages/user/user.scss';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../../features/userslice';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,6 +15,8 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
+
   const login = async (e) => {
     if (e) e.preventDefault();
 
@@ -23,15 +27,18 @@ const Login = () => {
           password,
           username
         }),
-        headers: { 'content-type': 'application/json' }
+        headers: { 'content-type': 'application/json' },
+        credentials: 'include'
       });
 
-      if (data.status === 201 || data.status === 200) {
-        setTimeout(() => {
-          return navigate('/trending');
-        }, 1000);
-      }
-      // return data.json();
+      // if (data.status === 201 || data.status === 200) {
+      //   setTimeout(() => {
+      //     return navigate('/trending');
+      //   }, 1000);
+      // }
+      // const hii = await data.json();
+      // console.log(hii);
+      // dispatch(addUser())
     } catch (err) {
       console.error(err);
     }
@@ -112,6 +119,7 @@ const Login = () => {
               placeholder="Email"
               value={sUEmail}
               onChange={(e) => setSUEmail(e.target.value)}
+              type="email"
             />
             <input
               placeholder="Password"
