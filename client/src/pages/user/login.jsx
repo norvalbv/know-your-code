@@ -5,12 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
-  // errors
 
+  // errors
   const [registerStatus, setRegisterStatus] = useState('');
 
   // login
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -26,7 +25,13 @@ const Login = () => {
         }),
         headers: { 'content-type': 'application/json' }
       });
-      return data.json();
+
+      if (data.status === 201 || data.status === 200) {
+        setTimeout(() => {
+          return navigate('/trending');
+        }, 1000);
+      }
+      // return data.json();
     } catch (err) {
       console.error(err);
     }
@@ -53,14 +58,19 @@ const Login = () => {
         headers: { 'content-type': 'application/json' }
       });
 
-      // if (data.status === 201 || data.status === 200) {
-      //   setTimeout(() => {
-      //     return navigate('/');
-      //   }, 1000);
-      // } else {
       const responseError = await data.text();
       setRegisterStatus(responseError);
-      // }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // logout
+  const logout = async (e) => {
+    if (e) e.preventDefault();
+
+    try {
+      await fetch('/logout');
     } catch (err) {
       console.error(err);
     }
@@ -124,6 +134,7 @@ const Login = () => {
           )}
         </div>
       </div>
+      <button onClick={logout}>logout</button>
     </>
   );
 };

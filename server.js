@@ -46,7 +46,14 @@ app.get("/topics", questions.getTopics);
 
 // login
 
-app.post("/login", checkAuthenticated, user.userAuthenticate);
+app.post(
+  "/login",
+  checkAuthenticated,
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    successRedirect: "/",
+  })
+);
 app.post("/register", checkAuthenticated, user.createUser);
 app.get("/logout", checkNotAuthenticated, user.logoutUser);
 

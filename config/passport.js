@@ -1,37 +1,41 @@
 const LocalStrategy = require("passport-local").Strategy;
-const { initialize } = require("passport/lib");
+const bcrypt = require("bcrypt");
 const pool = require("./db/pool");
 
 function initalize(passport) {
   console.log("initalized");
 
-  const authenticateUser = (username, password, done) => {
-
-  }
-
   passport.use(
-    // "local",
     new LocalStrategy((username, password, done) => {
       console.log("STRATEGY");
-      pool.query(
-        `SELECT * from users where username = $1`,
+      const data = pool.query(
+        `SELECT * FROM users WHERE username = $1`,
         [username],
-        (username,
-        bcrypt.compare(password, hash, (err, user) => {
-          if (err) return done(err);
+        (err, results) => {
+          if (err) {
+            throw err;
+          }
+          const userPassword = results.rows[0].password;
+          console.log(userPassword);
 
-          if (!user) return done(null, false);
+          bcrypt.compare(password, userPassword, (err, match) => {
+            if (err) return done(err);
 
-          if (user.password != password) return done(null, false);
+            if (!match) return done(null, false);
 
-          return done(null, user);
-        }))
+            if (userPassword != password) return done(null, false);
+            console.log(user);
+
+            return done(null, user);
+          });
+        }
       );
     })
   );
 
-  passport.serializeUser((err, done) => {
-    console.log("SERalize")
+  passport.serializeUser((user, done) => {
+    console.log("SERalize");
+    console.log(user);
     done(null, user.id);
   });
 
@@ -41,7 +45,7 @@ function initalize(passport) {
       if (err) {
         return done(err);
       }
-      console.log(`ID is ${results.rows[0].id}`);
+      // console.log(`ID is ${results.rows[0].id}`);
       done(null, results.rows[0]);
     });
   });
