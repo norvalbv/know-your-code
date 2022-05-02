@@ -1,7 +1,19 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../features/userslice';
 import '../styles/global.scss';
 import PublicRoutes from './router';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      dispatch(addUser(user));
+    }
+  }, []);
+
   return (
     <div className="app-container">
       <PublicRoutes />

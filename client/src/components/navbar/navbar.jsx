@@ -1,30 +1,50 @@
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { BsFillPersonFill } from 'react-icons/bs';
+import { addUser } from '../../features/userslice';
 
 const NavBar = () => {
   const location = useLocation();
   const { user } = useSelector((state) => state.user);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // logout
+  const logout = async (e) => {
+    if (e) e.preventDefault();
+
+    try {
+      await fetch('/logout');
+      dispatch(addUser(null));
+      localStorage.removeItem('user');
+      return navigate('/');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <ul id="navbar">
-      {location.pathname !== '/trending' && (
-        <Link to="/trending">
-          <li className="navbar__list-item">Home</li>
-        </Link>
-      )}
-      {!user ? (
+      {user === null || user.length === 0 ? (
         <Link to="/login">
           <li className="navbar__list-item">Login</li>
         </Link>
       ) : (
-        <Link to="/login">
-          <li className="navbar__list-item">Logout</li>
-        </Link>
+        <div className="navbar__select">
+          <BsFillPersonFill />
+          <ul className="navbar__menu">
+            <Link to="/mylist">
+              <li>Saved Questions</li>
+            </Link>
+            <li onClick={logout}>Log Out</li>
+          </ul>
+        </div>
       )}
-      {user && (
-        <Link to="/mylist">
-          <li className="navbar__list-item">My List</li>
+      {location.pathname !== '/trending' && (
+        <Link to="/trending">
+          <li className="navbar__list-item">Home</li>
         </Link>
       )}
       <Link to="/topics">

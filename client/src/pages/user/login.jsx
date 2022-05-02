@@ -39,6 +39,8 @@ const Login = () => {
         fetchdata();
         setLoginStatus(data.message);
 
+        localStorage.setItem('user', JSON.stringify(data));
+
         setTimeout(() => {
           return navigate('/trending');
         }, 500);
@@ -84,19 +86,6 @@ const Login = () => {
 
       const responseError = await data.text();
       setRegisterStatus(responseError);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  // logout
-  const logout = async (e) => {
-    if (e) e.preventDefault();
-
-    try {
-      await fetch('/logout');
-      dispatch(addUser(null));
-      return navigate('/');
     } catch (err) {
       console.error(err);
     }
@@ -162,7 +151,6 @@ const Login = () => {
           )}
         </div>
       </div>
-      <button onClick={logout}>logout</button>
     </>
   );
 };

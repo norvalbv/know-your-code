@@ -13,7 +13,6 @@ function initalize(passport) {
             throw err;
           }
           const user = results.rows[0];
-          console.log(user, " before user from local strategy");
           if (results.rows.length > 0) {
             bcrypt.compare(password, user.password, (err, result) => {
               if (err) return done(err);
