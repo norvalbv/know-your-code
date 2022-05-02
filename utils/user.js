@@ -73,11 +73,13 @@ const createUser = async (req, res) => {
 };
 
 const logoutUser = (req, res) => {
+  console.log(req.session);
   try {
     console.log("logged out");
-    req.logout();
-    res.clearCookie("connect.sid");
-    res.redirect("/");
+    req.session.destroy(function () {
+      res.clearCookie("connect.sid");
+      res.redirect("/");
+    });
   } catch (err) {
     console.error(err);
   }

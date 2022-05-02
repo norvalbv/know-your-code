@@ -95,6 +95,7 @@ const Login = () => {
 
     try {
       await fetch('/logout');
+      dispatch(addUser(null));
       return navigate('/');
     } catch (err) {
       console.error(err);
