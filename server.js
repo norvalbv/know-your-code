@@ -9,19 +9,17 @@ const passport = require("passport");
 const initializePassport = require("./config/passport");
 const cookieParser = require("cookie-parser");
 
-initializePassport(passport);
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
-}
-
-app.use(cookieParser());
-
 // utils
 const questions = require("./utils/questions");
 const user = require("./utils/user");
 
 const PORT = process.env.PORT || 5000;
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
+app.use(cookieParser(process.env.SESSION_SECRET));
 
 app.use(
   cors({
@@ -31,7 +29,7 @@ app.use(
 );
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
@@ -39,58 +37,50 @@ app.use(
       pool: pool,
     }),
     secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 days
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 2 * 60 * 60 * 1000 }, // 2 hours
   })
 );
+
+initializePassport(passport);
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
-  // console.log(req.user);
+  console.log(req.user);
   next();
 });
+
+// user routes
+
+app.post("/login", user.loginUser);
+app.post("/register", user.createUser);
+app.get("/logout", checkAuthenticated, user.logoutUser);
+app.get("/users", user.getUser);
+
+// login middleware check.
+
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    console.log("user is authenticated");
+    // will be returned if true that a user is logged
+    next();
+  } else {
+    console.log("user is not authenticated");
+  }
+}
 
 // app UI data
 
 app.get("/questions/:topicId/:isSyntax", questions.getQuestions);
 app.get("/topics", questions.getTopics);
 
-// login
-
-app.post(
-  "/login",
-  checkAuthenticated,
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    successRedirect: "/",
-  })
-);
-app.post("/register", checkAuthenticated, user.createUser);
-app.get("/logout", checkNotAuthenticated, user.logoutUser);
-
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/src/pages/404.jsx"));
 });
 
-function checkAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    // return res.redirect("/users/dashboard");
-    console.log("USER IS AUTHENTICATED");
-  }
-  next();
-}
-
-function checkNotAuthenticated(req, res) {
-  if (req.isAuthenticated()) {
-    // return next();
-    console.log("USER IS NOT AUTHENTICATED");
-  }
-  res.redirect("/users/login");
-}
-
-app.listen(PORT, function () {
+app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });

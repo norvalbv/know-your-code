@@ -13,6 +13,6 @@ export const store = configureStore({
     topics: topicReducer,
     questions: questionsReducer,
     selectedTopic: selectedTopicReducer,
-    users: userReducer
+    user: userReducer
   }
 });

@@ -33,6 +33,7 @@ const ViewQuestions = ({ questionType }) => {
       dispatch(addQuestion(item));
     }
   };
+  const { user } = useSelector((state) => state.user);
 
   if (status === 'loading') return <Loading />;
 
@@ -58,9 +59,11 @@ const ViewQuestions = ({ questionType }) => {
                 _id={item.id}>
                 Q{i + 1}: {item.question}
               </p>
-              <button className="list" onClick={() => handleClick(item)}>
-                Add to your list
-              </button>
+              {user && (
+                <button className="list" onClick={() => handleClick(item)}>
+                  Add to your list
+                </button>
+              )}
             </div>
             {questions.indexOf(selectedQuestion) === i && (
               <>

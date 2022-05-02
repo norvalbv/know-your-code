@@ -13,26 +13,28 @@ function initalize(passport) {
             throw err;
           }
           const user = results.rows[0];
-
-          bcrypt.compare(password, user.password, (err, result) => {
-            if (err) return done(err);
-
-            if (!result) return done(null, false);
-
-            if (password != user.userPassword) return done(null, false);
-
-            return done(null, user);
-          });
+          console.log(user, " before user from local strategy");
+          if (results.rows.length > 0) {
+            bcrypt.compare(password, user.password, (err, result) => {
+              if (err) return done(err);
+              if (!result) return done(null, false);
+              return done(null, user);
+            });
+          } else {
+            return done(null, false);
+          }
         }
       );
     })
   );
 
   passport.serializeUser((user, done) => {
+    console.log(user, "serialize");
     done(null, user.id);
   });
 
   passport.deserializeUser((id, done) => {
+    console.log(id, "deserialize");
     pool.query("SELECT * from users WHERE id = $1", [id], (err, results) => {
       if (err) {
         return done(err);

@@ -1,12 +1,14 @@
 import parse from 'html-react-parser';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Loading from '../../components/loading';
 import NavBar from '../../components/navbar/navbar';
 import Sortquestions from '../../components/navbar/sortquestions';
 import { removeQuestion } from '../../features/chosenQuestionList';
 
 const QuestionList = () => {
   const { questions } = useSelector((state) => state.chosenQuestionList);
+  const { user } = useSelector((state) => state.user);
   console.log(questions);
 
   const dispatch = useDispatch();
@@ -18,6 +20,8 @@ const QuestionList = () => {
 
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
+  if (!user) return <Loading />;
+
   return (
     <>
       <div className="navbar">
@@ -25,7 +29,7 @@ const QuestionList = () => {
         <NavBar />
       </div>
       <div style={{ margin: '0 auto', width: '80%' }}>
-        <h2>Hi [ name ]</h2>
+        <h2>Hi {user.username}</h2>
         <h3>Your selected questions...</h3>
         {questions.length > 0 ? (
           questions.map((item, i) => (

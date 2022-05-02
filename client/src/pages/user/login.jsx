@@ -10,18 +10,19 @@ const Login = () => {
 
   // errors
   const [registerStatus, setRegisterStatus] = useState('');
+  const [loginStatus, setLoginStatus] = useState('');
 
   // login
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const dispatch = useDispatch();
-
   const login = async (e) => {
     if (e) e.preventDefault();
 
+    if (!username || !password) return;
+
     try {
-      const data = await fetch('/login', {
+      const response = await fetch('/login', {
         method: 'POST',
         body: JSON.stringify({
           password,
@@ -31,14 +32,30 @@ const Login = () => {
         credentials: 'include'
       });
 
-      // if (data.status === 201 || data.status === 200) {
-      //   setTimeout(() => {
-      //     return navigate('/trending');
-      //   }, 1000);
-      // }
-      // const hii = await data.json();
-      // console.log(hii);
-      // dispatch(addUser())
+      const data = await response.json();
+      console.log(data);
+
+      if (data.success) {
+        fetchdata();
+        setLoginStatus(data.message);
+
+        setTimeout(() => {
+          return navigate('/trending');
+        }, 500);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const dispatch = useDispatch();
+
+  const fetchdata = async () => {
+    try {
+      const response = await fetch('/users');
+      const data = await response.json();
+      console.log(data);
+      if (data) dispatch(addUser(data));
     } catch (err) {
       console.error(err);
     }
@@ -78,6 +95,7 @@ const Login = () => {
 
     try {
       await fetch('/logout');
+      return navigate('/');
     } catch (err) {
       console.error(err);
     }
@@ -106,6 +124,7 @@ const Login = () => {
             />
             <input type="submit" onSubmit={login} />
           </form>
+          <p>{loginStatus}</p>
         </div>
         <div className="user__auth-signup">
           <h3>Sign Up</h3>

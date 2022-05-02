@@ -2,6 +2,21 @@ const passport = require("passport");
 const pool = require("../config/db/pool");
 const bcrypt = require("bcrypt");
 
+const loginUser = (req, res, next) => {
+  const auth = passport.authenticate("local", (err, user, info) => {
+    if (err) throw err;
+    if (!user) {
+      res.send({ success: false, message: "Password or username incorrect" });
+    } else {
+      req.login(user, (err) => {
+        if (err) throw err;
+        res.send({ success: true, message: "Successfully logged in." });
+      });
+    }
+  });
+  auth(req, res, next);
+};
+
 const createUser = async (req, res) => {
   try {
     const {
@@ -61,13 +76,29 @@ const logoutUser = (req, res) => {
   try {
     console.log("logged out");
     req.logout();
-    req.redirect("/");
+    res.clearCookie("connect.sid");
+    res.redirect("/");
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getUser = (req, res) => {
+  try {
+    if (req.user) {
+      res.send(req.user);
+    } else {
+      res.send(null);
+      console.log("no user found");
+    }
   } catch (err) {
     console.error(err);
   }
 };
 
 module.exports = {
+  loginUser,
   createUser,
   logoutUser,
+  getUser,
 };
