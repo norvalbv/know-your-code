@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { addUser } from '../../features/userslice';
 import { Container, Dropdown, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { useState } from 'react';
 
 const NavBar = () => {
   const location = useLocation();
@@ -26,6 +27,8 @@ const NavBar = () => {
     }
   };
 
+  const [show, setShow] = useState(false);
+
   return (
     <ul id="navbar">
       {location.pathname !== '/trending' && (
@@ -43,13 +46,16 @@ const NavBar = () => {
           </Link>
         </>
       ) : (
-        <Dropdown className="d-inline mx-2">
+        <Dropdown
+          className="d-inline mx-2"
+          onMouseEnter={() => setShow(!show)}
+          onMouseLeave={() => setShow(!show)}>
           <Dropdown.Toggle
             id="dropdown-autoclose-true"
             className="dropdown__toggle">
             <BsFillPersonFill />
           </Dropdown.Toggle>
-          <Dropdown.Menu className="dropdown__menu">
+          <Dropdown.Menu className="dropdown__menu" show={show}>
             <Dropdown.Item href="#">
               <Link to="/mylist">Saved Questions</Link>
             </Dropdown.Item>
