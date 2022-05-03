@@ -1,8 +1,9 @@
 @import '../global.scss';
 
 #navbar {
-  padding: 1rem;
+  padding: 0 1rem;
   display: flex;
+  align-items: center;
   gap: 1rem;
   text-decoration: underline;
   cursor: pointer;
@@ -12,27 +13,38 @@
   }
 }
 
-.navbar__select {
-  position: relative;
+// .dropdown-toggle::after {
+//   display: none !important;
+// }
+
+.dropdown__toggle {
+  background: none !important;
+  border: none !important;
+  &:focus {
+    box-shadow: none !important;
+  }
 }
 
-.navbar__select:hover .navbar__menu {
-  display: block;
+.dropdown__menu {
+  background-color: $p-txt-dark !important;
+  border-radius: 10px !important;
 }
-.navbar__menu {
-  display: none;
-  position: absolute;
-  width: 10rem;
-  top: 1.5rem;
-  background: $p-txt-dark;
 
-  &li:hover {
+.dropdown__menu > * {
+  color: $p-txt-light !important;
+  background-color: $p-txt-dark !important;
+  &:hover {
+    color: $p-clr-2 !important;
     text-decoration: underline;
+  }
+  & > * {
+    color: inherit !important;
+    text-decoration: none;
   }
 }
 
 .sort-questions {
-  padding: 1rem;
+  padding: 0 1rem;
   display: flex;
   gap: 1rem;
   cursor: pointer;

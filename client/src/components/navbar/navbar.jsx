@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { addUser } from '../../features/userslice';
+import { Container, Dropdown, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 const NavBar = () => {
   const location = useLocation();
@@ -27,6 +28,11 @@ const NavBar = () => {
 
   return (
     <ul id="navbar">
+      {location.pathname !== '/trending' && (
+        <Link to="/trending">
+          <li className="navbar__list-item">Home</li>
+        </Link>
+      )}
       {user === null || user.length === 0 ? (
         <>
           <Link to="/login">
@@ -37,20 +43,19 @@ const NavBar = () => {
           </Link>
         </>
       ) : (
-        <div className="navbar__select">
-          <BsFillPersonFill />
-          <ul className="navbar__menu">
-            <Link to="/mylist">
-              <li>Saved Questions</li>
-            </Link>
-            <li onClick={logout}>Log Out</li>
-          </ul>
-        </div>
-      )}
-      {location.pathname !== '/trending' && (
-        <Link to="/trending">
-          <li className="navbar__list-item">Home</li>
-        </Link>
+        <Dropdown className="d-inline mx-2">
+          <Dropdown.Toggle
+            id="dropdown-autoclose-true"
+            className="dropdown__toggle">
+            <BsFillPersonFill />
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="dropdown__menu">
+            <Dropdown.Item href="#">
+              <Link to="/mylist">Saved Questions</Link>
+            </Dropdown.Item>
+            <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       )}
       <Link to="/topics">
         <li className="navbar__list-item">View All Topics</li>
