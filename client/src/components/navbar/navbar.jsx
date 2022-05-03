@@ -28,9 +28,14 @@ const NavBar = () => {
   return (
     <ul id="navbar">
       {user === null || user.length === 0 ? (
-        <Link to="/login">
-          <li className="navbar__list-item">Login</li>
-        </Link>
+        <>
+          <Link to="/login">
+            <li className="navbar__list-item">Login</li>
+          </Link>
+          <Link to="/register">
+            <li className="navbar__list-item">Register</li>
+          </Link>
+        </>
       ) : (
         <div className="navbar__select">
           <BsFillPersonFill />

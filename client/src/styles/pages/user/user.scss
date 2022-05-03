@@ -1,14 +1,27 @@
 @import '../../global.scss';
 
-.user__auth {
+#register,
+#login {
   display: flex;
-  width: 70%;
+  flex-direction: column;
+  justify-content: center;
+  width: 45vw;
   margin: 0 auto;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
+  padding: 1.5rem 4rem;
+  background-color: $p-txt-light;
+  color: $p-txt-dark;
+  border-radius: 10px;
+  box-shadow: 0px 10px 20px -4px $p-txt-dark;
+}
 
-  .user__auth-login, .user__auth-signup {
-      flex: 1;
-  }
+.register-container {
+  padding: 0 0 2rem;
+}
+
+.user__submit {
+  margin-bottom: 1rem;
+}
+
+.user__alert {
+  font-size: 12px;
 }

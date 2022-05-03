@@ -6,6 +6,7 @@ import NotFound from '../pages/404';
 import ChosenTopic from '../pages/chosentopic';
 import Login from '../pages/user/login';
 import QuestionList from '../pages/user/questionlist';
+import Register from '../pages/user/register';
 
 const PublicRoutes = () => {
   return (
@@ -17,6 +18,7 @@ const PublicRoutes = () => {
         <Route path="/notfound" element={<NotFound />}></Route>
         <Route path="/topic/:chosentopic" element={<ChosenTopic />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
         <Route path="/mylist" element={<QuestionList />}></Route>
       </Routes>
     </Router>

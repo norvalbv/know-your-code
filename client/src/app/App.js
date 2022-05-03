@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { addUser } from '../features/userslice';
 import '../styles/global.scss';
 import PublicRoutes from './router';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const App = () => {
   const dispatch = useDispatch();

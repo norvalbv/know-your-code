@@ -1,13 +1,9 @@
-import ClipLoader from 'react-spinners/ClipLoader';
+import { Spinner } from 'react-bootstrap';
 export const Loading = () => {
   return (
-    <ClipLoader
-      color={'#86D7B7'}
-      loading={true}
-      css={''}
-      speedMultiplier={0.5}
-      size={25}
-    />
+    <Spinner animation="border" role="status" variant="danger">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
   );
 };
 

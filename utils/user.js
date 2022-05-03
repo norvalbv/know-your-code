@@ -19,12 +19,7 @@ const loginUser = (req, res, next) => {
 
 const createUser = async (req, res) => {
   try {
-    const {
-      sUPassword: password,
-      sUConfirmPassword: confirmPassword,
-      sUEmail: email,
-      sUUsername: username,
-    } = req.body;
+    const { password, confirmPassword, email, username } = req.body;
 
     if (!username || !password || !confirmPassword || !email) {
       return res.status(409).send("Please enter all valid fields");

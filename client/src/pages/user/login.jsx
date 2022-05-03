@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import NavBar from '../../components/navbar/navbar';
 import '../../styles/pages/user/user.scss';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../../features/userslice';
+import { Alert, Button } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import { useEffect } from 'react';
 
 const Login = () => {
   const navigate = useNavigate();
 
   // errors
-  const [registerStatus, setRegisterStatus] = useState('');
   const [loginStatus, setLoginStatus] = useState('');
 
   // login
@@ -19,7 +21,8 @@ const Login = () => {
   const login = async (e) => {
     if (e) e.preventDefault();
 
-    if (!username || !password) return;
+    if (!username || !password)
+      return setLoginStatus('Please enter all fields');
 
     try {
       const response = await fetch('/login', {
@@ -33,11 +36,11 @@ const Login = () => {
       });
 
       const data = await response.json();
-      console.log(data);
+
+      if (data) setLoginStatus(data.message);
 
       if (data.success) {
         fetchdata();
-        setLoginStatus(data.message);
 
         localStorage.setItem('user', JSON.stringify(data));
 
@@ -63,33 +66,9 @@ const Login = () => {
     }
   };
 
-  // sign up
-  const [sUUsername, setSUUsername] = useState('');
-  const [sUEmail, setSUEmail] = useState('');
-  const [sUPassword, setSUPassword] = useState('');
-  const [sUConfirmPassword, setSUConfirmPassword] = useState('');
-
-  const signUp = async (e) => {
-    if (e) e.preventDefault();
-
-    try {
-      const data = await fetch('/register', {
-        method: 'POST',
-        body: JSON.stringify({
-          sUPassword,
-          sUConfirmPassword,
-          sUEmail,
-          sUUsername
-        }),
-        headers: { 'content-type': 'application/json' }
-      });
-
-      const responseError = await data.text();
-      setRegisterStatus(responseError);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  useEffect(() => {
+    console.log(loginStatus);
+  }, [loginStatus]);
 
   return (
     <>
@@ -97,59 +76,44 @@ const Login = () => {
         <h2>Know Your Code</h2>
         <NavBar />
       </div>
-      <div className="user__auth">
-        <div className="user__auth-login">
+      <div id="login">
+        <Form onSubmit={login}>
           <h3>Sign In</h3>
-          <form onSubmit={login}>
-            <input
-              placeholder="Username or Email"
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            <input
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              type="password"
             />
-            <input type="submit" onSubmit={login} />
-          </form>
-          <p>{loginStatus}</p>
-        </div>
-        <div className="user__auth-signup">
-          <h3>Sign Up</h3>
-          <form onSubmit={signUp}>
-            <input
-              placeholder="Username"
-              value={sUUsername}
-              onChange={(e) => setSUUsername(e.target.value)}
-            />
-            <input
-              placeholder="Email"
-              value={sUEmail}
-              onChange={(e) => setSUEmail(e.target.value)}
-              type="email"
-            />
-            <input
-              placeholder="Password"
-              value={sUPassword}
-              onChange={(e) => setSUPassword(e.target.value)}
-              type="password"
-            />
-            <input
-              placeholder="Password"
-              value={sUConfirmPassword}
-              onChange={(e) => setSUConfirmPassword(e.target.value)}
-              type="password"
-            />
-            <input type="submit" />
-          </form>
-          {registerStatus && (
-            <ul>
-              <li>{registerStatus}</li>
-            </ul>
+          </Form.Group>
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={login}
+            className="user__submit">
+            Submit
+          </Button>
+          {loginStatus && (
+            <Alert variant="danger" className="user__alter">
+              {loginStatus}
+            </Alert>
           )}
-        </div>
+          <p>Don&apos;t have an account?</p>
+          <Link to="/register">
+            <Button variant="secondary">Register an account</Button>
+          </Link>
+        </Form>
       </div>
     </>
   );
