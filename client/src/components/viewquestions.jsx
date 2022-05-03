@@ -60,8 +60,10 @@ const ViewQuestions = ({ questionType }) => {
                 Q{i + 1}: {item.question}
               </p>
               {user && (
-                <button className="list" onClick={() => handleClick(item)}>
-                  Add to your list
+                <button
+                  className="view-questions__save-question"
+                  onClick={() => handleClick(item)}>
+                  Save
                 </button>
               )}
             </div>

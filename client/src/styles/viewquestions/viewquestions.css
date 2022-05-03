@@ -88,11 +88,11 @@
   padding: 0.25rem 0;
 }
 
-.view-questions__container .list {
+.view-questions__container .view-questions__save-question {
   opacity: 0;
 }
 
-.view-questions__container:hover .list {
+.view-questions__container:hover .view-questions__save-question {
   opacity: 1;
   cursor: pointer;
   background: none;
@@ -104,6 +104,10 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   width: 5rem;
+}
+
+.view-questions__container:hover .view-questions__save-question:hover {
+  color: #255443;
 }
 
 .view-questions__container .view-questions__question {

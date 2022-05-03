@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { addUser } from '../../features/userslice';
-import { Container, Dropdown, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import { useState } from 'react';
 
 const NavBar = () => {
@@ -18,9 +18,9 @@ const NavBar = () => {
     if (e) e.preventDefault();
 
     try {
-      await fetch('/logout');
       dispatch(addUser(null));
       localStorage.removeItem('user');
+      await fetch('/logout');
       return navigate('/');
     } catch (err) {
       console.error(err);

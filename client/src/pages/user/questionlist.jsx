@@ -47,8 +47,10 @@ const QuestionList = () => {
                   _id={item.id}>
                   Q{i + 1}: {item.question}
                 </p>
-                <button className="list" onClick={() => handleClick(item)}>
-                  Remov from your list
+                <button
+                  className="view-questions__save-question"
+                  onClick={() => handleClick(item)}>
+                  Unsave
                 </button>
               </div>
               {questions.indexOf(selectedQuestion) === i && (

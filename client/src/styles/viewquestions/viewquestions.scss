@@ -32,11 +32,11 @@
   margin: 0.5rem 0;
   padding: 0.25rem 0;
 
-  .list {
+  .view-questions__save-question {
     opacity: 0;
   }
 
-  &:hover .list {
+  &:hover .view-questions__save-question {
     opacity: 1;
     cursor: pointer;
     background: none;
@@ -48,6 +48,10 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     width: 5rem;
+
+    &:hover {
+      color: $p-clr-2;
+    }
   }
 
   .view-questions__question {

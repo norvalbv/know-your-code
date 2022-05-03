@@ -41,9 +41,6 @@ const Login = () => {
 
       if (data.success) {
         fetchdata();
-
-        localStorage.setItem('user', JSON.stringify(data));
-
         setTimeout(() => {
           return navigate('/trending');
         }, 500);
@@ -59,7 +56,7 @@ const Login = () => {
     try {
       const response = await fetch('/users');
       const data = await response.json();
-      console.log(data);
+      localStorage.setItem('user', JSON.stringify(data));
       if (data) dispatch(addUser(data));
     } catch (err) {
       console.error(err);
@@ -79,7 +76,7 @@ const Login = () => {
       <div id="login">
         <Form onSubmit={login}>
           <h3>Sign In</h3>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3">
             <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
