@@ -29,7 +29,7 @@ const QuestionList = () => {
         <NavBar />
       </div>
       <div style={{ margin: '0 auto', width: '80%' }}>
-        <h2>Hi {user.username}</h2>
+        <h2 style={{ textTransform: 'capitalize' }}>Hi {user.username}!</h2>
         <h3>Your selected questions...</h3>
         {questions.length > 0 ? (
           questions.map((item, i) => (

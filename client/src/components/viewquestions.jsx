@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 import '../styles/viewquestions/viewquestions.scss';
 import { updateQuestions } from '../features/questionsSlice';
 import Loading from './loading';
-import { addQuestion } from '../features/chosenQuestionList';
+import { addQuestion, removeQuestion } from '../features/chosenQuestionList';
 // eslint-disable-next-line react/prop-types
 const ViewQuestions = ({ questionType }) => {
   const { questions, questionsFetched, noData, status } = useSelector(
@@ -26,10 +26,16 @@ const ViewQuestions = ({ questionType }) => {
     }
   }, []);
 
+  const { questions: userQuestions } = useSelector(
+    (state) => state.chosenQuestionList
+  );
+
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
-  const handleClick = (item) => {
-    if (item !== null) {
+  const handleClick = (item, isSaved) => {
+    if (isSaved && item !== null) {
+      dispatch(removeQuestion(item));
+    } else if (!isSaved && item !== null) {
       dispatch(addQuestion(item));
     }
   };
@@ -59,7 +65,14 @@ const ViewQuestions = ({ questionType }) => {
                 _id={item.id}>
                 Q{i + 1}: {item.question}
               </p>
-              {user && (
+              {user &&
+              userQuestions.map((q) => q.question).includes(item.question) ? (
+                <button
+                  className="view-questions__save-question"
+                  onClick={() => handleClick(item, true)}>
+                  Unsave
+                </button>
+              ) : (
                 <button
                   className="view-questions__save-question"
                   onClick={() => handleClick(item)}>
